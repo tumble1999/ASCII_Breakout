@@ -1,7 +1,6 @@
 #ifndef _ASCII_RENDERER_H_
 #define _ASCII_RENDERER_H_
 
-#include <Windows.h>
 #include "ConsoleColours.h"
 
 class ASCIIRenderer

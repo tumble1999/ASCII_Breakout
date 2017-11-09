@@ -1,6 +1,5 @@
 #include "ASCIIRenderer.h"
 #include <Windows.h>
-#include "ConsoleColours.h"
 #include "../Utils.h"
 
 ASCIIRenderer::ASCIIRenderer()

@@ -18,3 +18,52 @@ Vector2::~Vector2()
 {
 
 }
+
+Vector2 Vector2::operator+()
+{
+	return *this;
+}
+Vector2 Vector2::operator+(Vector2 a)
+{
+	return Vector2(x + a.x, y + a.y);
+}
+
+Vector2 Vector2::operator+(int a)
+{
+	return Vector2(x + a, y + a);
+}
+
+Vector2 Vector2::operator-()
+{
+	return Vector2(-x, -y);
+}
+
+Vector2 Vector2::operator-(Vector2 a)
+{
+	return Vector2(x - a.x, y - a.y);
+}
+
+Vector2 Vector2::operator-(int a)
+{
+	return Vector2(x - a, y - a);
+}
+
+Vector2 Vector2::operator*(float a)
+{
+	return Vector2((int) (x*a),(int) (x*y));
+}
+
+Vector2 Vector2::operator*(int a)
+{
+	return  Vector2(x * a, x * a);
+}
+
+Vector2 Vector2::operator/(float a)
+{
+	return  Vector2((int)(x / a),(int)( x / a));
+}
+
+Vector2 Vector2::operator/(int a)
+{
+	return Vector2(x / a, x / a);
+}

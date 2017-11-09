@@ -23,6 +23,18 @@
     <ClCompile Include="Game\GameObjects\ScoreDisplay.cpp">
       <Filter>Game\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\PlayerPaddle.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ObjectBall.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\GameObject.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Renderer\SpriteTools.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -70,6 +82,24 @@
       <Filter>Core\Maths</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\ScoreDisplay.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\PlayerPaddle.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ObjectBall.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Directions.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Sides.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer\SpriteTools.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObject.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,8 @@
 #include "../Utils.h"
 #include "ASCIIRenderer.h"
 
+
+
 Sprite::Sprite()
 :m_PixelData(NULL)
 , m_bInitialised(false)
@@ -110,6 +112,73 @@ void Sprite::Render(ASCIIRenderer* pRenderer)
 				int posy = m_Position.y + y;
 				pRenderer->SetPixel(posx, posy, &m_PixelData[y][x]);
 			}
+		}
+	}
+}
+
+void Sprite::SetPixels(int * pixels)
+{
+	if (!m_bInitialised)
+		return;
+
+	m_PixelData = new CHAR_INFO*[m_Size.y];
+
+	for (int i = 0; i < m_Size.y; i++)
+	{
+		m_PixelData[i] = new CHAR_INFO[m_Size.x];
+	}
+
+	for (int y = 0; y < m_Size.y; y++)
+	{
+		for (int x = 0; x < m_Size.x; x++)
+		{
+			m_PixelData[y][x].Char.UnicodeChar = 0;
+			m_PixelData[y][x].Char.AsciiChar = 0;
+			m_PixelData[y][x].Attributes = pixels[x + (y*m_Size.x)];
+		}
+	}
+}
+
+void Sprite::SetPixels(CHAR_INFO * pixels)
+{
+	if (!m_bInitialised)
+		return;
+
+	m_PixelData = new CHAR_INFO*[m_Size.y];
+
+	for (int i = 0; i < m_Size.y; i++)
+	{
+		m_PixelData[i] = new CHAR_INFO[m_Size.x];
+	}
+
+	for (int y = 0; y < m_Size.y; y++)
+	{
+		for (int x = 0; x < m_Size.x; x++)
+		{
+			m_PixelData[y][x] = pixels[x + (y*m_Size.x)];
+		}
+	}
+}
+
+void Sprite::SetPixels(char * pixels, int attributes)
+{
+	if (!m_bInitialised)
+		return;
+
+	m_PixelData = new CHAR_INFO*[m_Size.y];
+
+	for (int i = 0; i < m_Size.y; i++)
+	{
+		m_PixelData[i] = new CHAR_INFO[m_Size.x];
+	}
+
+	for (int y = 0; y < m_Size.y; y++)
+	{
+		for (int x = 0; x < m_Size.x; x++)
+		{
+			m_PixelData[y][x].Char.UnicodeChar = 0;
+			m_PixelData[y][x].Char.AsciiChar = pixels[x + (y*m_Size.x)];
+			m_PixelData[y][x].Attributes = attributes;
 		}
 	}
 }

@@ -1,9 +1,8 @@
 #ifndef _GAME_H_
-#define _GAME_H
+#define _GAME_H_
 
-#include "GameStates.h"
-#include "../Core/Renderer/Sprite.h"
-#include <vector>
+#include "GameObjects\PlayerPaddle.h"
+#include "GameObjects\ObjectBall.h"
 
 class ASCIIRenderer;
 
@@ -17,6 +16,7 @@ public:
 	void Run();
 
 private:
+	E_GAME_STATE m_gameState;
 
 	//Functions
 	void InitialiseRenderer();
@@ -28,6 +28,10 @@ private:
 
 	bool m_bInitialised;
 	bool m_bExitApp;
+
+	//Objects
+	PlayerPaddle m_playerPaddle;
+	ObjectBall m_objectBall;
 };
 
 

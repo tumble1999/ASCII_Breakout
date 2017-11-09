@@ -19,6 +19,14 @@ public:
 
 	void Render(ASCIIRenderer* pRenderer);
 
+	void SetPixels(int* pixels, Vector2& size) { m_Size = size; SetPixels(pixels); };
+	void SetPixels(CHAR_INFO* pixels, Vector2& size) { m_Size = size; SetPixels(pixels); };
+	void SetPixels(char* pixels, int attributes, Vector2& size) { m_Size = size; SetPixels(pixels, attributes); };
+
+	void SetPixels(int* pixels);
+	void SetPixels(CHAR_INFO* pixels);
+	void SetPixels(char* pixels, int attributes);
+
 	void SetPosition(int x, int y){ m_Position.x = x; m_Position.y = y; }
 	void SetPosition(Vector2& position){ m_Position = position; }
 
@@ -35,7 +43,6 @@ private:
 	CHAR_INFO** m_PixelData;
 
 	bool m_bInitialised;
-
 };
 
 #endif

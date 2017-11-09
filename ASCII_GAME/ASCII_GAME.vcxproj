@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CC3A4598-50CB-4AB8-9342-80ABA43869CB}</ProjectGuid>
     <RootNamespace>ASCII_GAME</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -69,7 +70,11 @@
     <ClCompile Include="Core\Renderer\AnimatedSprite.cpp" />
     <ClCompile Include="Core\Renderer\ASCIIRenderer.cpp" />
     <ClCompile Include="Core\Renderer\Sprite.cpp" />
+    <ClCompile Include="Core\Renderer\SpriteTools.cpp" />
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Game\GameObjects\ObjectBall.cpp" />
+    <ClCompile Include="Game\GameObjects\PlayerPaddle.cpp" />
     <ClCompile Include="Game\GameObjects\ScoreDisplay.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -80,10 +85,16 @@
     <ClInclude Include="Core\Renderer\ASCIIRenderer.h" />
     <ClInclude Include="Core\Renderer\ConsoleColours.h" />
     <ClInclude Include="Core\Renderer\Sprite.h" />
+    <ClInclude Include="Core\Renderer\SpriteTools.h" />
     <ClInclude Include="Core\Utils.h" />
+    <ClInclude Include="Game\Directions.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\GameObjects\GameObject.h" />
+    <ClInclude Include="Game\GameObjects\ObjectBall.h" />
+    <ClInclude Include="Game\GameObjects\PlayerPaddle.h" />
     <ClInclude Include="Game\GameObjects\ScoreDisplay.h" />
     <ClInclude Include="Game\GameStates.h" />
+    <ClInclude Include="Game\Sides.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
