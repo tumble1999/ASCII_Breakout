@@ -28,10 +28,10 @@ PlayerShip::~PlayerShip()
 {
 }
 
-void PlayerShip::Initialise(Vector2& position, int leftKey, int rightKey)
+void PlayerShip::Initialise(Vector2& position, int m_leftKey, int m_rightKey)
 {
-	m_LeftKey = leftKey;
-	m_RightKey = rightKey;
+	m_LeftKey = m_leftKey;
+	m_RightKey = m_rightKey;
 
 	Sprite::Initialise(ShipSprite, Vector2(12, 8));
 

@@ -1,0 +1,10 @@
+﻿  PlayerShip.cpp
+  Game.cpp
+m:\my documents\lecture notes\2017-18\ascii invaders\ascii invaders start\ascii_game\game\game.cpp(71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\my documents\lecture notes\2017-18\ascii invaders\ascii invaders start\ascii_game\game\game.cpp(163): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+m:\my documents\lecture notes\2017-18\ascii invaders\ascii invaders start\ascii_game\game\game.cpp(186): warning C4018: '<': signed/unsigned mismatch
+m:\my documents\lecture notes\2017-18\ascii invaders\ascii invaders start\ascii_game\game\game.cpp(191): warning C4018: '<': signed/unsigned mismatch
+m:\my documents\lecture notes\2017-18\ascii invaders\ascii invaders start\ascii_game\game\game.cpp(284): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  ASCII_GAME.vcxproj -> M:\My Documents\Lecture Notes\2017-18\ASCII Invaders\ASCII Invaders START\Debug\ASCII_GAME.exe
+  ASCII_GAME.vcxproj -> M:\My Documents\Lecture Notes\2017-18\ASCII Invaders\ASCII Invaders START\Debug\ASCII_GAME.pdb (Partial PDB)

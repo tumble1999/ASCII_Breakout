@@ -14,7 +14,7 @@ public:
 	PlayerShip();
 	~PlayerShip();
 
-	void Initialise(Vector2& position, int leftKey, int rightKey);
+	void Initialise(Vector2& position, int m_leftKey, int m_rightKey);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 	
