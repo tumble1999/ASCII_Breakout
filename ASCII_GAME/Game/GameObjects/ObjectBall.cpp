@@ -1,28 +1,46 @@
 #include "ObjectBall.h"
 
-CHAR_INFO BallSprite[] = {
-	PIXEL,PIXEL,PIXEL,PIXEL,
-	PIXEL,PIXEL,PIXEL,PIXEL
-};
+const int SPEED = 1;
+const WORD BALL_COLOR = BACKGROUND_YELLOW;
+const CHAR_INFO BALL_PIXEL = PIXEL_COLORED(BALL_COLOR);
+const CHAR_INFO BALL_BOUNDING_PIXEL = PIXEL_COLORED(BACKGROUND_BRIGHT_GREEN);
 
+CHAR_INFO BallSprite[] = {
+	BALL_PIXEL, BALL_PIXEL, BALL_PIXEL, BALL_PIXEL,
+	BALL_PIXEL, BALL_PIXEL, BALL_PIXEL, BALL_PIXEL
+};
+CHAR_INFO BallBoundingSprite[] = {
+	BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,
+	BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,
+	BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,
+	BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,
+	BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,
+	BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL,BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL, BALL_BOUNDING_PIXEL
+};
 ObjectBall::ObjectBall()
 {
 	m_initialised = false;
 	m_active = false;
 	m_direction = Vector2(0, 0);
+	m_pPlayerPaddle = NULL;
 }
 
 ObjectBall::~ObjectBall()
 {
 }
 
-void ObjectBall::Initialise()
+void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 {
 	//VAR INITIALISATION
-	m_direction = Vector2(1, 1);
+	m_direction = Vector2(SPEED, -SPEED);
+	m_pPlayerPaddle = pPlayerPaddle;
 
 	//SPRITE INITIALISATION
-	Sprite::Initialise(BallSprite, Vector2(4,2));
+	Sprite::Initialise(BallSprite, Vector2(2,1));
+	m_BoundingBox.Initialise(BallBoundingSprite, GetSize()+Vector2(8,4));
+	
+	//Vector2 startPos(pos.x - (Sprite::GetSize().x / 2), pos.y - Sprite::GetSize().y / 2);
+	//SetPosition(startPos);
 
 	m_initialised = true;
 }
@@ -30,25 +48,186 @@ void ObjectBall::Initialise()
 void ObjectBall::Update()
 {
 	if (!m_initialised)
+	{
 		return;
+	}
+	if (!GameStateIs(E_GAME_STATE_IN_GAME)|GamePaused())
+		return;
+
+	if (m_active)
+	{
+		CheckCollision();
+
+		SetPosition(GetPosition() + m_direction);
+		Vector2 boundingPos = (m_BoundingBox.GetSize() - GetSize()) / 2;
+		m_BoundingBox.SetPosition(GetPosition() - boundingPos);
+	}
+	else
+	{
+		bool spaceStatus = KeyDown(VK_SPACE);
+
+		SetPosition(
+			m_pPlayerPaddle->GetPosition() +
+			Vector2
+			(
+				(m_pPlayerPaddle->GetSize().x-GetSize().x)/2,
+				-GetSize().y
+			)
+		);
+
+		if (spaceStatus)
+		{
+			m_active = true;
+			return;
+		}
+	}
 }
 
 void ObjectBall::Render(ASCIIRenderer* pRenderer)
 {
-	if (!m_initialised)
+	if (!m_initialised|GamePaused())
 		return;
 
 	//Sprite rendering
+	//m_BoundingBox.Render(pRenderer);
 	Sprite::Render(pRenderer);
 }
 
+void ObjectBall::CheckCollision()
+{
+
+	if (GetWallSideV() == E_SIDE_BOTTOM)
+	{
+		Reset();
+	}
+	else
+	{
+		BounceOff(GetWallSideH());
+		BounceOff(GetWallSideV());
+	}
+}
+
+void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
+{
+	if (m_BoundingBox.Collides(otherSprite))
+	{
+		BounceOff(GetSpriteSideH(otherSprite));
+		BounceOff(GetSpriteSideV(otherSprite));
+	}
+}
+
+bool ObjectBall::CollidesWith(Sprite & otherSprite)
+{
+	return (GetSpriteSideH(otherSprite) != E_SIDE_NULL) | (GetSpriteSideV(otherSprite) != E_SIDE_NULL);
+}
+
+E_SIDE ObjectBall::GetWallSideH()
+{
+	E_SIDE wallSide = E_SIDE_NULL;
+	int xPos = GetPosition().x;
+
+	if (xPos <= 0)
+	{
+		wallSide = E_SIDE_LEFT;
+	}	
+	else if (SCREEN_WIDTH <= xPos + GetSize().x)
+	{
+		wallSide = E_SIDE_RIGHT;
+	}
+	return wallSide;
+}
+E_SIDE ObjectBall::GetWallSideV()
+{
+	E_SIDE wallSide = E_SIDE_NULL;
+	int yPos = GetPosition().y;
+	if (yPos <= 0)
+	{
+		wallSide = E_SIDE_TOP;
+	} 
+	else if (SCREEN_HEIGHT<= yPos + GetSize().y)
+	{
+		wallSide = E_SIDE_BOTTOM;
+	}
+
+	return wallSide;
+}
 
 bool ObjectBall::AtWallSide(E_SIDE wallSide)
 {
-	return false;
+	
+	return (wallSide == GetWallSideH())|(wallSide == GetWallSideV());
 }
 
 void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 {
+	switch (bounceOffSide)
+	{
+	case E_SIDE_TOP:
+	{
+		m_direction = Vector2(m_direction.x, SPEED);
+	}
+		break;
+	case E_SIDE_BOTTOM: {
+		m_direction = Vector2(m_direction.x, -SPEED);
+	}
+		break;
+	case E_SIDE_LEFT:
+	{
+		m_direction = Vector2(SPEED, m_direction.y);
+	}
+		break;
+	case E_SIDE_RIGHT:
+	{
+		m_direction = Vector2(-SPEED, m_direction.y);
+	}
+		break;
+	default:
+		break;
+	}
+}
 
+void ObjectBall::Reset()
+{
+	m_active = false;
+}
+
+E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
+{
+	E_SIDE spriteSide = E_SIDE_NULL;
+	int BallMin = m_BoundingBox.GetPosition().x;
+	int BallMax = BallMin + GetSize().x;
+
+	int SpriteMin = sprite.GetPosition().x;
+	int SpriteMax = SpriteMin + sprite.GetSize().x;
+	
+	if (BallMax <= SpriteMin)
+	{
+		spriteSide = E_SIDE_RIGHT;
+	}
+	if (SpriteMax <= BallMin)
+	{
+		spriteSide = E_SIDE_LEFT;
+	}
+
+	return spriteSide;
+}
+E_SIDE ObjectBall::GetSpriteSideV(Sprite& sprite)
+{
+	E_SIDE spriteSide = E_SIDE_NULL;
+	int BallMin = m_BoundingBox.GetPosition().y;//TOP SIDE
+	int BallMax = BallMin + GetSize().y;//BOTTOM, SIDE
+
+	int SpriteMin = sprite.GetPosition().y;//TOP SIDE
+	int SpriteMax = SpriteMin + sprite.GetSize().y;//BOTTOM SIDE
+
+	if (BallMax <= SpriteMin)
+	{
+		spriteSide = E_SIDE_TOP;
+	}
+	if (BallMax <= SpriteMin)
+	{
+		spriteSide = E_SIDE_BOTTOM;
+	}
+
+	return spriteSide;
 }

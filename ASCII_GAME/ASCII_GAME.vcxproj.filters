@@ -35,6 +35,9 @@
     <ClCompile Include="Core\Renderer\SpriteTools.cpp">
       <Filter>Core\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\Brick.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -100,6 +103,9 @@
       <Filter>Core\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\GameObject.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Brick.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

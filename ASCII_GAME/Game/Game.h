@@ -3,6 +3,7 @@
 
 #include "GameObjects\PlayerPaddle.h"
 #include "GameObjects\ObjectBall.h"
+#include "GameObjects\Brick.h"
 
 class ASCIIRenderer;
 
@@ -16,7 +17,6 @@ public:
 	void Run();
 
 private:
-	E_GAME_STATE m_gameState;
 
 	//Functions
 	void InitialiseRenderer();
@@ -25,13 +25,18 @@ private:
 
 	//Variables
 	ASCIIRenderer* m_pRenderer;
+	E_GAME_STATE m_gameState;
+	bool m_gamePaused;
 
 	bool m_bInitialised;
 	bool m_bExitApp;
 
+	int m_EscPressed;
+
 	//Objects
 	PlayerPaddle m_playerPaddle;
 	ObjectBall m_objectBall;
+	Brick m_testBrick;
 };
 
 

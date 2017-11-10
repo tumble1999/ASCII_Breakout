@@ -50,20 +50,20 @@ Vector2 Vector2::operator-(int a)
 
 Vector2 Vector2::operator*(float a)
 {
-	return Vector2((int) (x*a),(int) (x*y));
+	return Vector2((int) (x*a),(int) (y*a));
 }
 
 Vector2 Vector2::operator*(int a)
 {
-	return  Vector2(x * a, x * a);
+	return  Vector2(x * a, y * a);
 }
 
 Vector2 Vector2::operator/(float a)
 {
-	return  Vector2((int)(x / a),(int)( x / a));
+	return  Vector2((int)(x / a),(int)( y / a));
 }
 
 Vector2 Vector2::operator/(int a)
 {
-	return Vector2(x / a, x / a);
+	return Vector2(x / a, y / a);
 }

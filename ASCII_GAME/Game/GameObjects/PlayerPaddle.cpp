@@ -1,6 +1,8 @@
 #include "PlayerPaddle.h"
+#include "ObjectBall.h"
 
-const int MOVEMENT_SPEED = 1;
+const int ACCELERATION = 1;
+const int TOP_SPEED = 10;
 const int HEIGHT = 2;
 
 std::vector<CHAR_INFO> PlayerSprite;
@@ -18,9 +20,11 @@ PlayerPaddle::~PlayerPaddle()
 
 void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width)
 {
+
 	m_leftKey = leftKey;
 	m_rightKey = rightKey;
 	m_newWidth = 2*width;
+	m_speed = 0;
 	m_moveable = false;
 	SetPosition(pos);
 
@@ -37,8 +41,47 @@ void PlayerPaddle::Update()
 	{
 		return; //GO AWAY, THIS DOESNT EXIST YET !!!
 	}
-	if (GetGameState()==E_GAME_STATE_IN_GAME)
+	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+		return;
+
+
+	
+
+	//This will create an animation of the paddle changing size
+	if (GetCurrentWidth() < m_newWidth)
 	{
+		SetGamePaused(true);
+		IncreaseWidth(2);
+	}
+	if (GetCurrentWidth() > m_newWidth)
+	{
+		SetGamePaused(true);
+		DecreaseWidth(2);
+	}
+	if (GetCurrentWidth() == m_newWidth)
+	{
+		SetGamePaused(false);
+	}
+
+	if (!GamePaused())
+	{
+		CheckBallCollision();
+
+		if (LeftKeyPressed() | RightKeyPressed())
+		{
+			if (m_speed < TOP_SPEED)
+			{
+				m_speed += ACCELERATION;
+			}
+			else
+			{
+				m_speed = TOP_SPEED;
+			}
+		}
+		else
+		{
+			m_speed = 0;
+		}
 		if (LeftKeyPressed())
 		{
 			MoveLeft();
@@ -47,20 +90,6 @@ void PlayerPaddle::Update()
 		{
 			MoveRight();
 		}
-	}
-
-	//This will create an animation of the paddle changing size
-	if (GetCurrentWidth() < m_newWidth)
-	{
-		IncreaseWidth(2);
-	}
-	if (GetCurrentWidth() > m_newWidth)
-	{
-		DecreaseWidth(2);
-	}
-	if (GetCurrentWidth() == m_newWidth)
-	{
-		m_moveable = true;
 	}
 }
 
@@ -119,6 +148,11 @@ void PlayerPaddle::DecreaseWidth(int amount)
 }
 
 
+void PlayerPaddle::CheckBallCollision()
+{
+	GetObjectBall()->CheckSpriteCollision(*this);
+}
+
 bool PlayerPaddle::LeftKeyPressed()
 {
 	return (GetKeyState(m_leftKey) < 0);
@@ -132,12 +166,12 @@ bool PlayerPaddle::RightKeyPressed()
 
 void PlayerPaddle::MoveLeft()
 {
-	MoveLeft(MOVEMENT_SPEED);
+	MoveLeft(m_speed);
 }
 
 void PlayerPaddle::MoveRight()
 {
-	MoveRight(MOVEMENT_SPEED);
+	MoveRight(m_speed);
 }
 
 void PlayerPaddle::MoveLeft(int amount)
@@ -145,7 +179,7 @@ void PlayerPaddle::MoveLeft(int amount)
 	SetPosition(GetPosition() - Vector2(amount, 0));
 	if (GetPosition().x < SCREEN_MARGIN_LEFTRIGHT)
 	{
-		MoveRight(amount);
+		SetPosition(Vector2(SCREEN_MARGIN_LEFTRIGHT,GetPosition().y));
 	}
 }
 
@@ -155,6 +189,6 @@ void PlayerPaddle::MoveRight(int amount)
 
 	if (GetPosition().x + GetCurrentWidth() > SCREEN_WIDTH - SCREEN_MARGIN_LEFTRIGHT)
 	{
-		MoveLeft(amount);
+		SetPosition(Vector2(SCREEN_WIDTH - SCREEN_MARGIN_LEFTRIGHT - GetCurrentWidth(), GetPosition().y));
 	}
 }

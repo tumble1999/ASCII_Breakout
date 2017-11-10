@@ -10,27 +10,46 @@
 #include "../../Core/Renderer/SpriteTools.h"
 #include "../../Core/Renderer/Sprite.h"
 
-template<class T>
+class ObjectBall;
+
 class GameObject: public Sprite
 {
 public:
+
 	GameObject();
-	GameObject(T* gameObject);
 	~GameObject();
 
-	void InitialiseGameObject(E_GAME_STATE* pGameState);
+	E_GAME_STATE GetGameState() const;
+	bool GameStateIs(E_GAME_STATE gameState);
+	bool GameStateIs(std::vector<E_GAME_STATE> gameState);
+	void SetGameStatePointer(E_GAME_STATE* pGameState);
+	void SetGameState(E_GAME_STATE gameState);
 
-	// T => GameObject
-	GameObject operator=(T gameObject) { return GameObject(gameObject); }
-	// GameObject => T
-	operator T*() { return m_pGameObject; }
 
-	E_GAME_STATE GetGameState() { return *m_pGameState; }
-	void SetGameState(E_GAME_STATE newState) { *m_pGameState = newState; }
+	bool GamePaused();
+	void SetGamePausedPointer(bool* pGamePaused);
+	void SetGamePaused(bool paused);
+
+	ObjectBall* GetObjectBall();
+	void SetObjectBallPointer(ObjectBall* pObjectBall);
+
+
+
+	void DoNothing()
+	{
+
+	}
+
+	bool KeyPressed(int key);
+	bool KeyDown(int key);
+	bool KeyUp(int key);
 
 private:
-	T* m_pGameObject;
 	E_GAME_STATE* m_pGameState;
+	bool* m_pGamePaused;
+	ObjectBall* m_pObjectBall;
+
+	bool KeyToggle(int key);
 };
 
 #endif // !_GAME_OBJECT_H_

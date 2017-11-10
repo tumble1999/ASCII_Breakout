@@ -3,6 +3,7 @@
 
 enum E_SIDE
 {
+	E_SIDE_NULL,
 	E_SIDE_TOP,
 	E_SIDE_BOTTOM,
 	E_SIDE_LEFT,

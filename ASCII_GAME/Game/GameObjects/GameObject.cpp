@@ -1,25 +1,95 @@
 #include "GameObject.h"
 
-template<class T>
-GameObject<T>::GameObject()
+#include "..\..\Core\Utils.h"
+
+GameObject::GameObject()
 {
-	m_pGameObject = new T;
+	m_pGameState = NULL;
+	m_pGamePaused = NULL;
+	m_pObjectBall = NULL;
 }
 
-template<class T>
-GameObject<T>::GameObject(T* pGameObject)
+GameObject::~GameObject()
 {
-	m_pGameObject = pGameObject;
+	//SAFE_DELETE_PTR(m_pGameState);
 }
 
-template<class T>
-GameObject<T>::~GameObject()
-{
-	delete m_pGameObject;
+
+
+E_GAME_STATE GameObject::GetGameState() const
+{ 
+	return *m_pGameState;
 }
 
-template<class T>
-void GameObject<T>::InitialiseGameObject(E_GAME_STATE* pGameState)
+bool GameObject::GameStateIs(E_GAME_STATE gameState)
+{
+	return *m_pGameState == gameState;
+}
+
+bool GameObject::GameStateIs(std::vector<E_GAME_STATE> gameStates)
+{
+	bool output = false;
+
+	for (int i = 0; i < gameStates.size(); i++)
+	{
+		output |= gameStates[i] == *m_pGameState;
+	}
+
+	return output;
+}
+
+void GameObject::SetGameStatePointer(E_GAME_STATE* pGameState)
 {
 	m_pGameState = pGameState;
 }
+
+void GameObject::SetGameState(E_GAME_STATE gameState)
+{
+	*m_pGameState = gameState;
+}
+
+bool GameObject::GamePaused()
+{
+	return *m_pGamePaused;
+}
+
+void GameObject::SetGamePausedPointer(bool * pGamePaused)
+{
+	m_pGamePaused = pGamePaused;
+}
+
+void GameObject::SetGamePaused(bool paused)
+{
+	*m_pGamePaused = paused;
+}
+
+ObjectBall * GameObject::GetObjectBall()
+{
+	return m_pObjectBall;
+}
+
+void GameObject::SetObjectBallPointer(ObjectBall * pObjectBall)
+{
+	m_pObjectBall = pObjectBall;
+}
+
+bool GameObject::KeyPressed(int key)
+{
+	return GetKeyState(key) & 0x8000;
+}
+
+bool GameObject::KeyToggle(int key)
+{
+	return GetKeyState(key) & 1;
+}
+
+bool GameObject::KeyDown(int key)
+{
+	return KeyToggle(key) & KeyPressed(key);
+}
+
+bool GameObject::KeyUp(int key)
+{
+	return KeyToggle(key) & !KeyPressed(key);
+}
+

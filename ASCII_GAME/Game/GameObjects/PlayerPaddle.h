@@ -6,7 +6,7 @@
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_MARGIN_LEFTRIGHT;
 
-class PlayerPaddle : public GameObject<PlayerPaddle>
+class PlayerPaddle : public GameObject
 {
 public:
 	PlayerPaddle();
@@ -24,9 +24,12 @@ private:
 	bool m_moveable;
 	bool m_initialised;
 
+	int m_speed;
 	int m_leftKey;
 	int m_rightKey;
 	int m_newWidth;
+
+	void CheckBallCollision();
 
 	bool LeftKeyPressed();
 	bool RightKeyPressed();

@@ -7,8 +7,8 @@
 #include "../Core/Utils.h"
 #include "../Core/Renderer/ASCIIRenderer.h"
 
-const int SCREEN_WIDTH = 256   *2/3; //resolution shrunk so i can manage with my small 1366x768 screen
-const int SCREEN_HEIGHT = 96   *2/3;
+const int SCREEN_WIDTH = 256   *2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
+const int SCREEN_HEIGHT = 96   *2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
 #define VK_LEFT		0x25
@@ -19,6 +19,7 @@ Game::Game()
 	:m_pRenderer(NULL)
 	, m_bInitialised(false)
 	, m_bExitApp(false)
+	, m_EscPressed(0)
 {
 	m_gameState = E_GAME_STATE_MAIN_MENU;
 }
@@ -32,11 +33,19 @@ void Game::Initialise()
 {
 	InitialiseRenderer();
 
-	m_playerPaddle.InitialiseGameObject(&m_gameState);
+	m_playerPaddle.SetGameStatePointer(&m_gameState);
+	m_playerPaddle.SetGamePausedPointer(&m_gamePaused);
+	m_playerPaddle.SetObjectBallPointer(&m_objectBall);
 	m_playerPaddle.Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT*90/100), 0x41,0x44, 10);
 
-	m_objectBall.InitialiseGameObject(&m_gameState);
-	m_objectBall.Initialise();
+	m_objectBall.SetGameStatePointer(&m_gameState);
+	m_objectBall.SetGamePausedPointer(&m_gamePaused);
+	m_objectBall.Initialise(&m_playerPaddle);
+
+	m_testBrick.SetGameStatePointer(&m_gameState);
+	m_testBrick.SetGamePausedPointer(&m_gamePaused);
+	m_testBrick.SetObjectBallPointer(&m_objectBall);
+	m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE, BACKGROUND_RED);
 
 	m_bInitialised = true;
 
@@ -67,21 +76,50 @@ void Game::Update()
 {
 	if (GetKeyState(VK_ESCAPE) < 0)
 	{
-		m_bExitApp = true;
-		return;
+		m_EscPressed++;
+		if(m_EscPressed>=10)
+		{
+			m_bExitApp = true;
+			return;
+		}
+	
+	} else
+	{
+		m_EscPressed = 0;
 	}
+
 
 	switch (m_gameState)
 	{
 	case E_GAME_STATE_MAIN_MENU:
-		if (GetKeyState(VK_SPACE))
+	{
+		if (GetKeyState(VK_SPACE) < 0)
 		{
-			m_gameState =  E_GAME_STATE_IN_GAME;
+			m_gameState = E_GAME_STATE_IN_GAME;
 		}
+	}
 		break;
 	case E_GAME_STATE_IN_GAME:
+	{
+		if (GetKeyState(VK_ESCAPE) < 0)
+		{
+			if (m_EscPressed==1)
+			{
+				m_gameState = E_GAME_STATE_PAUSE_MENU;
+			}
+		}
+	}
 	break;
-	case E_GAME_STATE_PAUSE_GAME:
+	case E_GAME_STATE_PAUSE_MENU:
+	{
+		if (GetKeyState(VK_ESCAPE) < 0)
+		{
+			if (m_EscPressed==1)
+			{
+				m_gameState = E_GAME_STATE_IN_GAME;
+			}
+		}
+	}
 		break;
 	case E_GAME_STATE_LOSE_GAME:
 		break;
@@ -90,8 +128,10 @@ void Game::Update()
 	default:
 		break;
 	};
+
 	m_playerPaddle.Update();
 	m_objectBall.Update();
+	m_testBrick.Update();
 }
 
 void Game::Render()
@@ -108,9 +148,8 @@ void Game::Render()
 	{
 		m_playerPaddle.Render(m_pRenderer);
 		m_objectBall.Render(m_pRenderer);
+		m_testBrick.Render(m_pRenderer);
 	}
-		break;
-	case E_GAME_STATE_PAUSE_GAME:
 		break;
 	case E_GAME_STATE_LOSE_GAME:
 		break;
