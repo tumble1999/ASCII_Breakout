@@ -1,11 +1,7 @@
-﻿  Brick.cpp
+﻿  ObjectBall.cpp
   Generating non-SAFESEH image.
   Starting pass 2
-       Main.obj
-       PlayerPaddle.obj
        ObjectBall.obj
-       Brick.obj
-       Game.obj
        MSVCRTD.lib(loadcfg.obj)
   Finished pass 2
   ASCII_GAME.vcxproj -> C:\Users\Tumble\Documents\Visual Studio 2017\Projects\ASCII Game\Debug\ASCII_GAME.exe

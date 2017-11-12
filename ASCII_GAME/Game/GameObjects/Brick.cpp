@@ -63,11 +63,12 @@ bool Brick::Destroyed()
 
 void Brick::CheckBallCollision()
 {
+	GetObjectBall()->CheckSpriteCollision(*this);
+
 	if (GetObjectBall()->CollidesWith(*this))
 	{
 		Destroy();
 	}
-	GetObjectBall()->CheckSpriteCollision(*this);
 }
 
 void Brick::InitialiseBlockSprite(unsigned short color)

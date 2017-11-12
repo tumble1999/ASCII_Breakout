@@ -118,7 +118,17 @@ void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
 
 bool ObjectBall::CollidesWith(Sprite & otherSprite)
 {
-	return (GetSpriteSideH(otherSprite) != E_SIDE_NULL) | (GetSpriteSideV(otherSprite) != E_SIDE_NULL);
+	return m_BoundingBox.Collides(otherSprite)
+		&
+		(
+			(
+				GetSpriteSideH(otherSprite) != E_SIDE_NULL
+			)
+			| 
+			(
+				GetSpriteSideV(otherSprite) != E_SIDE_NULL
+			)
+		);
 }
 
 E_SIDE ObjectBall::GetWallSideH()
@@ -194,11 +204,11 @@ void ObjectBall::Reset()
 E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
-	int BallMin = m_BoundingBox.GetPosition().x;
-	int BallMax = BallMin + GetSize().x;
+	int BallMin = m_BoundingBox.GetPosition().x; // left
+	int BallMax = BallMin + GetSize().x; //right
 
-	int SpriteMin = sprite.GetPosition().x;
-	int SpriteMax = SpriteMin + sprite.GetSize().x;
+	int SpriteMin = sprite.GetPosition().x;//left
+	int SpriteMax = SpriteMin + sprite.GetSize().x; //right
 	
 	if (BallMax <= SpriteMin)
 	{
@@ -222,11 +232,11 @@ E_SIDE ObjectBall::GetSpriteSideV(Sprite& sprite)
 
 	if (BallMax <= SpriteMin)
 	{
-		spriteSide = E_SIDE_TOP;
-	}
-	if (BallMax <= SpriteMin)
-	{
 		spriteSide = E_SIDE_BOTTOM;
+	}
+	if (SpriteMax <= BallMin)
+	{
+		spriteSide = E_SIDE_TOP;
 	}
 
 	return spriteSide;
