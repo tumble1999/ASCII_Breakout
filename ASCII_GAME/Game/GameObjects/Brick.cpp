@@ -63,6 +63,9 @@ bool Brick::Destroyed()
 
 void Brick::CheckBallCollision()
 {
+	if (!m_initialised | m_destroyed)
+		return;
+
 	GetObjectBall()->CheckSpriteCollision(*this);
 
 	if (GetObjectBall()->CollidesWith(*this))
