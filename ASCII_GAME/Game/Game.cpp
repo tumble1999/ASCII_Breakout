@@ -7,8 +7,8 @@
 #include "../Core/Utils.h"
 #include "../Core/Renderer/ASCIIRenderer.h"
 
-const int SCREEN_WIDTH = 256   *2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
-const int SCREEN_HEIGHT = 96   *2 / 3;
+const int SCREEN_WIDTH = 256	*2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
+const int SCREEN_HEIGHT = 96	*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
 #define VK_LEFT		0x25
@@ -45,7 +45,7 @@ void Game::Initialise()
 	m_testBrick.SetGameStatePointer(&m_gameState);
 	m_testBrick.SetGamePausedPointer(&m_gamePaused);
 	m_testBrick.SetObjectBallPointer(&m_objectBall);
-	m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE, BACKGROUND_RED);
+	m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE/2, BACKGROUND_BRIGHT_RED);
 
 	m_bInitialised = true;
 
@@ -105,7 +105,9 @@ void Game::Update()
 		{
 			if (m_EscPressed==1)
 			{
-				m_gameState = E_GAME_STATE_PAUSE_MENU;
+				//uncomment when pause menu implemented
+				//m_gameState = E_GAME_STATE_PAUSE_MENU;
+				m_gamePaused = !m_gamePaused;
 			}
 		}
 	}

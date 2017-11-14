@@ -5,7 +5,6 @@ Vector2 BRICK_SIZE = Vector2(8, 2);
 
 Brick::Brick()
 {
-
 	m_destroyed = false;
 	m_initialised = false;
 }
@@ -14,7 +13,7 @@ Brick::~Brick()
 {
 	if (!m_destroyed)
 	{
-		Destroy();
+		//Destroy();
 	}
 }
 
@@ -23,8 +22,8 @@ void Brick::Initialise(Vector2 & pos, unsigned short color)
 	if (m_initialised)
 		return;
 
-	InitialiseBlockSprite(color);
-	Sprite::Initialise(GetBlockSpriteArray(), BRICK_SIZE);
+	InitialiseBrickSprite(color);
+	Sprite::Initialise(GetBrickSpriteArray(), BRICK_SIZE);
 	Sprite::SetPosition(pos);
 
 	m_initialised = true;
@@ -32,12 +31,12 @@ void Brick::Initialise(Vector2 & pos, unsigned short color)
 
 void Brick::Update()
 {
-	if (!m_initialised)
+	if (!m_initialised | m_destroyed)
 		return;
 
 	CheckBallCollision();
 
-	Sprite::SetPixels(GetBlockSpriteArray());
+	Sprite::SetPixels(GetBrickSpriteArray());
 }
 
 void Brick::Render(ASCIIRenderer * pRenderer)
@@ -50,8 +49,8 @@ void Brick::Render(ASCIIRenderer * pRenderer)
 
 void Brick::Destroy()
 {
-	if (!m_initialised)
-		return; 
+	if (!m_initialised | m_destroyed)
+		return;
 
 	m_destroyed = true;
 }
@@ -63,6 +62,9 @@ bool Brick::Destroyed()
 
 void Brick::CheckBallCollision()
 {
+	if (!m_initialised | m_destroyed)
+		return;
+
 	if (GetObjectBall()->CollidesWith(*this))
 	{
 		Destroy();
@@ -70,7 +72,7 @@ void Brick::CheckBallCollision()
 	GetObjectBall()->CheckSpriteCollision(*this);
 }
 
-void Brick::InitialiseBlockSprite(unsigned short color)
+void Brick::InitialiseBrickSprite(unsigned short color)
 {
 	if (m_initialised)
 		return;
@@ -85,7 +87,7 @@ void Brick::InitialiseBlockSprite(unsigned short color)
 	}
 }
 
-CHAR_INFO* Brick::GetBlockSpriteArray()
+CHAR_INFO* Brick::GetBrickSpriteArray()
 {
 	return m_BrickSprite.data();
 }

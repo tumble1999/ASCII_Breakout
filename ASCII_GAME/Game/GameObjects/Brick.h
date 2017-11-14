@@ -24,8 +24,8 @@ private:
 
 	void CheckBallCollision();
 
-	void InitialiseBlockSprite(unsigned short color);
-	CHAR_INFO* GetBlockSpriteArray();
+	void InitialiseBrickSprite(unsigned short color);
+	CHAR_INFO* GetBrickSpriteArray();
 
 	bool m_initialised;
 };
