@@ -45,7 +45,7 @@ void Game::Initialise()
 	m_testBrick.SetGameStatePointer(&m_gameState);
 	m_testBrick.SetGamePausedPointer(&m_gamePaused);
 	m_testBrick.SetObjectBallPointer(&m_objectBall);
-	m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE, BACKGROUND_RED);
+	m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE, BACKGROUND_BRIGHT_RED);
 
 	m_bInitialised = true;
 
