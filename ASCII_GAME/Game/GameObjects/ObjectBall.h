@@ -19,6 +19,7 @@ public:
 	void Render(ASCIIRenderer* pRenderer);
 
 	void CheckSpriteCollision(Sprite& otherSprite);
+	bool IsNear(Sprite& otherSprite);
 	bool CollidesWith(Sprite& otherSprite);
 
 private:
