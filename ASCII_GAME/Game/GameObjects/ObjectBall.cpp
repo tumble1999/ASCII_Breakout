@@ -109,11 +109,16 @@ void ObjectBall::CheckCollision()
 
 void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
 {
-	if (m_BoundingBox.Collides(otherSprite))
+	if (IsNear(otherSprite))
 	{
 		BounceOff(GetSpriteSideH(otherSprite));
 		BounceOff(GetSpriteSideV(otherSprite));
 	}
+}
+
+bool ObjectBall::IsNear(Sprite & otherSprite)
+{
+	return m_BoundingBox.Collides(otherSprite);
 }
 
 bool ObjectBall::CollidesWith(Sprite & otherSprite)
