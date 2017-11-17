@@ -38,6 +38,9 @@
     <ClCompile Include="Game\GameObjects\Brick.cpp">
       <Filter>Game\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\BrickMatrix.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -106,6 +109,9 @@
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameObjects\Brick.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\BrickMatrix.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

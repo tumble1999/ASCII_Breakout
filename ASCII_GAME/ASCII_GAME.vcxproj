@@ -74,6 +74,7 @@
     <ClCompile Include="Core\Renderer\SpriteTools.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\GameObjects\Brick.cpp" />
+    <ClCompile Include="Game\GameObjects\BrickMatrix.cpp" />
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Game\GameObjects\ObjectBall.cpp" />
     <ClCompile Include="Game\GameObjects\PlayerPaddle.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Game\Directions.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\GameObjects\Brick.h" />
+    <ClInclude Include="Game\GameObjects\BrickMatrix.h" />
     <ClInclude Include="Game\GameObjects\GameObject.h" />
     <ClInclude Include="Game\GameObjects\ObjectBall.h" />
     <ClInclude Include="Game\GameObjects\PlayerPaddle.h" />
