@@ -23,6 +23,7 @@ void BrickMatrix::Initialise(Vector2 & pos = Vector2(0,0), Vector2 & size=Vector
 
 void BrickMatrix::Update()
 {
+
 }
 
 void BrickMatrix::Render(ASCIIRenderer* pRenderer)
@@ -31,4 +32,11 @@ void BrickMatrix::Render(ASCIIRenderer* pRenderer)
 
 void BrickMatrix::InitialiseBricks()
 {
+	for (int y = 0; y < m_size.y; y++)
+	{
+		for (int x = 0; x < m_size.x; x++)
+		{
+			m_pBricks[y]
+		}
+	}
 }

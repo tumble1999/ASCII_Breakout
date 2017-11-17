@@ -59,13 +59,10 @@ void ObjectBall::Update()
 	if (m_active)
 	{
 		CheckCollision();
-		
 	}
 	else
 	{
 		bool spaceStatus = KeyDown(VK_SPACE);
-
-		
 
 		if (spaceStatus)
 		{

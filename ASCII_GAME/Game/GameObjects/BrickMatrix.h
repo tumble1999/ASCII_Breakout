@@ -16,7 +16,7 @@ public:
 private:
 	Vector2 m_pos;
 	Vector2 m_size;
-	Brick* m_pBricks;
+	std::vector<std::vector<Brick>> m_bricks;
 
 	void InitialiseBricks();
 
