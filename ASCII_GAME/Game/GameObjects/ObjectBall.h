@@ -28,6 +28,7 @@ private:
 	Sprite* m_pPlayerPaddle;
 
 	void CheckCollision();
+	void UpdatePosition();
 
 	E_SIDE GetWallSideH();
 	E_SIDE GetWallSideV();

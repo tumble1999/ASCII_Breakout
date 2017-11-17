@@ -54,26 +54,18 @@ void ObjectBall::Update()
 	if (!GameStateIs(E_GAME_STATE_IN_GAME)|GamePaused())
 		return;
 
+	UpdatePosition();
+
 	if (m_active)
 	{
 		CheckCollision();
-
-		SetPosition(GetPosition() + m_direction);
-		Vector2 boundingPos = (m_BoundingBox.GetSize() - GetSize()) / 2;
-		m_BoundingBox.SetPosition(GetPosition() - boundingPos);
+		
 	}
 	else
 	{
 		bool spaceStatus = KeyDown(VK_SPACE);
 
-		SetPosition(
-			m_pPlayerPaddle->GetPosition() +
-			Vector2
-			(
-				(m_pPlayerPaddle->GetSize().x-GetSize().x)/2,
-				-GetSize().y
-			)
-		);
+		
 
 		if (spaceStatus)
 		{
@@ -105,6 +97,30 @@ void ObjectBall::CheckCollision()
 		BounceOff(GetWallSideH());
 		BounceOff(GetWallSideV());
 	}
+}
+
+void ObjectBall::UpdatePosition()
+{
+	Vector2 newPos;
+
+	if (m_active)
+	{
+		newPos = GetPosition() + m_direction;
+	}
+	else
+	{
+		newPos = m_pPlayerPaddle->GetPosition() +
+			Vector2
+			(
+			(m_pPlayerPaddle->GetSize().x - GetSize().x) / 2,
+				-GetSize().y
+			);
+	}
+
+	SetPosition(newPos);
+
+	Vector2 boundingPos = (m_BoundingBox.GetSize() - GetSize()) / 2;
+	m_BoundingBox.SetPosition(GetPosition() - boundingPos);
 }
 
 void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
