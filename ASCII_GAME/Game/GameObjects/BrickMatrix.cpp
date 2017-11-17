@@ -23,11 +23,24 @@ void BrickMatrix::Initialise(Vector2 & pos = Vector2(0,0), Vector2 & size=Vector
 
 void BrickMatrix::Update()
 {
-
+	for (int y = 0; y < m_size.y; y++)
+	{
+		for (int x = 0; x < m_size.x; x++)
+		{
+			m_bricks[y][x].Update();
+		}
+	}
 }
 
 void BrickMatrix::Render(ASCIIRenderer* pRenderer)
 {
+	for (int y = 0; y < m_size.y; y++)
+	{
+		for (int x = 0; x < m_size.x; x++)
+		{
+			m_bricks[y][x].Render(pRenderer);
+		}
+	}
 }
 
 void BrickMatrix::InitialiseBricks()
@@ -36,7 +49,8 @@ void BrickMatrix::InitialiseBricks()
 	{
 		for (int x = 0; x < m_size.x; x++)
 		{
-			m_pBricks[y]
+			Vector2 currentBrick = Vector2(x,y);
+			m_bricks[y][x].Initialise(m_pos+currentBrick, BACKGROUND_WHITE);
 		}
 	}
 }

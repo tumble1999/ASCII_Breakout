@@ -21,6 +21,8 @@ private:
 	void InitialiseBricks();
 
 	bool m_initialised;
+	template<typename T>
+	void ForEachBrick(T doAction);
 };
 
 #endif // !_BRICK_MATRIX_H_
