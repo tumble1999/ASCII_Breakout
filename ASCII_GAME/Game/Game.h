@@ -3,7 +3,7 @@
 
 #include "GameObjects\PlayerPaddle.h"
 #include "GameObjects\ObjectBall.h"
-#include "GameObjects\Brick.h"
+#include "GameObjects\BrickMatrix.h"
 
 class ASCIIRenderer;
 
@@ -37,6 +37,7 @@ private:
 	PlayerPaddle m_playerPaddle;
 	ObjectBall m_objectBall;
 	Brick m_testBrick;
+	BrickMatrix m_brickMatrix;
 };
 
 

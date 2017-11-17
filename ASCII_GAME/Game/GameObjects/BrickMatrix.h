@@ -16,14 +16,11 @@ public:
 private:
 	Vector2 m_pos;
 	Vector2 m_size;
-	std::vector<std::vector<Brick>> m_bricks;
+	std::vector<std::vector<Brick*>*>* m_bricks;
 
 	void InitialiseBricks();
 
 	bool m_initialised;
-	template<typename T>
-	void ForEachBrick(T doAction);
 };
 
 #endif // !_BRICK_MATRIX_H_
-

@@ -42,10 +42,15 @@ void Game::Initialise()
 	m_objectBall.SetGamePausedPointer(&m_gamePaused);
 	m_objectBall.Initialise(&m_playerPaddle);
 
-	m_testBrick.SetGameStatePointer(&m_gameState);
-	m_testBrick.SetGamePausedPointer(&m_gamePaused);
-	m_testBrick.SetObjectBallPointer(&m_objectBall);
-	m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE/2, BACKGROUND_BRIGHT_RED);
+	//m_testBrick.SetGameStatePointer(&m_gameState);
+	//m_testBrick.SetGamePausedPointer(&m_gamePaused);
+	//m_testBrick.SetObjectBallPointer(&m_objectBall);
+	//m_testBrick.Initialise(Vector2(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)-BRICK_SIZE/2, BACKGROUND_BRIGHT_RED);
+
+	//m_brickMatrix.SetGameStatePounter(&m_gamePaused);
+	//m_brickMatrix.SetGamePausedPointer(&p_gamePaused);
+	//m_brickMatrix.SetObjectBallPointer(&m_objectBall);
+	m_brickMatrix.Initialise(Vector2(0, 10), Vector2(10, 10));
 
 	m_bInitialised = true;
 
@@ -133,7 +138,8 @@ void Game::Update()
 
 	m_playerPaddle.Update();
 	m_objectBall.Update();
-	m_testBrick.Update();
+	//m_testBrick.Update();
+	m_brickMatrix.Update();
 }
 
 void Game::Render()
@@ -150,7 +156,8 @@ void Game::Render()
 	{
 		m_playerPaddle.Render(m_pRenderer);
 		m_objectBall.Render(m_pRenderer);
-		m_testBrick.Render(m_pRenderer);
+		//m_testBrick.Render(m_pRenderer);
+		m_brickMatrix.Render(m_pRenderer);
 	}
 		break;
 	case E_GAME_STATE_LOSE_GAME:

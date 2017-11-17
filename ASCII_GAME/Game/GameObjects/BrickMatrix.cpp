@@ -45,12 +45,18 @@ void BrickMatrix::Render(ASCIIRenderer* pRenderer)
 
 void BrickMatrix::InitialiseBricks()
 {
+	m_bricks.clear();
 	for (int y = 0; y < m_size.y; y++)
 	{
+		std::vector<Brick>* currrentRow = new std::vector<Brick>();
 		for (int x = 0; x < m_size.x; x++)
 		{
-			Vector2 currentBrick = Vector2(x,y);
-			m_bricks[y][x].Initialise(m_pos+currentBrick, BACKGROUND_WHITE);
+			Brick* currentBrick = new Brick();
+			Vector2 currentBrickPos = Vector2(x,y);
+			currentBrick->Initialise(m_pos+currentBrickPos, BACKGROUND_WHITE);
+			currrentRow->push_back(*currentBrick);
+			//error: deconstructs after second brick made
 		}
+		m_bricks.push_back(*currrentRow);
 	}
 }
