@@ -1,8 +1,0 @@
-﻿  Brick.cpp
-  Generating non-SAFESEH image.
-  Starting pass 2
-       Brick.obj
-       MSVCRTD.lib(loadcfg.obj)
-  Finished pass 2
-  ASCII_GAME.vcxproj -> M:\ASCII Game\Debug\ASCII_GAME.exe
-  ASCII_GAME.vcxproj -> M:\ASCII Game\Debug\ASCII_GAME.pdb (Partial PDB)
