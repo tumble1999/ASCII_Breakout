@@ -23,6 +23,7 @@ public:
 	Vector2 operator *(float a);
 	Vector2 operator *(int a);
 
+
 	Vector2 operator /(float a);
 	Vector2 operator /(int a);
 

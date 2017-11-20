@@ -37,7 +37,7 @@ void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 
 	//SPRITE INITIALISATION
 	Sprite::Initialise(BallSprite, Vector2(2,1));
-	m_BoundingBox.Initialise(BallBoundingSprite, GetSize()+Vector2(8,4));
+	m_BoundingBox.Initialise(BallBoundingSprite, GetSize()+Vector2(2,1)*2);
 	
 	//Vector2 startPos(pos.x - (Sprite::GetSize().x / 2), pos.y - Sprite::GetSize().y / 2);
 	//SetPosition(startPos);
@@ -79,18 +79,14 @@ void ObjectBall::Render(ASCIIRenderer* pRenderer)
 		return;
 
 	//Sprite rendering
-	//m_BoundingBox.Render(pRenderer);
+	m_BoundingBox.Render(pRenderer);
 	Sprite::Render(pRenderer);
 }
 
 void ObjectBall::CheckCollision()
 {
 
-	if (GetWallSideV() == E_SIDE_BOTTOM)
-	{
-		Reset();
-	}
-	else
+	if (GetWallSideV() != E_SIDE_BOTTOM)
 	{
 		BounceOff(GetWallSideH());
 		BounceOff(GetWallSideV());
@@ -137,7 +133,12 @@ bool ObjectBall::IsNear(Sprite & otherSprite)
 
 bool ObjectBall::CollidesWith(Sprite & otherSprite)
 {
-	return (GetSpriteSideH(otherSprite) != E_SIDE_NULL) | (GetSpriteSideV(otherSprite) != E_SIDE_NULL);
+	return IsNear(otherSprite)&((GetSpriteSideH(otherSprite) != E_SIDE_NULL) | (GetSpriteSideV(otherSprite) != E_SIDE_NULL));
+}
+
+bool ObjectBall::OffScreen()
+{
+	return GetWallSideV() == E_SIDE_BOTTOM;
 }
 
 E_SIDE ObjectBall::GetWallSideH()
@@ -213,7 +214,7 @@ void ObjectBall::Reset()
 E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
-	int BallMin = m_BoundingBox.GetPosition().x;
+	int BallMin = GetPosition().x;
 	int BallMax = BallMin + GetSize().x;
 
 	int SpriteMin = sprite.GetPosition().x;
@@ -233,7 +234,7 @@ E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 E_SIDE ObjectBall::GetSpriteSideV(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
-	int BallMin = m_BoundingBox.GetPosition().y;//TOP SIDE
+	int BallMin = GetPosition().y;//TOP SIDE
 	int BallMax = BallMin + GetSize().y;//BOTTOM, SIDE
 
 	int SpriteMin = sprite.GetPosition().y;//TOP SIDE
@@ -241,11 +242,11 @@ E_SIDE ObjectBall::GetSpriteSideV(Sprite& sprite)
 
 	if (BallMax <= SpriteMin)
 	{
-		spriteSide = E_SIDE_TOP;
-	}
-	if (BallMax <= SpriteMin)
-	{
 		spriteSide = E_SIDE_BOTTOM;
+	}
+	if (SpriteMax <= BallMin)
+	{
+		spriteSide = E_SIDE_TOP;
 	}
 
 	return spriteSide;

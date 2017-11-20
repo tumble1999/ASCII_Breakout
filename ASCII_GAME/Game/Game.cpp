@@ -50,7 +50,16 @@ void Game::Initialise()
 	//m_brickMatrix.SetGameStatePounter(&m_gamePaused);
 	//m_brickMatrix.SetGamePausedPointer(&p_gamePaused);
 	//m_brickMatrix.SetObjectBallPointer(&m_objectBall);
-	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, Vector2(0, 10), Vector2(10, 10));
+
+	int bricksize_x = SCREEN_WIDTH / (
+		BRICK_SIZE.x + BRICK_MARGIN.x
+		);
+
+	int gridWidth = ((BRICK_SIZE.x + BRICK_MARGIN.x)*bricksize_x);
+
+	int brickpos_x = (SCREEN_WIDTH-gridWidth)/2;
+
+	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 10));
 
 	m_bInitialised = true;
 
@@ -115,6 +124,14 @@ void Game::Update()
 				m_gamePaused = !m_gamePaused;
 			}
 		}
+
+		if (m_objectBall.OffScreen()) {
+			LightReset();
+		}
+		if (m_brickMatrix.BrickCount() <= 0) {
+			Reset();
+		}
+
 	}
 	break;
 	case E_GAME_STATE_PAUSE_MENU:
@@ -170,5 +187,17 @@ void Game::Render()
 
 	//call this last
 	m_pRenderer->Render();
+}
+
+void Game::Reset()
+{
+	m_playerPaddle.Reset();
+	m_brickMatrix.Reset();
+	m_objectBall.Reset();
+}
+void Game::LightReset()
+{
+	m_playerPaddle.Reset();
+	m_objectBall.Reset();
 }
 

@@ -23,6 +23,9 @@ private:
 	void Update();
 	void Render();
 
+	void Reset();
+	void LightReset();
+
 	//Variables
 	ASCIIRenderer* m_pRenderer;
 	E_GAME_STATE m_gameState;

@@ -7,6 +7,7 @@ Brick::Brick()
 {
 	m_destroyed = false;
 	m_initialised = false;
+	m_BrickSprite = std::vector<CHAR_INFO>();
 }
 
 Brick::~Brick()
@@ -31,7 +32,7 @@ void Brick::Initialise(Vector2 & pos, unsigned short color)
 
 void Brick::Update()
 {
-	if (!m_initialised | m_destroyed)
+ 	if (!m_initialised | m_destroyed)
 		return;
 
 	CheckBallCollision();
@@ -41,7 +42,7 @@ void Brick::Update()
 
 void Brick::Render(ASCIIRenderer * pRenderer)
 {
-	if (!m_initialised|m_destroyed)
+	if (!m_initialised | m_destroyed)
 		return;
 
 	Sprite::Render(pRenderer);
@@ -67,9 +68,10 @@ void Brick::CheckBallCollision()
 
 	if (GetObjectBall()->CollidesWith(*this))
 	{
+		GetObjectBall()->CheckSpriteCollision(*this);
 		Destroy();
 	}
-	GetObjectBall()->CheckSpriteCollision(*this);
+	
 }
 
 void Brick::InitialiseBrickSprite(unsigned short color)
