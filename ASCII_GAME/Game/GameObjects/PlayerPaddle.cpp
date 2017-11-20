@@ -38,9 +38,7 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 void PlayerPaddle::Update()
 {
 	if (!m_initialised)
-	{
-		return; //GO AWAY, THIS DOESNT EXIST YET !!!
-	}
+		return;
 	if (!GameStateIs(E_GAME_STATE_IN_GAME))
 		return;
 

@@ -19,6 +19,7 @@ public:
 	Vector2 operator -(Vector2 a);
 	Vector2 operator -(int a);
 
+	Vector2 operator *(Vector2 a);
 	Vector2 operator *(float a);
 	Vector2 operator *(int a);
 

@@ -11,10 +11,12 @@ BrickMatrix::~BrickMatrix()
 {
 }
 
-void BrickMatrix::Initialise(Vector2 & pos = Vector2(0,0), Vector2 & size=Vector2(1,1))
+void BrickMatrix::Initialise(bool* pGamePaused, E_GAME_STATE* pGameState, Vector2 & pos = Vector2(0,0), Vector2 & size=Vector2(1,1))
 {
 	m_pos = pos;
 	m_size = size;
+	m_pGamePaused = pGamePaused;
+	m_pGameState = pGameState;
 
 	InitialiseBricks();
 
@@ -23,17 +25,23 @@ void BrickMatrix::Initialise(Vector2 & pos = Vector2(0,0), Vector2 & size=Vector
 
 void BrickMatrix::Update()
 {
+	if (!m_initialised | *m_pGameState != E_GAME_STATE_IN_GAME | *m_pGamePaused)
+		return;
+
 	for (int y = 0; y < m_size.y; y++)
 	{
 		for (int x = 0; x < m_size.x; x++)
 		{
-			m_bricks[y][x].Update();
+			m_bricks.at(y).at(x).Update();
 		}
 	}
 }
 
 void BrickMatrix::Render(ASCIIRenderer* pRenderer)
 {
+	if (!m_initialised)
+		return;
+
 	for (int y = 0; y < m_size.y; y++)
 	{
 		for (int x = 0; x < m_size.x; x++)
@@ -45,18 +53,19 @@ void BrickMatrix::Render(ASCIIRenderer* pRenderer)
 
 void BrickMatrix::InitialiseBricks()
 {
-	m_bricks.clear();
+	m_bricks = std::vector<std::vector<Brick>>(m_size.y, std::vector<Brick>(m_size.x, Brick()));
 	for (int y = 0; y < m_size.y; y++)
 	{
-		std::vector<Brick>* currrentRow = new std::vector<Brick>();
 		for (int x = 0; x < m_size.x; x++)
 		{
-			Brick* currentBrick = new Brick();
-			Vector2 currentBrickPos = Vector2(x,y);
-			currentBrick->Initialise(m_pos+currentBrickPos, BACKGROUND_WHITE);
-			currrentRow->push_back(*currentBrick);
+			Vector2 pos = m_pos + (
+				(BRICK_SIZE+Vector2(2,1)) * Vector2(x,y)
+				);
+
+			m_bricks[y][x].SetGamePausedPointer(m_pGamePaused);
+			m_bricks[y][x].SetGameStatePointer(m_pGameState);
+			m_bricks[y][x].Initialise(pos, BACKGROUND_WHITE);
 			//error: deconstructs after second brick made
 		}
-		m_bricks.push_back(*currrentRow);
 	}
 }

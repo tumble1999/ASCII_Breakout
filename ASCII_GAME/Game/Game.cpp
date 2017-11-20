@@ -50,7 +50,7 @@ void Game::Initialise()
 	//m_brickMatrix.SetGameStatePounter(&m_gamePaused);
 	//m_brickMatrix.SetGamePausedPointer(&p_gamePaused);
 	//m_brickMatrix.SetObjectBallPointer(&m_objectBall);
-	m_brickMatrix.Initialise(Vector2(0, 10), Vector2(10, 10));
+	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, Vector2(0, 10), Vector2(10, 10));
 
 	m_bInitialised = true;
 

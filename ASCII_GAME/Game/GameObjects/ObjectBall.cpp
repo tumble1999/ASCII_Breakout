@@ -41,6 +41,7 @@ void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 	
 	//Vector2 startPos(pos.x - (Sprite::GetSize().x / 2), pos.y - Sprite::GetSize().y / 2);
 	//SetPosition(startPos);
+	UpdatePosition();
 
 	m_initialised = true;
 }
