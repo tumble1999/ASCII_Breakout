@@ -19,6 +19,8 @@ public:
 	void ChangeWidth(int newWidth);
 	const int GetWidth();
 
+	void Reset();
+
 private:
 
 	bool m_moveable;
@@ -28,6 +30,8 @@ private:
 	int m_leftKey;
 	int m_rightKey;
 	int m_newWidth;
+
+	Vector2 m_startPos;
 
 	void CheckBallCollision();
 

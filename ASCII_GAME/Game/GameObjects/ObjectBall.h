@@ -21,6 +21,10 @@ public:
 	void CheckSpriteCollision(Sprite& otherSprite);
 	bool IsNear(Sprite& otherSprite);
 	bool CollidesWith(Sprite& otherSprite);
+	bool OffScreen();
+
+
+	void Reset();
 
 private:
 	Vector2 m_direction;
@@ -34,7 +38,6 @@ private:
 	E_SIDE GetWallSideV();
 	bool AtWallSide(E_SIDE wallSide);
 	void BounceOff(E_SIDE bounceOffSide);
-	void Reset();
 
 	E_SIDE GetSpriteSideH(Sprite& sprite);
 	E_SIDE GetSpriteSideV(Sprite& sprite);

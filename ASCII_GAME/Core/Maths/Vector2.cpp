@@ -48,6 +48,11 @@ Vector2 Vector2::operator-(int a)
 	return Vector2(x - a, y - a);
 }
 
+Vector2 Vector2::operator*(Vector2 a)
+{
+	return Vector2(x*a.x,y*a.y);
+}
+
 Vector2 Vector2::operator*(float a)
 {
 	return Vector2((int) (x*a),(int) (y*a));

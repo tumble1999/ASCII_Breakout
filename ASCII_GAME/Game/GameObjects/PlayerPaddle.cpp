@@ -30,7 +30,7 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 
 	Sprite::Initialise(GetPlayerSprite(), Vector2(GetCurrentWidth(), HEIGHT));
 	
-	Vector2 startPos(pos.x - (Sprite::GetSize().x/2),pos.y - Sprite::GetSize().y/2);
+	m_startPos = Vector2(pos.x - (Sprite::GetSize().x/2),pos.y - Sprite::GetSize().y/2);
 
 	m_initialised = true;
 }
@@ -38,9 +38,7 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 void PlayerPaddle::Update()
 {
 	if (!m_initialised)
-	{
-		return; //GO AWAY, THIS DOESNT EXIST YET !!!
-	}
+		return;
 	if (!GameStateIs(E_GAME_STATE_IN_GAME))
 		return;
 
@@ -111,6 +109,11 @@ void PlayerPaddle::ChangeWidth(int newSize)
 const int PlayerPaddle::GetWidth()
 {
 	return m_newWidth/2;
+}
+
+void PlayerPaddle::Reset()
+{
+	SetPosition(m_startPos);
 }
 
 
