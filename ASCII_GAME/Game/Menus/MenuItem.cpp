@@ -16,7 +16,7 @@ void MenuItem::Initialise(std::string text)
 
 	InitialiseMenuItemSprite();
 
-	Sprite::Initialise(GetMenuItemArray(),);
+	Sprite::Initialise(GetMenuItemArray(),text.length);
 }
 
 void MenuItem::Update()
