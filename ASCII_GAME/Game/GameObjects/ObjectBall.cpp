@@ -78,8 +78,8 @@ void ObjectBall::Render(ASCIIRenderer* pRenderer)
 	if (!m_initialised|GamePaused())
 		return;
 
-	//Sprite rendering
-	m_BoundingBox.Render(pRenderer);
+	// Sprite rendering
+	//m_BoundingBox.Render(pRenderer);
 	Sprite::Render(pRenderer);
 }
 
