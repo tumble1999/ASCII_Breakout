@@ -2,6 +2,12 @@
 
 Vector2 BRICK_MARGIN = Vector2(0,0);
 
+/*
+TODO:	# Colors depending on y.
+		# ...
+		# ...
+*/
+
 BrickMatrix::BrickMatrix()
 {
 	m_initialised = false;
