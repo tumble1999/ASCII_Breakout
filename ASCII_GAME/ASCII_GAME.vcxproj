@@ -83,6 +83,8 @@
     <ClCompile Include="Game\GameObjects\ObjectBall.cpp" />
     <ClCompile Include="Game\GameObjects\PlayerPaddle.cpp" />
     <ClCompile Include="Game\GameObjects\ScoreDisplay.cpp" />
+    <ClCompile Include="Game\Menus\Menu.cpp" />
+    <ClCompile Include="Game\Menus\MenuItem.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,7 @@
     <ClInclude Include="Game\GameObjects\ScoreDisplay.h" />
     <ClInclude Include="Game\GameStates.h" />
     <ClInclude Include="Game\Menus\Menu.h" />
+    <ClInclude Include="Game\Menus\MenuItem.h" />
     <ClInclude Include="Game\Sides.h" />
     <ClInclude Include="Header.h" />
   </ItemGroup>
