@@ -1,6 +1,6 @@
 #include "BrickMatrix.h"
 
-Vector2 BRICK_MARGIN = Vector2(0,0);
+Vector2 BRICK_MARGIN = Vector2(1,2);
 
 /*
 TODO:	# Colors depending on y.
@@ -69,6 +69,7 @@ void BrickMatrix::InitialiseBricks()
 	m_bricks = std::vector<std::vector<Brick>>(m_size.y, std::vector<Brick>(m_size.x, Brick()));
 	for (int y = 0; y < m_size.y; y++)
 	{
+		unsigned int colorForCurrentRow = GetColorFromY(y);
 		for (int x = 0; x < m_size.x; x++)
 		{
 			Vector2 pos = m_pos + (
@@ -78,10 +79,29 @@ void BrickMatrix::InitialiseBricks()
 			m_bricks[y][x].SetGamePausedPointer(m_pGamePaused);
 			m_bricks[y][x].SetGameStatePointer(m_pGameState);
 			m_bricks[y][x].SetObjectBallPointer(m_pObjectBall);
-			m_bricks[y][x].Initialise(pos, BACKGROUND_WHITE);
-			//error: deconstructs after second brick made
+			m_bricks[y][x].Initialise(pos, colorForCurrentRow);
+			//FIXED:(error: deconstructs after second brick made)
 		}
 	}
+}
+
+/*
+colors:id
+size:y
+*/
+
+unsigned int BrickMatrix::GetColorFromY(int y)
+{
+	std::vector<unsigned int> colors = 
+	{BACKGROUND_BRIGHT_RED, BACKGROUND_YELLOW, BACKGROUND_BRIGHT_GREEN, BACKGROUND_BRIGHT_BLUE};
+
+	float multiplier = 0;
+	int id = 0;
+
+	multiplier = ((float)colors.size())/((float)m_size.y);
+	id = multiplier * y;
+
+	return colors[id];
 }
 
 void BrickMatrix::Reset()

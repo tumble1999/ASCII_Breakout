@@ -5,7 +5,7 @@ const int ACCELERATION = 1;
 const int TOP_SPEED = 10;
 const int HEIGHT = 2;
 
-const bool DEMO = false;
+const bool DEMO = true;
 
 std::vector<CHAR_INFO> PlayerSprite;
 

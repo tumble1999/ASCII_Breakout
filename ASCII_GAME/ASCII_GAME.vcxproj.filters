@@ -114,5 +114,14 @@
     <ClInclude Include="Game\GameObjects\BrickMatrix.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Menus\Menu.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
