@@ -5,6 +5,8 @@ const int ACCELERATION = 1;
 const int TOP_SPEED = 10;
 const int HEIGHT = 2;
 
+const bool DEMO = false;
+
 std::vector<CHAR_INFO> PlayerSprite;
 
 PlayerPaddle::PlayerPaddle()
@@ -42,7 +44,6 @@ void PlayerPaddle::Update()
 	if (!GameStateIs(E_GAME_STATE_IN_GAME))
 		return;
 
-
 	
 
 	//This will create an animation of the paddle changing size
@@ -64,6 +65,15 @@ void PlayerPaddle::Update()
 	if (!GamePaused())
 	{
 		CheckBallCollision();
+
+		if (DEMO)
+		{
+			SetPosition(Vector2(
+				GetObjectBall()->GetPosition().x -
+				(GetSize().x - GetObjectBall()->GetSize().x) / 2
+				, GetPosition().y
+			));
+		}
 
 		if (LeftKeyPressed() | RightKeyPressed())
 		{
