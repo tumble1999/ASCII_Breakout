@@ -4,19 +4,22 @@ MenuItem::MenuItem()
 {
 	m_initialised = false;
 	m_text = "";
+	m_highlighted = false;
 }
 
 MenuItem::~MenuItem()
 {
 }
 
-void MenuItem::Initialise(std::string text)
+MenuItem MenuItem::Initialise(std::string text)
 {
 	m_text = text;
 
-	InitialiseMenuItemSprite();
+	UpdateMenuItemSprite(" " + text + " ");
+	Sprite::Initialise(GetMenuItemArray(),text.length+2);
 
-	Sprite::Initialise(GetMenuItemArray(),text.length);
+	m_initialised = true;
+	return *this;
 }
 
 void MenuItem::Update()
@@ -25,13 +28,20 @@ void MenuItem::Update()
 
 void MenuItem::Render(ASCIIRenderer * pRenderer)
 {
+	Sprite::Render(pRenderer);
 }
 
-void MenuItem::InitialiseMenuItemSprite()
+void MenuItem::UpdateMenuItemSprite(std::string text)
 {
+	m_MenuItemSprite.clear();
+	for (int i = 0; i < text.length; i++)
+	{
+		WCHAR hello = text.c_str()[i];
+		m_MenuItemSprite.push_back({ hello, BACKGROUND_WHITE });
+	}
 }
 
 CHAR_INFO * MenuItem::GetMenuItemArray()
 {
-	return nullptr;
+	return m_MenuItemSprite.data();
 }

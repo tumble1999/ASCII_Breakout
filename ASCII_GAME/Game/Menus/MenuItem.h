@@ -11,15 +11,17 @@ public:
 	MenuItem();
 	~MenuItem();
 
-	void Initialise(std::string text);
+	MenuItem Initialise(std::string text);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
 private:
 	std::string m_text;
 	std::vector<CHAR_INFO> m_MenuItemSprite;
+	bool m_highlighted;
 
-	void InitialiseMenuItemSprite();
+
+	void UpdateMenuItemSprite(std::string text);
 	CHAR_INFO* GetMenuItemArray();
 
 	bool m_initialised;

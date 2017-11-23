@@ -4,6 +4,7 @@
 #include "GameObjects\PlayerPaddle.h"
 #include "GameObjects\ObjectBall.h"
 #include "GameObjects\BrickMatrix.h"
+#include "Menus\Menu.h"
 
 class ASCIIRenderer;
 
@@ -41,6 +42,8 @@ private:
 	ObjectBall m_objectBall;
 	Brick m_testBrick;
 	BrickMatrix m_brickMatrix;
+
+	Menu m_mainMenu;
 };
 
 

@@ -33,6 +33,12 @@ void Game::Initialise()
 {
 	InitialiseRenderer();
 
+
+	m_mainMenu.Initialise(Vector2(0,0),
+	{
+		MenuItem().Initialise("test")
+	});
+
 	m_playerPaddle.SetGameStatePointer(&m_gameState);
 	m_playerPaddle.SetGamePausedPointer(&m_gamePaused);
 	m_playerPaddle.SetObjectBallPointer(&m_objectBall);
@@ -111,6 +117,8 @@ void Game::Update()
 		{
 			m_gameState = E_GAME_STATE_IN_GAME;
 		}
+
+		m_mainMenu.Update();
 	}
 		break;
 	case E_GAME_STATE_IN_GAME:
@@ -168,6 +176,9 @@ void Game::Render()
 	switch (m_gameState)
 	{
 	case E_GAME_STATE_MAIN_MENU:
+	{
+		m_mainMenu.Render(m_pRenderer);
+	}
 		break;
 	case E_GAME_STATE_IN_GAME:
 	{
