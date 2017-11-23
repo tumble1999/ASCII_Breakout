@@ -28,6 +28,7 @@ private:
 	ObjectBall* m_pObjectBall;
 
 	void InitialiseBricks();
+	unsigned int GetColorFromY(int y);
 
 	bool m_initialised;
 };

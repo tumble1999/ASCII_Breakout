@@ -41,6 +41,12 @@
     <ClCompile Include="Game\GameObjects\BrickMatrix.cpp">
       <Filter>Game\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Menus\Menu.cpp">
+      <Filter>Game\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Menus\MenuItem.cpp">
+      <Filter>Game\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -57,6 +63,9 @@
     </Filter>
     <Filter Include="Game\GameObjects">
       <UniqueIdentifier>{872a3f34-878d-4c9a-ae1c-a6e597d3af18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Menus">
+      <UniqueIdentifier>{e22c89f1-8d55-41df-b8e8-f232be603e64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,5 +123,17 @@
     <ClInclude Include="Game\GameObjects\BrickMatrix.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Menus\Menu.h">
+      <Filter>Game\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Menus\MenuItem.h">
+      <Filter>Game\Menus</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
