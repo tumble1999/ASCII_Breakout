@@ -32,9 +32,9 @@ Game::~Game()
 void Game::Initialise()
 {
 	InitialiseRenderer();
+	
 
-
-	m_mainMenu.Initialise(Vector2(0,0),
+	m_mainMenu.Initialise(Vector2(0, 0),
 	{
 		MenuItem("test")
 	});

@@ -17,6 +17,9 @@ void Menu::Initialise(Vector2& pos, std::vector<MenuItem> menuItems)
 
 	m_initialised = true;
 
+	
+	// 	calls this  std::vector<MenuItem,std::allocator<MenuItem> >::~vector<MenuItem,std::allocator<MenuItem> >()
+
 }
 
 void Menu::Update()

@@ -2,28 +2,27 @@
 
 MenuItem::MenuItem()
 {
-	m_initialised = false;
-	m_text = "";
-	m_highlighted = false;
+	InitializeMemberVars();
 }
 
 MenuItem::MenuItem(std::string text)
 {
-	Initialise(text);
+	InitializeMemberVars();
+	Initialize(text);
 }
 
 MenuItem::~MenuItem()
 {
 }
 
-void MenuItem::Initialise(std::string text)
+void MenuItem::Initialize(std::string text)
 {
 	m_text = text;
 
 	UpdateMenuItemSprite();
 	Sprite::Initialise(GetMenuItemArray(), Vector2(m_text.size(),1));
 
-	m_initialised = true;
+	m_initialized = true;
 }
 
 
@@ -37,9 +36,17 @@ void MenuItem::Render(ASCIIRenderer * pRenderer)
 	Sprite::Render(pRenderer);
 }
 
+void MenuItem::InitializeMemberVars()
+{
+	m_initialized = false;
+	m_text = "";
+	m_highlighted = false;
+}
+
 void MenuItem::UpdateMenuItemSprite()
 {
 	m_MenuItemSprite.clear();
+
 	if (m_highlighted)
 	{
 		m_MenuItemSprite.push_back({ '[', BACKGROUND_WHITE });

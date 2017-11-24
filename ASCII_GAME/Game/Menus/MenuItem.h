@@ -12,7 +12,7 @@ public:
 	MenuItem(std::string text);
 	~MenuItem();
 
-	void Initialise(std::string text);
+	void Initialize(std::string text);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
@@ -21,11 +21,12 @@ private:
 	std::vector<CHAR_INFO> m_MenuItemSprite;
 	bool m_highlighted;
 
+	void InitializeMemberVars();
 
 	void UpdateMenuItemSprite();
 	CHAR_INFO* GetMenuItemArray();
 
-	bool m_initialised;
+	bool m_initialized;
 };
 
 #endif // !_MENU_ITEM_H_
