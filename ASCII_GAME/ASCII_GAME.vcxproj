@@ -102,6 +102,7 @@
     <ClInclude Include="Game\GameObjects\BrickMatrix.h" />
     <ClInclude Include="Game\GameObjects\GameObject.h" />
     <ClInclude Include="Game\GameObjects\ObjectBall.h" />
+    <ClInclude Include="Game\GameObjects\Player.h" />
     <ClInclude Include="Game\GameObjects\PlayerPaddle.h" />
     <ClInclude Include="Game\GameObjects\ScoreDisplay.h" />
     <ClInclude Include="Game\GameStates.h" />

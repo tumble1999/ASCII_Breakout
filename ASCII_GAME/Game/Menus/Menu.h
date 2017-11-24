@@ -14,7 +14,7 @@ public:
 	void Render(ASCIIRenderer *pRenderer);
 
 private:
-	Vector2& m_pos;
+	Vector2 m_pos;
 	std::vector<MenuItem> m_menuItems;
 	int m_selectedItem;
 

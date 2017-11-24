@@ -129,5 +129,8 @@
     <ClInclude Include="Game\Menus\MenuItem.h">
       <Filter>Game\Menus</Filter>
     </ClInclude>
+    <ClInclude Include="Game\GameObjects\Player.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
