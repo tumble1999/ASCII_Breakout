@@ -49,22 +49,30 @@ void MenuItem::UpdateMenuItemSprite()
 
 	if (m_highlighted)
 	{
-		m_MenuItemSprite.push_back({ '[', BACKGROUND_WHITE });
-
+		m_MenuItemSprite.push_back({ '[', BACKGROUND_BLACK });
 	}
+	else
+	{
+		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK });
+	}
+
 	for (int i = 0; i < m_text.size(); i++)
 	{
 		WCHAR currentChar = m_text[i];
-		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_WHITE });
+		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_BLACK });
 	}
 	if (m_highlighted)
 	{
-		m_MenuItemSprite.push_back({ ']', BACKGROUND_WHITE });
+		m_MenuItemSprite.push_back({ ']', BACKGROUND_BLACK });
 
+	}
+	else
+	{
+		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK });
 	}
 }
 
-CHAR_INFO * MenuItem::GetMenuItemArray()
+CHAR_INFO* MenuItem::GetMenuItemArray()
 {
 	return m_MenuItemSprite.data();
 }
