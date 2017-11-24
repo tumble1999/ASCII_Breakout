@@ -7,11 +7,16 @@ MenuItem::MenuItem()
 	m_highlighted = false;
 }
 
+MenuItem::MenuItem(std::string text)
+{
+	Initialise(text);
+}
+
 MenuItem::~MenuItem()
 {
 }
 
-MenuItem MenuItem::Initialise(std::string text)
+void MenuItem::Initialise(std::string text)
 {
 	m_text = text;
 
@@ -19,8 +24,9 @@ MenuItem MenuItem::Initialise(std::string text)
 	Sprite::Initialise(GetMenuItemArray(), Vector2(m_text.size(),1));
 
 	m_initialised = true;
-	return *this;
 }
+
+
 
 void MenuItem::Update()
 {

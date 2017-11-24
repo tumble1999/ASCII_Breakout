@@ -36,7 +36,7 @@ void Game::Initialise()
 
 	m_mainMenu.Initialise(Vector2(0,0),
 	{
-		MenuItem().Initialise("test")
+		MenuItem("test")
 	});
 
 	m_playerPaddle.SetGameStatePointer(&m_gameState);

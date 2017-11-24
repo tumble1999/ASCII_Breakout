@@ -9,9 +9,10 @@ class MenuItem:GameObject
 {
 public:
 	MenuItem();
+	MenuItem(std::string text);
 	~MenuItem();
 
-	MenuItem Initialise(std::string text);
+	void Initialise(std::string text);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
