@@ -15,8 +15,8 @@ MenuItem MenuItem::Initialise(std::string text)
 {
 	m_text = text;
 
-	UpdateMenuItemSprite(" " + text + " ");
-	Sprite::Initialise(GetMenuItemArray(),text.length+2);
+	UpdateMenuItemSprite();
+	Sprite::Initialise(GetMenuItemArray(), Vector2(m_text.size(),1));
 
 	m_initialised = true;
 	return *this;
@@ -31,13 +31,23 @@ void MenuItem::Render(ASCIIRenderer * pRenderer)
 	Sprite::Render(pRenderer);
 }
 
-void MenuItem::UpdateMenuItemSprite(std::string text)
+void MenuItem::UpdateMenuItemSprite()
 {
 	m_MenuItemSprite.clear();
-	for (int i = 0; i < text.length; i++)
+	if (m_highlighted)
 	{
-		WCHAR hello = text.c_str()[i];
-		m_MenuItemSprite.push_back({ hello, BACKGROUND_WHITE });
+		m_MenuItemSprite.push_back({ '[', BACKGROUND_WHITE });
+
+	}
+	for (int i = 0; i < m_text.size(); i++)
+	{
+		WCHAR currentChar = m_text[i];
+		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_WHITE });
+	}
+	if (m_highlighted)
+	{
+		m_MenuItemSprite.push_back({ ']', BACKGROUND_WHITE });
+
 	}
 }
 

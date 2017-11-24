@@ -123,17 +123,11 @@
     <ClInclude Include="Game\GameObjects\BrickMatrix.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Game\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Menus\Menu.h">
       <Filter>Game\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Game\Menus\MenuItem.h">
       <Filter>Game\Menus</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

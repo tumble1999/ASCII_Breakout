@@ -2,7 +2,7 @@
 
 Menu::Menu()
 {
-	m_pos = Vector2(0,0);
+	m_pos = Vector2(0, 0);
 	m_initialised = false;
 }
 

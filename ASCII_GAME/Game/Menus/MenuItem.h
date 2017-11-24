@@ -21,7 +21,7 @@ private:
 	bool m_highlighted;
 
 
-	void UpdateMenuItemSprite(std::string text);
+	void UpdateMenuItemSprite();
 	CHAR_INFO* GetMenuItemArray();
 
 	bool m_initialised;
