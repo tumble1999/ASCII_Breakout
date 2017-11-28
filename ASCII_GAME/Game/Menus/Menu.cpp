@@ -3,19 +3,19 @@
 Menu::Menu()
 {
 	m_pos = Vector2(0,0);
-	m_initialised = false;
+	m_initialized = false;
 }
 
 Menu::~Menu()
 {
 }
 
-void Menu::Initialise(Vector2& pos, std::vector<MenuItem> menuItems)
+void Menu::Initialize(Vector2& pos, std::vector<MenuItem>& menuItems)
 {
 	m_menuItems = menuItems;
 	m_pos = pos;
 
-	m_initialised = true;
+	m_initialized = true;
 
 	
 	// 	calls this: std::vector<MenuItem,std::allocator<MenuItem> >::~vector<MenuItem,std::allocator<MenuItem> >()

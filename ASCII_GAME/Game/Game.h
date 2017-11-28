@@ -6,6 +6,9 @@
 #include "GameObjects\BrickMatrix.h"
 #include "Menus\Menu.h"
 
+#include "GameObjects\Player.h"
+
+
 class ASCIIRenderer;
 
 class Game
@@ -44,6 +47,7 @@ private:
 	BrickMatrix m_brickMatrix;
 
 	Menu m_mainMenu;
+	Player m_player;
 };
 
 

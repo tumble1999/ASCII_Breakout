@@ -47,6 +47,9 @@
     <ClCompile Include="Game\Menus\MenuItem.cpp">
       <Filter>Game\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameObjects\Player.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

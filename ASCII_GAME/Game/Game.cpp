@@ -32,12 +32,11 @@ Game::~Game()
 void Game::Initialise()
 {
 	InitialiseRenderer();
-	
 
-	m_mainMenu.Initialise(Vector2(0, 0),
-	{
-		MenuItem("test")
-	});
+	//m_mainMenu.Initialize(Vector2(0, 0),
+	//{
+	//	MenuItem("hello")
+	//});
 
 	m_playerPaddle.SetGameStatePointer(&m_gameState);
 	m_playerPaddle.SetGamePausedPointer(&m_gamePaused);

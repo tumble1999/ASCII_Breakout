@@ -56,7 +56,7 @@ void MenuItem::UpdateMenuItemSprite()
 		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK });
 	}
 
-	for (int i = 0; i < m_text.size(); i++)
+	for (size_t i = 0; i < m_text.size(); i++)
 	{
 		WCHAR currentChar = m_text[i];
 		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_BLACK });
