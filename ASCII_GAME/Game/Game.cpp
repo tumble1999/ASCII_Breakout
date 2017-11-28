@@ -38,7 +38,7 @@ void Game::Initialise()
 	//	MenuItem("hello")
 	//});
 
-	m_playerPaddle.SetGameStatePointer(&m_gameState);
+	/*m_playerPaddle.SetGameStatePointer(&m_gameState);
 	m_playerPaddle.SetGamePausedPointer(&m_gamePaused);
 	m_playerPaddle.SetObjectBallPointer(&m_objectBall);
 	m_playerPaddle.Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT*90/100), 0x41,0x44, 10);
@@ -46,6 +46,9 @@ void Game::Initialise()
 	m_objectBall.SetGameStatePointer(&m_gameState);
 	m_objectBall.SetGamePausedPointer(&m_gamePaused);
 	m_objectBall.Initialise(&m_playerPaddle);
+	*/
+
+	m_player.Initialize(&m_gameState, &m_gamePaused);
 
 	//m_testBrick.SetGameStatePointer(&m_gameState);
 	//m_testBrick.SetGamePausedPointer(&m_gamePaused);
@@ -160,9 +163,10 @@ void Game::Update()
 		break;
 	};
 
-	m_playerPaddle.Update();
-	m_objectBall.Update();
+	//m_playerPaddle.Update();
+	//m_objectBall.Update();
 	//m_testBrick.Update();
+	m_player.Update();
 	m_brickMatrix.Update();
 }
 
@@ -181,8 +185,9 @@ void Game::Render()
 		break;
 	case E_GAME_STATE_IN_GAME:
 	{
-		m_playerPaddle.Render(m_pRenderer);
-		m_objectBall.Render(m_pRenderer);
+		//m_playerPaddle.Render(m_pRenderer);
+		//m_objectBall.Render(m_pRenderer);
+		m_player.Render(m_pRenderer);
 		//m_testBrick.Render(m_pRenderer);
 		m_brickMatrix.Render(m_pRenderer);
 	}

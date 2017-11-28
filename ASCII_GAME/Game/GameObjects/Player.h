@@ -3,6 +3,9 @@
 
 #include "PlayerPaddle.h"
 #include "ScoreDisplay.h"
+#include "ObjectBall.h"
+
+//extern const int SCREEN_WIDTH;
 
 class Player
 {
@@ -10,7 +13,7 @@ public:
 	Player();
 	~Player();
 
-	void Initialize();
+	void Initialize(E_GAME_STATE *gameState, bool *gamePaused);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
@@ -26,15 +29,16 @@ public:
 
 	PlayerPaddle* GetPlayerPaddle();
 
-	ObjectBall * GetObjectBall();
+	ObjectBall* GetObjectBall();
 
 private:
 	int m_health;
 	int m_score;
 
-	PlayerPaddle* m_playerPaddle;
-	ScoreDisplay* m_sdHealth;
-	ScoreDisplay* m_sdScore;
+	PlayerPaddle* m_pPlayerPaddle;
+	ObjectBall* m_pObjectBall;
+	ScoreDisplay* m_pSDHealth;
+	ScoreDisplay* m_pSDScore;
 
 
 	int m_initialized;
