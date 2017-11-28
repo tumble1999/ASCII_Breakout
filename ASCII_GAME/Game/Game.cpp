@@ -67,7 +67,8 @@ void Game::Initialise()
 
 	int brickpos_x = (SCREEN_WIDTH-gridWidth)/2;
 
-	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
+	//m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
+	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, m_player.GetObjectBall(), Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
 
 	m_bInitialised = true;
 
@@ -135,7 +136,7 @@ void Game::Update()
 			}
 		}
 
-		if (m_objectBall.OffScreen()) {
+		if (m_player.GetObjectBall()->OffScreen()) {
 			LightReset();
 		}
 		if (m_brickMatrix.BrickCount() <= 0) {
@@ -206,13 +207,11 @@ void Game::Render()
 
 void Game::Reset()
 {
-	m_playerPaddle.Reset();
+	m_player.Reset();
 	m_brickMatrix.Reset();
-	m_objectBall.Reset();
 }
 void Game::LightReset()
 {
-	m_playerPaddle.Reset();
-	m_objectBall.Reset();
+	m_player.Reset();
 }
 

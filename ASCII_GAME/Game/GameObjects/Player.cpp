@@ -96,3 +96,15 @@ ObjectBall* Player::GetObjectBall()
 {
 	return m_pObjectBall;
 }
+
+void Player::Reset()
+{
+	m_pPlayerPaddle->Reset();
+	m_pObjectBall->Reset();
+}
+
+void Player::LightReset()
+{
+	m_pPlayerPaddle->Reset();
+	m_pObjectBall->Reset();
+}

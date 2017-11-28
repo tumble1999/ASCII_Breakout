@@ -40,9 +40,9 @@ private:
 
 	int m_EscPressed;
 
-	//Objects
-	PlayerPaddle m_playerPaddle;
-	ObjectBall m_objectBall;
+	// Objects
+	//PlayerPaddle m_playerPaddle;
+	//ObjectBall m_objectBall;
 	Brick m_testBrick;
 	BrickMatrix m_brickMatrix;
 

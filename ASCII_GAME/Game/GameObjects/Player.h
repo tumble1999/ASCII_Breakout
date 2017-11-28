@@ -31,6 +31,9 @@ public:
 
 	ObjectBall* GetObjectBall();
 
+	void Reset();
+	void LightReset();
+
 private:
 	int m_health;
 	int m_score;
