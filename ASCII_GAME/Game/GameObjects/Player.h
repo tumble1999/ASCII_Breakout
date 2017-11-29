@@ -38,10 +38,10 @@ private:
 	int m_health;
 	int m_score;
 
-	PlayerPaddle* m_pPlayerPaddle;
-	ObjectBall* m_pObjectBall;
-	ScoreDisplay* m_pSDHealth;
-	ScoreDisplay* m_pSDScore;
+	PlayerPaddle m_playerPaddle;
+	ObjectBall m_objectBall;
+	ScoreDisplay m_sdHealth;
+	ScoreDisplay m_sdScore;
 
 
 	int m_initialized;

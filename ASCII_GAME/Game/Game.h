@@ -41,13 +41,14 @@ private:
 	int m_EscPressed;
 
 	// Objects
-	//PlayerPaddle m_playerPaddle;
-	//ObjectBall m_objectBall;
+
+	Player m_player;
+	PlayerPaddle m_playerPaddle;
+	ObjectBall m_objectBall;
 	Brick m_testBrick;
 	BrickMatrix m_brickMatrix;
 
 	Menu m_mainMenu;
-	Player m_player;
 };
 
 
