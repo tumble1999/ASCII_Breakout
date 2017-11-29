@@ -15,7 +15,7 @@ MenuItem::~MenuItem()
 {
 }
 
-void MenuItem::Initialize(std::string text)
+MenuItem MenuItem::Initialize(std::string text)
 {
 	m_text = text;
 
@@ -23,6 +23,7 @@ void MenuItem::Initialize(std::string text)
 	Sprite::Initialise(GetMenuItemArray(), Vector2(m_text.size(),1));
 
 	m_initialized = true;
+	return *this;
 }
 
 

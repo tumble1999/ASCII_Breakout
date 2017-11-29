@@ -12,7 +12,7 @@ public:
 	MenuItem(std::string text);
 	~MenuItem();
 
-	void Initialize(std::string text);
+	MenuItem Initialize(std::string text);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 

@@ -9,7 +9,7 @@ public:
 	Menu();
 	~Menu();
 
-	void Initialize(Vector2 & pos, std::vector<MenuItem>& menuItems);
+	void Initialize(Vector2 & pos, std::vector<MenuItem> menuItems);
 	void Update();
 	void Render(ASCIIRenderer *pRenderer);
 

@@ -310,7 +310,7 @@ void Game::AddEnemyMissile(Missile* pMissile)
 	m_EnemyMissiles.push_back(pMissile);
 }
 
-void Game::UpdateScoreDisplay()
+void Game::UpdateScoreDisplays()
 {
 	for (int i = 0; i < 4; i++)
 	{

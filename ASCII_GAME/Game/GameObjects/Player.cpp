@@ -4,7 +4,7 @@
 
 Player::Player()
 {
-	m_health = 0;
+	m_health = 100;
 	m_initialized = 0;
 	/*m_pObjectBall = new ObjectBall;
 	m_pPlayerPaddle = new PlayerPaddle;
@@ -31,35 +31,48 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 	m_objectBall.SetGameStatePointer(gameState);
 	m_objectBall.SetGamePausedPointer(gamePaused);
 	m_objectBall.Initialise(&m_playerPaddle);
+
+	UpdateScoreDisplays();
+
 }
 
 void Player::Update()
 {
+	//UpdateScoreDisplay();
 	m_objectBall.Update();
 	m_playerPaddle.Update();
 }
 
 void Player::Render(ASCIIRenderer* pRenderer)
 {
+	for (int i = 0; i < m_sdHealth.size(); i++)
+	{
+		m_sdHealth[i].Render(pRenderer);
+	}
+	for (int i = 0; i < m_sdScore.size(); i++)
+	{
+		m_sdScore[i].Render(pRenderer);
+	}
 	m_objectBall.Render(pRenderer);
 	m_playerPaddle.Render(pRenderer);
-	m_sdHealth.Render(pRenderer);
-	m_sdScore.Render(pRenderer);
 }
 
 void Player::LoseHealth(int amount)
 {
 	m_health -= std::abs(amount);
+	UpdateScoreDisplays();
 }
 
 void Player::GainHealth(int amount)
 {
 	m_health += std::abs(amount);
+	UpdateScoreDisplays();
 }
 
 void Player::ResetHealth()
 {
 	m_health = 0;
+	UpdateScoreDisplays();
 }
 
 int& Player::GetHealth()
@@ -70,16 +83,19 @@ int& Player::GetHealth()
 void Player::SetScore(int amount)
 {
 	m_score = amount;
+	UpdateScoreDisplays();
 }
 
 void Player::AppendScore(int amount)
 {
 	m_score += amount;
+	UpdateScoreDisplays();
 }
 
 void Player::ResetScore()
 {
 	m_score = 0;
+	UpdateScoreDisplays();
 }
 
 int& Player::GetScore()
@@ -102,3 +118,41 @@ void Player::Reset()
 	m_playerPaddle.Reset();
 	m_objectBall.Reset();
 }
+
+void Player::UpdateScoreDisplays()
+{
+	//HEALTH DISPLAY
+	if (m_health<0)
+	{
+		m_health = 0;
+	}
+	UpdateScoreDisplay(m_sdHealth, m_health, Vector2(1, 1));
+
+	//SCORE DISPLAY
+	if (m_score<0)
+	{
+		m_score = 0;
+	}
+	UpdateScoreDisplay(m_sdScore, m_score, Vector2(SCREEN_WIDTH - ((int)std::log10(m_score) + 1)*DIGIT_WIDTH, 1));
+}
+
+void Player::UpdateScoreDisplay(std::vector<ScoreDisplay>& scoreDisplay, int& value, Vector2 pos)
+{
+	
+	int numDigits = (int)std::log10(value) + 1;
+	if (numDigits < 1) {
+		numDigits = 1;
+	}
+
+	scoreDisplay = std::vector<ScoreDisplay>(numDigits, ScoreDisplay());
+
+	for (int i = 0; i < numDigits; i++)
+	{
+		int digitValue = m_health / std::pow(10, i);
+		digitValue %= 10;
+		scoreDisplay[i].Initialise(Vector2(DIGIT_WIDTH*(numDigits - i), DIGIT_HEIGHT / 2));
+		scoreDisplay[i].SetDigitValue(digitValue);
+	}
+}
+
+

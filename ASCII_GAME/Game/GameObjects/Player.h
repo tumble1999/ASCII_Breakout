@@ -32,7 +32,6 @@ public:
 	ObjectBall* GetObjectBall();
 
 	void Reset();
-	void LightReset();
 
 private:
 	int m_health;
@@ -40,9 +39,11 @@ private:
 
 	PlayerPaddle m_playerPaddle;
 	ObjectBall m_objectBall;
-	ScoreDisplay m_sdHealth;
-	ScoreDisplay m_sdScore;
+	std::vector<ScoreDisplay> m_sdHealth;
+	std::vector<ScoreDisplay> m_sdScore;
 
+	void UpdateScoreDisplays();
+	void UpdateScoreDisplay(std::vector<ScoreDisplay>&, int& value, Vector2 pos);
 
 	int m_initialized;
 };

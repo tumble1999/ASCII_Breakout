@@ -41,7 +41,6 @@ private:
 	int m_EscPressed;
 
 	// Objects
-
 	Player m_player;
 	PlayerPaddle m_playerPaddle;
 	ObjectBall m_objectBall;

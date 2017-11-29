@@ -35,7 +35,7 @@ void Game::Initialise()
 
 	//m_mainMenu.Initialize(Vector2(0, 0),
 	//{
-	//	MenuItem("hello")
+	//	MenuItem().Initialize("hello")
 	//});
 
 	//m_playerPaddle.SetGameStatePointer(&m_gameState);
@@ -67,7 +67,7 @@ void Game::Initialise()
 
 	int brickpos_x = (SCREEN_WIDTH-gridWidth)/2;
 
-	..m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
+	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
 	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, m_player.GetObjectBall(), Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
 
 	m_bInitialised = true;
@@ -136,8 +136,14 @@ void Game::Update()
 			}
 		}
 
+		if (GetKeyState(VK_NUMPAD9) < 0)
+		{
+			m_player.LoseHealth(1);
+		}
+
 		if (m_player.GetObjectBall()->OffScreen()) {
 			LightReset();
+			//m_player.LoseHealth(11);
 		}
 		if (m_brickMatrix.BrickCount() <= 0) {
 			Reset();
@@ -189,9 +195,10 @@ void Game::Render()
 	{
 		//m_playerPaddle.Render(m_pRenderer);
 		//m_objectBall.Render(m_pRenderer);
-		m_player.Render(m_pRenderer);
 		//m_testBrick.Render(m_pRenderer);
 		m_brickMatrix.Render(m_pRenderer);
+		
+		m_player.Render(m_pRenderer);
 	}
 		break;
 	case E_GAME_STATE_LOSE_GAME:
