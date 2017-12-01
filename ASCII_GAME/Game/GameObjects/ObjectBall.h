@@ -23,6 +23,8 @@ public:
 	bool CollidesWith(Sprite& otherSprite);
 	bool OffScreen();
 
+	bool IsActive();
+
 
 	void Reset();
 

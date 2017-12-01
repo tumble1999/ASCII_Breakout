@@ -1,6 +1,7 @@
 #include "GameObject.h"
 
 #include "..\..\Core\Utils.h"
+#include "..\GameObjects\Player.h"
 
 GameObject::GameObject()
 {
@@ -65,12 +66,17 @@ void GameObject::SetGamePaused(bool paused)
 
 ObjectBall * GameObject::GetObjectBall()
 {
-	return m_pObjectBall;
+	return m_pPlayer->GetObjectBall();
 }
 
-void GameObject::SetObjectBallPointer(ObjectBall * pObjectBall)
+Player * GameObject::GetPlayer()
 {
-	m_pObjectBall = pObjectBall;
+	return m_pPlayer;
+}
+
+void GameObject::SetPlayerPointer(Player * pPlayer)
+{
+	m_pPlayer = pPlayer;
 }
 
 bool GameObject::KeyPressed(int key)

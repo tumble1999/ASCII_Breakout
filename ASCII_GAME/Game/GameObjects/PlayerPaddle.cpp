@@ -113,7 +113,8 @@ void PlayerPaddle::Render(ASCIIRenderer* pRenderer)
 	{
 		return;//GO AWAY, THIS DOESNT EXIST YET !!!
 	}
-
+	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+		return;
 	Sprite::Render(pRenderer);
 }
 
@@ -169,7 +170,10 @@ void PlayerPaddle::DecreaseWidth(int amount)
 
 void PlayerPaddle::CheckBallCollision()
 {
-	GetObjectBall()->CheckSpriteCollision(*this);
+	if (GetObjectBall()->IsActive())
+	{
+		GetObjectBall()->CheckSpriteCollision(*this);
+	}
 }
 
 bool PlayerPaddle::LeftKeyPressed()

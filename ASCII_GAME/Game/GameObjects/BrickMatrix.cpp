@@ -15,7 +15,7 @@ BrickMatrix::BrickMatrix()
 	m_size = Vector2(0, 0);
 	m_pGameState = NULL;
 	m_pGamePaused = NULL;
-	m_pObjectBall = NULL;
+	m_pPlayer = NULL;
 	m_bricks = std::vector<std::vector<Brick>>();
 }
 
@@ -23,13 +23,13 @@ BrickMatrix::~BrickMatrix()
 {
 }
 
-void BrickMatrix::Initialise(bool* pGamePaused, E_GAME_STATE* pGameState, ObjectBall* pObjectBall, Vector2 & pos = Vector2(0,0), Vector2 & size=Vector2(1,1))
+void BrickMatrix::Initialise(bool* pGamePaused, E_GAME_STATE* pGameState, Player* pPlayer, Vector2 & pos = Vector2(0,0), Vector2 & size=Vector2(1,1))
 {
 	m_pos = pos;
 	m_size = size;
 	m_pGamePaused = pGamePaused;
 	m_pGameState = pGameState;
-	m_pObjectBall = pObjectBall;
+	m_pPlayer = pPlayer;
 
 	InitialiseBricks();
 
@@ -70,6 +70,7 @@ void BrickMatrix::InitialiseBricks()
 	for (int y = 0; y < m_size.y; y++)
 	{
 		unsigned int colorForCurrentRow = GetColorFromY(y);
+		int pointsForCurrentRow = GetPointsFromY(y);
 		for (int x = 0; x < m_size.x; x++)
 		{
 			Vector2 pos = m_pos + (
@@ -78,8 +79,8 @@ void BrickMatrix::InitialiseBricks()
 
 			m_bricks[y][x].SetGamePausedPointer(m_pGamePaused);
 			m_bricks[y][x].SetGameStatePointer(m_pGameState);
-			m_bricks[y][x].SetObjectBallPointer(m_pObjectBall);
-			m_bricks[y][x].Initialise(pos, colorForCurrentRow);
+			m_bricks[y][x].SetPlayerPointer(m_pPlayer);
+			m_bricks[y][x].Initialise(pointsForCurrentRow, pos, colorForCurrentRow);
 			//FIXED:(error: deconstructs after second brick made)
 		}
 	}
@@ -103,6 +104,22 @@ unsigned int BrickMatrix::GetColorFromY(int y)
 
 	return colors[id];
 }
+
+int BrickMatrix::GetPointsFromY(int y)
+{
+	std::vector<unsigned int> colors =
+	{ 100, 70, 20, 10 };
+
+	float multiplier = 0;
+	int id = 0;
+
+	multiplier = ((float)colors.size()) / ((float)m_size.y);
+	id = multiplier * y;
+
+	return colors[id];
+}
+
+
 
 void BrickMatrix::Reset()
 {

@@ -5,25 +5,25 @@ MenuItem::MenuItem()
 	InitializeMemberVars();
 }
 
-MenuItem::MenuItem(std::string text)
+MenuItem::MenuItem(char* text, Vector2 size)
 {
 	InitializeMemberVars();
-	Initialize(text);
+	Initialize(text, size);
 }
 
 MenuItem::~MenuItem()
 {
 }
 
-MenuItem MenuItem::Initialize(std::string text)
+void MenuItem::Initialize(char* text, Vector2 size)
 {
-	m_text = text;
 
 	UpdateMenuItemSprite();
-	Sprite::Initialise(GetMenuItemArray(), Vector2(m_text.size(),1));
+	
+	Sprite::Initialise(text, FOREGROUND_WHITE, size);
+	SetPosition(Vector2(10, 10));
 
 	m_initialized = true;
-	return *this;
 }
 
 
@@ -50,26 +50,26 @@ void MenuItem::UpdateMenuItemSprite()
 
 	if (m_highlighted)
 	{
-		m_MenuItemSprite.push_back({ '[', BACKGROUND_BLACK });
+		m_MenuItemSprite.push_back({ '[', BACKGROUND_BLACK | FOREGROUND_WHITE });
 	}
 	else
 	{
-		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK });
+		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK | FOREGROUND_WHITE });
 	}
 
 	for (size_t i = 0; i < m_text.size(); i++)
 	{
 		WCHAR currentChar = m_text[i];
-		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_BLACK });
+		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_BLACK | FOREGROUND_WHITE });
 	}
 	if (m_highlighted)
 	{
-		m_MenuItemSprite.push_back({ ']', BACKGROUND_BLACK });
+		m_MenuItemSprite.push_back({ ']', BACKGROUND_BLACK | FOREGROUND_WHITE });
 
 	}
 	else
 	{
-		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK });
+		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK | FOREGROUND_WHITE });
 	}
 }
 

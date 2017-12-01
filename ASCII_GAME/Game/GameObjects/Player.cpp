@@ -25,7 +25,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 {
 	m_playerPaddle.SetGameStatePointer(gameState);
 	m_playerPaddle.SetGamePausedPointer(gamePaused);
-	m_playerPaddle.SetObjectBallPointer(&m_objectBall);
+	m_playerPaddle.SetPlayerPointer(this);
 	m_playerPaddle.Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 90 / 100), 0x41, 0x44, 10);
 
 	m_objectBall.SetGameStatePointer(gameState);
@@ -65,7 +65,13 @@ void Player::LoseHealth(int amount)
 
 void Player::GainHealth(int amount)
 {
-	m_health += std::abs(amount);
+	float testValue = m_health + std::abs(amount);
+
+	if (testValue > 2147483647)
+	{
+		testValue = 2147483647;
+	}
+	m_health = testValue;
 	UpdateScoreDisplays();
 }
 
@@ -88,7 +94,13 @@ void Player::SetScore(int amount)
 
 void Player::AppendScore(int amount)
 {
-	m_score += amount;
+	float testValue = m_score + amount;
+
+	if (testValue > 2147483647)
+	{
+		testValue = 2147483647;
+	}
+	m_score = testValue;
 	UpdateScoreDisplays();
 }
 
@@ -152,7 +164,7 @@ void Player::UpdateScoreDisplay(std::vector<ScoreDisplay>& scoreDisplay, int& va
 
 	for (int i = 0; i < numDigits; i++)
 	{
-		int digitValue = value / std::pow(10, i);
+		int digitValue = static_cast<int>(value / std::pow(10, i));
 		digitValue %= 10;
 		scoreDisplay[i].Initialise(pos + Vector2(DIGIT_WIDTH*(numDigits - i), DIGIT_HEIGHT / 2));
 		scoreDisplay[i].SetDigitValue(digitValue);

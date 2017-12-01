@@ -1,4 +1,5 @@
 #include "ObjectBall.h"
+#include <windows.h>
 
 const int SPEED = 1;
 const WORD BALL_COLOR = BACKGROUND_YELLOW;
@@ -77,6 +78,8 @@ void ObjectBall::Render(ASCIIRenderer* pRenderer)
 {
 	if (!m_initialised|GamePaused())
 		return;
+	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+		return;
 
 	// Sprite rendering
 	//m_BoundingBox.Render(pRenderer);
@@ -141,6 +144,11 @@ bool ObjectBall::OffScreen()
 	return GetWallSideV() == E_SIDE_BOTTOM;
 }
 
+bool ObjectBall::IsActive()
+{
+	return m_active;
+}
+
 E_SIDE ObjectBall::GetWallSideH()
 {
 	E_SIDE wallSide = E_SIDE_NULL;
@@ -184,20 +192,24 @@ void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 	{
 	case E_SIDE_TOP:
 	{
+		Beep(523, 100);
 		m_direction = Vector2(m_direction.x, SPEED);
 	}
 		break;
 	case E_SIDE_BOTTOM: {
+		Beep(523, 100);
 		m_direction = Vector2(m_direction.x, -SPEED);
 	}
 		break;
 	case E_SIDE_LEFT:
 	{
+		Beep(523, 100);
 		m_direction = Vector2(SPEED, m_direction.y);
 	}
 		break;
 	case E_SIDE_RIGHT:
 	{
+		Beep(523, 100);
 		m_direction = Vector2(-SPEED, m_direction.y);
 	}
 		break;

@@ -1,5 +1,5 @@
 #include "Brick.h"
-#include "ObjectBall.h"
+#include "Player.h"
 
 Vector2 BRICK_SIZE = Vector2(8, 2);
 
@@ -8,6 +8,7 @@ Brick::Brick()
 	m_destroyed = false;
 	m_initialised = false;
 	m_BrickSprite = std::vector<CHAR_INFO>();
+	m_points = 10;
 }
 
 Brick::~Brick()
@@ -16,6 +17,11 @@ Brick::~Brick()
 	{
 		//Destroy();
 	}
+}
+
+void Brick::Initialise(int points ,Vector2 & pos, unsigned short color) {
+	m_points = points;
+	Initialise(pos, color);
 }
 
 void Brick::Initialise(Vector2 & pos, unsigned short color)
@@ -69,6 +75,7 @@ void Brick::CheckBallCollision()
 	if (GetObjectBall()->CollidesWith(*this))
 	{
 		GetObjectBall()->CheckSpriteCollision(*this);
+		GetPlayer()->AppendScore(m_points);
 		Destroy();
 	}
 	

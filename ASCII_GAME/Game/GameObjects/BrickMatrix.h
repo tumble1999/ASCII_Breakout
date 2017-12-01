@@ -11,7 +11,7 @@ public:
 	BrickMatrix();
 	~BrickMatrix();
 
-	void Initialise(bool* pGamePaused, E_GAME_STATE* pGameState, ObjectBall* pObjectBall, Vector2& pos, Vector2& size);
+	void Initialise(bool* pGamePaused, E_GAME_STATE* pGameState, Player* pPlayer, Vector2& pos, Vector2& size);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
@@ -25,10 +25,12 @@ private:
 	std::vector<std::vector<Brick>> m_bricks;
 	bool* m_pGamePaused;
 	E_GAME_STATE* m_pGameState;
-	ObjectBall* m_pObjectBall;
+	Player* m_pPlayer;
 
 	void InitialiseBricks();
 	unsigned int GetColorFromY(int y);
+
+	int GetPointsFromY(int y);
 
 	bool m_initialised;
 };

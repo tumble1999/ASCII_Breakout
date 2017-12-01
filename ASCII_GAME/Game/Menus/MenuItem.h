@@ -5,14 +5,24 @@
 
 #include "../GameObjects/GameObject.h"
 
-class MenuItem:GameObject
+/*
+###### ######
+##         ##
+##         ##
+##         ##
+##         ##
+##         ##
+###### ######
+*/
+
+class MenuItem: public GameObject
 {
 public:
 	MenuItem();
-	MenuItem(std::string text);
-	~MenuItem();
+	MenuItem(char* text, Vector2 size);
+	virtual ~MenuItem();
 
-	MenuItem Initialize(std::string text);
+	void Initialize(char* text, Vector2 size);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 

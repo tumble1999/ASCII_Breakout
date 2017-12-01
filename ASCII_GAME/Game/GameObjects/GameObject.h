@@ -11,13 +11,14 @@
 #include "../../Core/Renderer/Sprite.h"
 
 class ObjectBall;
+class Player;
 
 class GameObject: public Sprite
 {
 public:
 
 	GameObject();
-	~GameObject();
+	virtual ~GameObject();
 
 	E_GAME_STATE GetGameState() const;
 	bool GameStateIs(E_GAME_STATE gameState);
@@ -31,7 +32,9 @@ public:
 	void SetGamePaused(bool paused);
 
 	ObjectBall* GetObjectBall();
-	void SetObjectBallPointer(ObjectBall* pObjectBall);
+
+	Player* GetPlayer();
+	void SetPlayerPointer(Player* pPlayer);
 
 
 
@@ -48,6 +51,7 @@ private:
 	E_GAME_STATE* m_pGameState;
 	bool* m_pGamePaused;
 	ObjectBall* m_pObjectBall;
+	Player* m_pPlayer;
 
 	bool KeyToggle(int key);
 };

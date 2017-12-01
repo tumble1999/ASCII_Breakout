@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "../../Core/Utils.h"
 
 Menu::Menu()
 {
@@ -8,11 +9,19 @@ Menu::Menu()
 
 Menu::~Menu()
 {
+	for (int i = 0; i < m_menuItems.size(); i++)
+	{
+		SAFE_DELETE_PTR(m_menuItems[i]);
+	}
 }
 
-void Menu::Initialize(Vector2& pos, std::vector<MenuItem> menuItems)
+void Menu::Initialize(Vector2& pos, std::vector<MenuItem*>& menuItems)
 {
-	m_menuItems = menuItems;
+	for (int i = 0; i < menuItems.size(); i++)
+	{
+		m_menuItems.push_back(menuItems[i]);
+	}
+	
 	m_pos = pos;
 
 	m_initialized = true;
@@ -24,16 +33,16 @@ void Menu::Initialize(Vector2& pos, std::vector<MenuItem> menuItems)
 
 void Menu::Update()
 {
-	for each (MenuItem menuItem in m_menuItems)
+	for each (MenuItem* menuItem in m_menuItems)
 	{
-		menuItem.Update();
+		menuItem->Update();
 	}
 }
 
 void Menu::Render(ASCIIRenderer * pRenderer)
 {
-	for each (MenuItem menuItem in m_menuItems)
+	for each (MenuItem* menuItem in m_menuItems)
 	{
-		menuItem.Render(pRenderer);
+		menuItem->Render(pRenderer);
 	}
 }

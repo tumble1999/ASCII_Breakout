@@ -11,6 +11,7 @@ public:
 	Brick();
 	~Brick();
 
+	void Initialise(int points, Vector2 & pos, unsigned short color);
 	void Initialise(Vector2& pos, unsigned short color);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
@@ -20,6 +21,7 @@ public:
 	bool Destroyed();
 private:
 	bool m_destroyed;
+	int m_points;
 	std::vector<CHAR_INFO> m_BrickSprite;
 
 	void CheckBallCollision();
