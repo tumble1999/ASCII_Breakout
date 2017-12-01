@@ -135,15 +135,26 @@ void Game::Update()
 				m_gamePaused = !m_gamePaused;
 			}
 		}
+		if (m_player.GetHealth() <= 0)
+		{
+			m_gameState = E_GAME_STATE_LOSE_GAME;
+			m_player.ResetHealth();
+			m_player.ResetScore();
+		}
+
 
 		if (GetKeyState(VK_NUMPAD9) < 0)
 		{
 			m_player.LoseHealth(1);
 		}
+		if (GetKeyState(VK_NUMPAD8) < 0)
+		{
+			m_player.GainHealth(1);
+		}
 
 		if (m_player.GetObjectBall()->OffScreen()) {
 			LightReset();
-			//m_player.LoseHealth(11);
+			m_player.LoseHealth(1);
 		}
 		if (m_brickMatrix.BrickCount() <= 0) {
 			Reset();
@@ -163,6 +174,9 @@ void Game::Update()
 	}
 		break;
 	case E_GAME_STATE_LOSE_GAME:
+	{
+
+	}
 		break;
 	case E_GAME_STATE_WIN_GAME:
 		break;

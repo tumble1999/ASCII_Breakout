@@ -154,6 +154,7 @@ void ScoreDisplay::Update(float deltaTime)
 
 void ScoreDisplay::SetDigitValue(int value)
 {
+	m_value = value;
 	if (value >= 0 && value < NUM_DIGITS)
 	{
 		SetAnimationFrame(value);

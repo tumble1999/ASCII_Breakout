@@ -4,7 +4,7 @@
 
 Player::Player()
 {
-	m_health = 100;
+	m_health = 5;
 	m_initialized = 0;
 	/*m_pObjectBall = new ObjectBall;
 	m_pPlayerPaddle = new PlayerPaddle;
@@ -126,20 +126,24 @@ void Player::UpdateScoreDisplays()
 	{
 		m_health = 0;
 	}
-	UpdateScoreDisplay(m_sdHealth, m_health, Vector2(1, 1));
+	UpdateScoreDisplay(m_sdHealth, m_health, Vector2(1, 0));
 
 	//SCORE DISPLAY
 	if (m_score<0)
 	{
 		m_score = 0;
 	}
-	UpdateScoreDisplay(m_sdScore, m_score, Vector2(SCREEN_WIDTH - ((int)std::log10(m_score) + 1)*DIGIT_WIDTH, 1));
+	UpdateScoreDisplay(m_sdScore, m_score, 
+		Vector2(SCREEN_WIDTH - 
+		((static_cast<int>(std::log10(m_score)) + 1)*DIGIT_WIDTH+DIGIT_WIDTH/2+
+			1),
+			0));
 }
 
 void Player::UpdateScoreDisplay(std::vector<ScoreDisplay>& scoreDisplay, int& value, Vector2 pos)
 {
 	
-	int numDigits = (int)std::log10(value) + 1;
+	int numDigits = static_cast<int>(std::log10(value))+1;
 	if (numDigits < 1) {
 		numDigits = 1;
 	}
@@ -148,9 +152,9 @@ void Player::UpdateScoreDisplay(std::vector<ScoreDisplay>& scoreDisplay, int& va
 
 	for (int i = 0; i < numDigits; i++)
 	{
-		int digitValue = m_health / std::pow(10, i);
+		int digitValue = value / std::pow(10, i);
 		digitValue %= 10;
-		scoreDisplay[i].Initialise(Vector2(DIGIT_WIDTH*(numDigits - i), DIGIT_HEIGHT / 2));
+		scoreDisplay[i].Initialise(pos + Vector2(DIGIT_WIDTH*(numDigits - i), DIGIT_HEIGHT / 2));
 		scoreDisplay[i].SetDigitValue(digitValue);
 	}
 }
