@@ -10,7 +10,7 @@ Menu::~Menu()
 {
 }
 
-void Menu::Initialize(Vector2& pos, std::vector<MenuItem>& menuItems)
+void Menu::Initialize(Vector2& pos, std::vector<MenuItem> menuItems)
 {
 	m_menuItems = menuItems;
 	m_pos = pos;

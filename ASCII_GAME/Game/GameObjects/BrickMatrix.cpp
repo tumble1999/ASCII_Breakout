@@ -1,6 +1,6 @@
 #include "BrickMatrix.h"
 
-Vector2 BRICK_MARGIN = Vector2(1,2);
+Vector2 BRICK_MARGIN = Vector2(0,1);
 
 /*
 TODO:	# Colors depending on y.

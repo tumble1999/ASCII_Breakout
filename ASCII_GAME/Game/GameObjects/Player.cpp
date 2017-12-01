@@ -4,62 +4,75 @@
 
 Player::Player()
 {
-	m_health = 0;
+	m_health = 100;
 	m_initialized = 0;
-	m_pObjectBall = new ObjectBall;
+	/*m_pObjectBall = new ObjectBall;
 	m_pPlayerPaddle = new PlayerPaddle;
 	m_pSDHealth = new ScoreDisplay;
-	m_pSDScore = new ScoreDisplay;
+	m_pSDScore = new ScoreDisplay;*/
 	m_score = 0;
 }
 
 Player::~Player()
 {
-	delete m_pObjectBall;
+	/*delete m_pObjectBall;
 	delete m_pPlayerPaddle;
 	delete m_pSDHealth;
-	delete m_pSDScore;
+	delete m_pSDScore;*/
 }
 
 void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 {
-	m_pPlayerPaddle->SetGameStatePointer(gameState);
-	m_pPlayerPaddle->SetGamePausedPointer(gamePaused);
-	m_pPlayerPaddle->SetObjectBallPointer(m_pObjectBall);
-	m_pPlayerPaddle->Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 90 / 100), 0x41, 0x44, 10);
+	m_playerPaddle.SetGameStatePointer(gameState);
+	m_playerPaddle.SetGamePausedPointer(gamePaused);
+	m_playerPaddle.SetObjectBallPointer(&m_objectBall);
+	m_playerPaddle.Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 90 / 100), 0x41, 0x44, 10);
 
-	m_pObjectBall->SetGameStatePointer(gameState);
-	m_pObjectBall->SetGamePausedPointer(gamePaused);
-	m_pObjectBall->Initialise(m_pPlayerPaddle);
+	m_objectBall.SetGameStatePointer(gameState);
+	m_objectBall.SetGamePausedPointer(gamePaused);
+	m_objectBall.Initialise(&m_playerPaddle);
+
+	UpdateScoreDisplays();
+
 }
 
 void Player::Update()
 {
-	m_pObjectBall->Update();
-	m_pPlayerPaddle->Update();
+	//UpdateScoreDisplay();
+	m_objectBall.Update();
+	m_playerPaddle.Update();
 }
 
 void Player::Render(ASCIIRenderer* pRenderer)
 {
-	m_pObjectBall->Render(pRenderer);
-	m_pPlayerPaddle->Render(pRenderer);
-	m_pSDHealth->Render(pRenderer);
-	m_pSDScore->Render(pRenderer);
+	for (int i = 0; i < m_sdHealth.size(); i++)
+	{
+		m_sdHealth[i].Render(pRenderer);
+	}
+	for (int i = 0; i < m_sdScore.size(); i++)
+	{
+		m_sdScore[i].Render(pRenderer);
+	}
+	m_objectBall.Render(pRenderer);
+	m_playerPaddle.Render(pRenderer);
 }
 
 void Player::LoseHealth(int amount)
 {
 	m_health -= std::abs(amount);
+	UpdateScoreDisplays();
 }
 
 void Player::GainHealth(int amount)
 {
 	m_health += std::abs(amount);
+	UpdateScoreDisplays();
 }
 
 void Player::ResetHealth()
 {
 	m_health = 0;
+	UpdateScoreDisplays();
 }
 
 int& Player::GetHealth()
@@ -70,16 +83,19 @@ int& Player::GetHealth()
 void Player::SetScore(int amount)
 {
 	m_score = amount;
+	UpdateScoreDisplays();
 }
 
 void Player::AppendScore(int amount)
 {
 	m_score += amount;
+	UpdateScoreDisplays();
 }
 
 void Player::ResetScore()
 {
 	m_score = 0;
+	UpdateScoreDisplays();
 }
 
 int& Player::GetScore()
@@ -89,22 +105,54 @@ int& Player::GetScore()
 
 PlayerPaddle* Player::GetPlayerPaddle()
 {
-	return m_pPlayerPaddle;
+	return &m_playerPaddle;
 }
 
 ObjectBall* Player::GetObjectBall()
 {
-	return m_pObjectBall;
+	return &m_objectBall;
 }
 
 void Player::Reset()
 {
-	m_pPlayerPaddle->Reset();
-	m_pObjectBall->Reset();
+	m_playerPaddle.Reset();
+	m_objectBall.Reset();
 }
 
-void Player::LightReset()
+void Player::UpdateScoreDisplays()
 {
-	m_pPlayerPaddle->Reset();
-	m_pObjectBall->Reset();
+	//HEALTH DISPLAY
+	if (m_health<0)
+	{
+		m_health = 0;
+	}
+	UpdateScoreDisplay(m_sdHealth, m_health, Vector2(1, 1));
+
+	//SCORE DISPLAY
+	if (m_score<0)
+	{
+		m_score = 0;
+	}
+	UpdateScoreDisplay(m_sdScore, m_score, Vector2(SCREEN_WIDTH - ((int)std::log10(m_score) + 1)*DIGIT_WIDTH, 1));
 }
+
+void Player::UpdateScoreDisplay(std::vector<ScoreDisplay>& scoreDisplay, int& value, Vector2 pos)
+{
+	
+	int numDigits = (int)std::log10(value) + 1;
+	if (numDigits < 1) {
+		numDigits = 1;
+	}
+
+	scoreDisplay = std::vector<ScoreDisplay>(numDigits, ScoreDisplay());
+
+	for (int i = 0; i < numDigits; i++)
+	{
+		int digitValue = m_health / std::pow(10, i);
+		digitValue %= 10;
+		scoreDisplay[i].Initialise(Vector2(DIGIT_WIDTH*(numDigits - i), DIGIT_HEIGHT / 2));
+		scoreDisplay[i].SetDigitValue(digitValue);
+	}
+}
+
+

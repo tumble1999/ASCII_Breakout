@@ -30,7 +30,13 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 	m_moveable = false;
 	SetPosition(pos);
 
-	Sprite::Initialise(GetPlayerSprite(), Vector2(GetCurrentWidth()+5, HEIGHT+5));
+	Sprite::Initialise(
+		GetPlayerSprite(), 
+		Vector2(
+			GetCurrentWidth()//+5   //commenting out '+5' fixes: read access violation.
+			, HEIGHT//+5
+		)
+	);
 	
 	m_startPos = Vector2(pos.x - (Sprite::GetSize().x/2),pos.y - Sprite::GetSize().y/2);
 

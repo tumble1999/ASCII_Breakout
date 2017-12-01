@@ -28,7 +28,7 @@ private:
 	void InitialiseRenderer();
 	void Update();
 	void Render();
-	void UpdateScoreDisplay();
+	void UpdateScoreDisplays();
 
 	void InitialiseMainMenu();
 	void InitialiseGame();
