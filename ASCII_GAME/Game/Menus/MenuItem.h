@@ -23,9 +23,14 @@ public:
 	virtual ~MenuItem();
 
 	void Initialize(char* text, Vector2 size);
-	void SetPos(Vector2& position);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
+
+	void Select();
+	void Deselect();
+
+
+	void SetPos(Vector2& position);
 
 private:
 	std::string m_text;

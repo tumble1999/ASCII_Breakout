@@ -15,7 +15,7 @@ public:
 
 private:
 	Vector2 m_pos;
-	std::vector<Sprite*> m_menuItems;
+	std::vector<MenuItem*> m_menuItems;
 	int m_selectedItem;
 
 	bool m_initialized;
