@@ -61,12 +61,19 @@ void Menu::Render(ASCIIRenderer * pRenderer)
 
 void Menu::GoUp()
 {
+	m_selectedItem += m_menuItems.size();
 	m_selectedItem++;
 	m_selectedItem %= m_menuItems.size();
 }
 
 void Menu::GoDown()
 {
+	m_selectedItem += m_menuItems.size();
 	m_selectedItem--;
 	m_selectedItem %= m_menuItems.size();
+}
+
+void Menu::RunSelected()
+{
+
 }

@@ -14,6 +14,10 @@ const int SCREEN_MARGIN_LEFTRIGHT = 2;
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27
 #define VK_SPACE	0x20       
+#define VK_W		0x57
+#define VK_A		0x41
+#define VK_S		0x53
+#define VK_D		0x44
 
 Game::Game()
 	:m_pRenderer(NULL)
@@ -33,6 +37,18 @@ void Game::Initialise()
 {
 	InitialiseRenderer();
 
+	m_LOGO.Initialise(
+"  .oooooo.                                               ooooo      ooo                                       "
+" d8P'  `Y8b                                              `888b.     `8'                                       "
+"888            .oooo.   ooo. .oo.  .oo.    .ooooo.        8 `88b.    8   .oooo.   ooo. .oo.  .oo.    .ooooo.  "
+"888           `P  )88b  `888P\"Y88bP\"Y88b  d88' `88b       8   `88b.  8  `P  )88b  `888P\"Y88bP\"Y88b  d88' `88b "
+"888     ooooo  .oP\"888   888   888   888  888ooo888       8     `88b.8   .oP\"888   888   888   888  888ooo888 "
+"`88.    .88'  d8(  888   888   888   888  888    .o       8       `888  d8(  888   888   888   888  888    .o "
+" `Y8bood8P'   `Y888""8o o888o o888o o888o `Y8bod8P'      o8o        `8  `Y888\"\"8o o888o o888o o888o `Y8bod8P' "
+		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(109, 7)
+	);
+
+
 	std::vector<MenuItem*> menuItems;
 	menuItems.push_back(new MenuItem(
 		" ######  ########    ###    ########  ########     ######      ###    ##     ## ######## "
@@ -51,9 +67,10 @@ void Game::Initialise()
 		"##         ## ##    ##     ##    "
 		"##        ##   ##   ##     ##    "
 		"######## ##     ## ####    ##    "
-		, Vector2(33, 7)));
+		, Vector2(33, 7)
+	));
 
-	m_mainMenu.Initialize(Vector2(0, 0), menuItems);
+	m_mainMenu.Initialize(Vector2(10, 20), menuItems);
 
 	//m_playerPaddle.SetGameStatePointer(&m_gameState);
 	//m_playerPaddle.SetGamePausedPointer(&m_gamePaused);
@@ -137,6 +154,12 @@ void Game::Update()
 		if (GetKeyState(VK_SPACE) < 0)
 		{
 			m_gameState = E_GAME_STATE_IN_GAME;
+		}
+		if (GetKeyState(VK_W) < 0) {
+			m_mainMenu.GoUp();
+		}
+		if (GetKeyState(VK_S) < 0) {
+			m_mainMenu.GoDown();
 		}
 
 		m_mainMenu.Update();
@@ -233,6 +256,7 @@ void Game::Render()
 	case E_GAME_STATE_MAIN_MENU:
 	{
 		m_mainMenu.Render(m_pRenderer);
+		m_LOGO.Render(m_pRenderer);
 	}
 		break;
 	case E_GAME_STATE_IN_GAME:
@@ -272,5 +296,13 @@ void Game::LightReset()
 	m_player.Reset();
 	//m_playerPaddle.Reset();
 	//m_objectBall.Reset();
+}
+
+void Game::start_game()
+{
+}
+
+void Game::exit_game()
+{
 }
 

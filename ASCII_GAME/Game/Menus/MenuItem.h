@@ -2,6 +2,7 @@
 #define _MENU_ITEM_H_
 
 #include <string>
+#include <functional>
 
 #include "../GameObjects/GameObject.h"
 

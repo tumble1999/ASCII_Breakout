@@ -15,6 +15,7 @@ public:
 
 	void GoUp();
 	void GoDown();
+	void RunSelected();
 
 private:
 	Vector2 m_pos;
