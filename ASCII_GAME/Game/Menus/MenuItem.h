@@ -26,15 +26,22 @@ public:
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
+	void Select();
+	void Deselect();
+
+
+	void SetPos(Vector2& position);
+
 private:
 	std::string m_text;
 	std::vector<CHAR_INFO> m_MenuItemSprite;
+
+	Sprite m_SELECTOR_L;
+	Sprite m_SELECTOR_R;
+
 	bool m_highlighted;
 
 	void InitializeMemberVars();
-
-	void UpdateMenuItemSprite();
-	CHAR_INFO* GetMenuItemArray();
 
 	bool m_initialized;
 };

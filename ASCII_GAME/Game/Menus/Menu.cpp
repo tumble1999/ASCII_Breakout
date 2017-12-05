@@ -5,6 +5,7 @@ Menu::Menu()
 {
 	m_pos = Vector2(0,0);
 	m_initialized = false;
+	m_selectedItem = 0;
 }
 
 Menu::~Menu()
@@ -19,6 +20,7 @@ void Menu::Initialize(Vector2& pos, std::vector<MenuItem*>& menuItems)
 {
 	for (int i = 0; i < menuItems.size(); i++)
 	{
+		menuItems[i]->SetPos(pos + Vector2(0, i * (7+3)));
 		m_menuItems.push_back(menuItems[i]);
 	}
 	
@@ -33,9 +35,19 @@ void Menu::Initialize(Vector2& pos, std::vector<MenuItem*>& menuItems)
 
 void Menu::Update()
 {
-	for each (MenuItem* menuItem in m_menuItems)
+	for (int i = 0; i < m_menuItems.size(); i++)
 	{
+		MenuItem* menuItem = m_menuItems[i];
 		menuItem->Update();
+
+		if (m_selectedItem == i)
+		{
+			menuItem->Select();
+		}
+		else
+		{
+			menuItem->Deselect();
+		}
 	}
 }
 
@@ -45,4 +57,16 @@ void Menu::Render(ASCIIRenderer * pRenderer)
 	{
 		menuItem->Render(pRenderer);
 	}
+}
+
+void Menu::GoUp()
+{
+	m_selectedItem++;
+	m_selectedItem %= m_menuItems.size();
+}
+
+void Menu::GoDown()
+{
+	m_selectedItem--;
+	m_selectedItem %= m_menuItems.size();
 }
