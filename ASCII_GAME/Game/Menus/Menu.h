@@ -13,6 +13,9 @@ public:
 	void Update();
 	void Render(ASCIIRenderer *pRenderer);
 
+	void GoUp();
+	void GoDown();
+
 private:
 	Vector2 m_pos;
 	std::vector<MenuItem*> m_menuItems;
