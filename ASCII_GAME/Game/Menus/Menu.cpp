@@ -1,36 +1,48 @@
 #include "Menu.h"
+#include "../../Core/Utils.h"
 
 Menu::Menu()
 {
 	m_pos = Vector2(0,0);
-	m_initialised = false;
+	m_initialized = false;
 }
 
 Menu::~Menu()
 {
+	for (int i = 0; i < m_menuItems.size(); i++)
+	{
+		SAFE_DELETE_PTR(m_menuItems[i]);
+	}
 }
 
-void Menu::Initialise(Vector2& pos, std::vector<MenuItem> menuItems)
+void Menu::Initialize(Vector2& pos, std::vector<MenuItem*>& menuItems)
 {
-	m_menuItems = menuItems;
+	for (int i = 0; i < menuItems.size(); i++)
+	{
+		m_menuItems.push_back(menuItems[i]);
+	}
+	
 	m_pos = pos;
 
-	m_initialised = true;
+	m_initialized = true;
+
+	
+	// 	calls this: std::vector<MenuItem,std::allocator<MenuItem> >::~vector<MenuItem,std::allocator<MenuItem> >()
 
 }
 
 void Menu::Update()
 {
-	for (int i = 0; i < m_menuItems.size(); i++)
+	for each (MenuItem* menuItem in m_menuItems)
 	{
-		m_menuItems[i].Update();
+		menuItem->Update();
 	}
 }
 
 void Menu::Render(ASCIIRenderer * pRenderer)
 {
-	for (int i = 0; i < m_menuItems.size(); i++)
+	for each (MenuItem* menuItem in m_menuItems)
 	{
-		m_menuItems[i].Render(pRenderer);
+		menuItem->Render(pRenderer);
 	}
 }

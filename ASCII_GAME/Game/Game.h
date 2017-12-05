@@ -6,6 +6,9 @@
 #include "GameObjects\BrickMatrix.h"
 #include "Menus\Menu.h"
 
+#include "GameObjects\Player.h"
+
+
 class ASCIIRenderer;
 
 class Game
@@ -19,7 +22,7 @@ public:
 
 private:
 
-	//Functions
+	// Functions
 	void InitialiseRenderer();
 	void Update();
 	void Render();
@@ -27,7 +30,7 @@ private:
 	void Reset();
 	void LightReset();
 
-	//Variables
+	// Variables
 	ASCIIRenderer* m_pRenderer;
 	E_GAME_STATE m_gameState;
 	bool m_gamePaused;
@@ -37,10 +40,11 @@ private:
 
 	int m_EscPressed;
 
-	//Objects
-	PlayerPaddle m_playerPaddle;
-	ObjectBall m_objectBall;
-	Brick m_testBrick;
+	// Objects
+	Player m_player;
+	//PlayerPaddle m_playerPaddle;
+	//ObjectBall m_objectBall;
+	//Brick m_testBrick;
 	BrickMatrix m_brickMatrix;
 
 	Menu m_mainMenu;

@@ -5,7 +5,7 @@ const int ACCELERATION = 1;
 const int TOP_SPEED = 10;
 const int HEIGHT = 2;
 
-const bool DEMO = true;
+const bool DEMO = false;
 
 std::vector<CHAR_INFO> PlayerSprite;
 
@@ -30,7 +30,13 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 	m_moveable = false;
 	SetPosition(pos);
 
-	Sprite::Initialise(GetPlayerSprite(), Vector2(GetCurrentWidth(), HEIGHT));
+	Sprite::Initialise(
+		GetPlayerSprite(), 
+		Vector2(
+			GetCurrentWidth()//+5   //commenting out '+5' fixes: read access violation.
+			, HEIGHT//+5
+		)
+	);
 	
 	m_startPos = Vector2(pos.x - (Sprite::GetSize().x/2),pos.y - Sprite::GetSize().y/2);
 
@@ -107,7 +113,8 @@ void PlayerPaddle::Render(ASCIIRenderer* pRenderer)
 	{
 		return;//GO AWAY, THIS DOESNT EXIST YET !!!
 	}
-
+	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+		return;
 	Sprite::Render(pRenderer);
 }
 
@@ -163,7 +170,10 @@ void PlayerPaddle::DecreaseWidth(int amount)
 
 void PlayerPaddle::CheckBallCollision()
 {
-	GetObjectBall()->CheckSpriteCollision(*this);
+	if (GetObjectBall()->IsActive())
+	{
+		GetObjectBall()->CheckSpriteCollision(*this);
+	}
 }
 
 bool PlayerPaddle::LeftKeyPressed()

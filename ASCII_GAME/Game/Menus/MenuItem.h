@@ -5,13 +5,24 @@
 
 #include "../GameObjects/GameObject.h"
 
-class MenuItem:GameObject
+/*
+###### ######
+##         ##
+##         ##
+##         ##
+##         ##
+##         ##
+###### ######
+*/
+
+class MenuItem: public GameObject
 {
 public:
 	MenuItem();
-	~MenuItem();
+	MenuItem(char* text, Vector2 size);
+	virtual ~MenuItem();
 
-	MenuItem Initialise(std::string text);
+	void Initialize(char* text, Vector2 size);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
@@ -20,11 +31,12 @@ private:
 	std::vector<CHAR_INFO> m_MenuItemSprite;
 	bool m_highlighted;
 
+	void InitializeMemberVars();
 
-	void UpdateMenuItemSprite(std::string text);
+	void UpdateMenuItemSprite();
 	CHAR_INFO* GetMenuItemArray();
 
-	bool m_initialised;
+	bool m_initialized;
 };
 
 #endif // !_MENU_ITEM_H_

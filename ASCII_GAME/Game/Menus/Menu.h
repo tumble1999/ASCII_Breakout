@@ -9,16 +9,16 @@ public:
 	Menu();
 	~Menu();
 
-	void Initialise(Vector2 & pos, std::vector<MenuItem> menuItems);
+	void Initialize(Vector2 & pos, std::vector<MenuItem*>& menuItems);
 	void Update();
 	void Render(ASCIIRenderer *pRenderer);
 
 private:
-	Vector2& m_pos;
-	std::vector<MenuItem> m_menuItems;
+	Vector2 m_pos;
+	std::vector<Sprite*> m_menuItems;
 	int m_selectedItem;
 
-	bool m_initialised;
+	bool m_initialized;
 };
 
 #endif // !_MENU_H_

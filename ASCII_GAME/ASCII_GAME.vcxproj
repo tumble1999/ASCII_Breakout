@@ -81,6 +81,7 @@
     <ClCompile Include="Game\GameObjects\BrickMatrix.cpp" />
     <ClCompile Include="Game\GameObjects\GameObject.cpp" />
     <ClCompile Include="Game\GameObjects\ObjectBall.cpp" />
+    <ClCompile Include="Game\GameObjects\Player.cpp" />
     <ClCompile Include="Game\GameObjects\PlayerPaddle.cpp" />
     <ClCompile Include="Game\GameObjects\ScoreDisplay.cpp" />
     <ClCompile Include="Game\Menus\Menu.cpp" />
@@ -102,16 +103,13 @@
     <ClInclude Include="Game\GameObjects\BrickMatrix.h" />
     <ClInclude Include="Game\GameObjects\GameObject.h" />
     <ClInclude Include="Game\GameObjects\ObjectBall.h" />
+    <ClInclude Include="Game\GameObjects\Player.h" />
     <ClInclude Include="Game\GameObjects\PlayerPaddle.h" />
     <ClInclude Include="Game\GameObjects\ScoreDisplay.h" />
     <ClInclude Include="Game\GameStates.h" />
     <ClInclude Include="Game\Menus\Menu.h" />
     <ClInclude Include="Game\Menus\MenuItem.h" />
     <ClInclude Include="Game\Sides.h" />
-    <ClInclude Include="Header.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

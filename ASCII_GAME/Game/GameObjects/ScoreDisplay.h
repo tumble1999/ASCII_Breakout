@@ -26,6 +26,7 @@ public:
 	void SetDigitValue(int value);
 
 private:
+	int m_value;
 
 	bool m_bInitialised;
 

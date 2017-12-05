@@ -11,7 +11,7 @@ class Sprite
 public:
 
 	Sprite();
-	~Sprite();
+	virtual ~Sprite();
 
 	void Initialise(int* pixels, Vector2& size);
 	void Initialise(CHAR_INFO* pixels, Vector2& size);
