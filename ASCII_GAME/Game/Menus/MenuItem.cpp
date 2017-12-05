@@ -52,6 +52,7 @@ void MenuItem::SetPos(Vector2 & position)
 
 	m_SELECTOR_L.SetPosition(Sprite::GetPosition() - Vector2(m_SELECTOR_L.GetPosition().x + 1, 0));
 	m_SELECTOR_R.SetPosition(Sprite::GetPosition() + Vector2(Sprite::GetSize().x + m_SELECTOR_L.GetPosition().x + 1, 0));
+}
 
 
 
