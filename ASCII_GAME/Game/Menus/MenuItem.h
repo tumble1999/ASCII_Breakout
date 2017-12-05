@@ -23,18 +23,20 @@ public:
 	virtual ~MenuItem();
 
 	void Initialize(char* text, Vector2 size);
+	void SetPos(Vector2& position);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
 
 private:
 	std::string m_text;
 	std::vector<CHAR_INFO> m_MenuItemSprite;
+
+	Sprite m_SELECTOR_L;
+	Sprite m_SELECTOR_R;
+
 	bool m_highlighted;
 
 	void InitializeMemberVars();
-
-	void UpdateMenuItemSprite();
-	CHAR_INFO* GetMenuItemArray();
 
 	bool m_initialized;
 };

@@ -28,7 +28,7 @@ public:
 	void SetPixels(char* pixels, int attributes);
 
 	void SetPosition(int x, int y){ m_Position.x = x; m_Position.y = y; }
-	void SetPosition(Vector2& position){ m_Position = position; }
+	void SetPosition(Vector2& position){ m_Position = position; } 
 
 	Vector2 GetPosition(){ return m_Position; }
 	Vector2 GetSize(){ return m_Size; }

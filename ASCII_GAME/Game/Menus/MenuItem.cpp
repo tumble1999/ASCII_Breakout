@@ -1,5 +1,7 @@
 #include "MenuItem.h"
 
+
+
 MenuItem::MenuItem()
 {
 	InitializeMemberVars();
@@ -17,14 +19,40 @@ MenuItem::~MenuItem()
 
 void MenuItem::Initialize(char* text, Vector2 size)
 {
-
-	UpdateMenuItemSprite();
 	
 	Sprite::Initialise(text, FOREGROUND_WHITE, size);
 	SetPosition(Vector2(10, 10));
 
+	m_SELECTOR_L.Initialise(
+		"######"
+		"##    "
+		"##    "
+		"##    "
+		"##    "
+		"##    "
+		"######"
+		,FOREGROUND_WHITE , Vector2(6, 7));
+
+		m_SELECTOR_R.Initialise(
+			"######"
+			"    ##"
+			"    ##"
+			"    ##"
+			"    ##"
+			"    ##"
+			"######"
+			, FOREGROUND_WHITE, Vector2(6, 7));
+
 	m_initialized = true;
 }
+
+void MenuItem::SetPos(Vector2 & position)
+{
+	Sprite::SetPosition(position);
+
+	m_SELECTOR_L.SetPosition(Sprite::GetPosition() - Vector2(m_SELECTOR_L.GetPosition().x + 1, 0));
+	m_SELECTOR_R.SetPosition(Sprite::GetPosition() + Vector2(Sprite::GetSize().x + m_SELECTOR_L.GetPosition().x + 1, 0));
+
 
 
 
@@ -42,38 +70,6 @@ void MenuItem::InitializeMemberVars()
 	m_initialized = false;
 	m_text = "";
 	m_highlighted = false;
-}
 
-void MenuItem::UpdateMenuItemSprite()
-{
-	m_MenuItemSprite.clear();
-
-	if (m_highlighted)
-	{
-		m_MenuItemSprite.push_back({ '[', BACKGROUND_BLACK | FOREGROUND_WHITE });
-	}
-	else
-	{
-		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK | FOREGROUND_WHITE });
-	}
-
-	for (size_t i = 0; i < m_text.size(); i++)
-	{
-		WCHAR currentChar = m_text[i];
-		m_MenuItemSprite.push_back({ currentChar, BACKGROUND_BLACK | FOREGROUND_WHITE });
-	}
-	if (m_highlighted)
-	{
-		m_MenuItemSprite.push_back({ ']', BACKGROUND_BLACK | FOREGROUND_WHITE });
-
-	}
-	else
-	{
-		m_MenuItemSprite.push_back({ 0, BACKGROUND_BLACK | FOREGROUND_WHITE });
-	}
-}
-
-CHAR_INFO* MenuItem::GetMenuItemArray()
-{
-	return m_MenuItemSprite.data();
+	
 }
