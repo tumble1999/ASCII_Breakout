@@ -7,7 +7,7 @@ MenuItem::MenuItem()
 	InitializeMemberVars();
 }
 
-MenuItem::MenuItem(char* text, Vector2 size, std::string id)
+MenuItem::MenuItem(char* text, Vector2 size, const char* id)
 {
 	InitializeMemberVars();
 	m_id = id;
@@ -65,7 +65,7 @@ void MenuItem::Render(ASCIIRenderer * pRenderer)
 	}
 }
 
-std::string MenuItem::GetId()
+char* MenuItem::GetId() const
 {
 	return m_id;
 }
@@ -92,7 +92,7 @@ void MenuItem::Deselect()
 void MenuItem::InitializeMemberVars()
 {
 	m_initialized = false;
-	m_text = "";
+	//m_text = "";
 	m_highlighted = false;
 	m_id = "";
 
