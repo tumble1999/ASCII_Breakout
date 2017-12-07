@@ -70,6 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\Maths\Vector2.cpp" />
     <ClCompile Include="Core\Maths\Vector3.cpp" />
     <ClCompile Include="Core\Renderer\AnimatedSprite.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\Maths\Vector2.h" />
     <ClInclude Include="Core\Maths\Vector3.h" />
     <ClInclude Include="Core\Renderer\AnimatedSprite.h" />
