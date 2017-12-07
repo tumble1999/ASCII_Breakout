@@ -18,10 +18,10 @@ public:
 	bool GetKeyUp(int key);
 
 private:
-	bool keyPressed[KEY_COUNT];
+	bool m_keyPressed[KEY_COUNT];
+	bool m_lastKeyPressed[KEY_COUNT];
 
 
 };
 
 #endif // _INPUT_H_
-
