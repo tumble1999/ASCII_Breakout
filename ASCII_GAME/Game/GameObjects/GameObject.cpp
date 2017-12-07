@@ -79,23 +79,4 @@ void GameObject::SetPlayerPointer(Player * pPlayer)
 	m_pPlayer = pPlayer;
 }
 
-bool GameObject::KeyPressed(int key)
-{
-	return GetKeyState(key) & 0x8000;
-}
-
-bool GameObject::KeyToggle(int key)
-{
-	return GetKeyState(key) & 1;
-}
-
-bool GameObject::KeyDown(int key)
-{
-	return KeyToggle(key) & KeyPressed(key);
-}
-
-bool GameObject::KeyUp(int key)
-{
-	return KeyToggle(key) & !KeyPressed(key);
-}
 

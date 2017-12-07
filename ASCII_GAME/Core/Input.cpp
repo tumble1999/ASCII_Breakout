@@ -4,7 +4,7 @@ const int KEY_COUNT = 65535;
 
 Input::Input()
 {
-	m_keyPressed = { false };
+
 }
 
 Input::~Input()
@@ -13,24 +13,24 @@ Input::~Input()
 
 void Input::Update()
 {
-	m_lastKeyPressed = m_keyPressesd;
 	for (int i = 0; i < KEY_COUNT; i++)
 	{
-		m_keyPressed[i] = GetKey(i);
+		m_lastKeyPressed[i] = m_keyPressed[i];
+		m_keyPressed[i] = GetAsyncKeyState(i) & 0x8000;
 	}
 }
 
 bool Input::GetKey(int key)
 {
-	return false;
+	return m_keyPressed[i];
 }
 
 bool Input::GetKeyDown(int key)
 {
-	return false;
+	return !m_lastKeyPressed[i] == m_keyPressed[i];
 }
 
 bool Input::GetKeyUp(int key)
 {
-	return false;
+	return m_lastKeyPressed[i] == !m_keyPressed[i];
 }
