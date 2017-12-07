@@ -7,7 +7,7 @@ MenuItem::MenuItem()
 	InitializeMemberVars();
 }
 
-MenuItem::MenuItem(char* text, Vector2 size)
+MenuItem::MenuItem(char* text, Vector2 size, std::string id)
 {
 	InitializeMemberVars();
 	m_id = id;
@@ -18,7 +18,7 @@ MenuItem::~MenuItem()
 {
 }
 
-void MenuItem::Initialize(char* text, Vector2 size, std::string id)
+void MenuItem::Initialize(char* text, Vector2 size)
 {
 	
 	Sprite::Initialise(text, FOREGROUND_WHITE, size);
