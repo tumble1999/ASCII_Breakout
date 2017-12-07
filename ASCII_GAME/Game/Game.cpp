@@ -58,7 +58,7 @@ void Game::Initialise()
 		"      ##    ##    ######### ##   ##      ##       ##    ##  ######### ##     ## ##       "
 		"##    ##    ##    ##     ## ##    ##     ##       ##    ##  ##     ## ##     ## ##       "
 		" ######     ##    ##     ## ##    ##     ##        ######   ##     ## ##     ## ######## "
-		, Vector2(89, 7)));
+		, Vector2(89, 7), "startGame"));
 	menuItems.push_back(new MenuItem(
 		"######## ##     ## #### ######## "
 		"##        ##   ##   ##     ##    "
@@ -67,8 +67,7 @@ void Game::Initialise()
 		"##         ## ##    ##     ##    "
 		"##        ##   ##   ##     ##    "
 		"######## ##     ## ####    ##    "
-		, Vector2(33, 7)
-	));
+		, Vector2(33, 7),"exitGame"));
 
 	m_mainMenu.Initialize(Vector2(10, 20), menuItems);
 
@@ -153,7 +152,7 @@ void Game::Update()
 		Reset();
 		if (GetKeyState(VK_SPACE) < 0)
 		{
-			m_gameState = E_GAME_STATE_IN_GAME;
+			//m_gameState = E_GAME_STATE_IN_GAME;
 		}
 		if (GetKeyState(VK_W) < 0) {
 			m_mainMenu.GoUp();

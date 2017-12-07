@@ -65,6 +65,11 @@ void MenuItem::Render(ASCIIRenderer * pRenderer)
 	}
 }
 
+std::string MenuItem::GetId()
+{
+	return m_id;
+}
+
 
 
 void MenuItem::SetPos(Vector2 & position)
