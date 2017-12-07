@@ -22,15 +22,15 @@ void Input::Update()
 
 bool Input::GetKey(int key)
 {
-	return m_keyPressed[i];
+	return m_keyPressed[key];
 }
 
 bool Input::GetKeyDown(int key)
 {
-	return !m_lastKeyPressed[i] == m_keyPressed[i];
+	return !m_lastKeyPressed[key] == m_keyPressed[key];
 }
 
 bool Input::GetKeyUp(int key)
 {
-	return m_lastKeyPressed[i] == !m_keyPressed[i];
+	return m_lastKeyPressed[key] == !m_keyPressed[key];
 }
