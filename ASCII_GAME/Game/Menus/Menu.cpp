@@ -73,7 +73,7 @@ void Menu::GoDown()
 	m_selectedItem %= m_menuItems.size();
 }
 
-void Menu::RunSelected()
+std::string Menu::GetSelectedMenuItemID()
 {
-
+	return m_menuItems[m_selectedItem]->GetId();
 }
