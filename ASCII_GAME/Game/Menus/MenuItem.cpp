@@ -7,7 +7,7 @@ MenuItem::MenuItem()
 	InitializeMemberVars();
 }
 
-MenuItem::MenuItem(char* text, Vector2 size, const char* id)
+MenuItem::MenuItem(char* text, Vector2 size, char* id)
 {
 	InitializeMemberVars();
 	m_id = id;

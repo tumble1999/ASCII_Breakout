@@ -150,10 +150,22 @@ void Game::Update()
 	case E_GAME_STATE_MAIN_MENU:
 	{
 		Reset();
+
+
+
 		if (GetKeyState(VK_SPACE) < 0)
 		{
-			//m_gameState = E_GAME_STATE_IN_GAME;
 			char* id = m_mainMenu.GetSelectedMenuItemID();
+
+			if (id == "startGame")
+			{
+				m_gameState = E_GAME_STATE_IN_GAME;
+			}
+			else if (id == "exitGame")
+			{
+				m_bExitApp = true;
+				return;
+			}
 		}
 		if (GetKeyState(VK_W) < 0) {
 			m_mainMenu.GoUp();
@@ -296,13 +308,5 @@ void Game::LightReset()
 	m_player.Reset();
 	//m_playerPaddle.Reset();
 	//m_objectBall.Reset();
-}
-
-void Game::start_game()
-{
-}
-
-void Game::exit_game()
-{
 }
 

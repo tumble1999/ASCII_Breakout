@@ -20,7 +20,7 @@ class MenuItem: public GameObject
 {
 public:
 	MenuItem();
-	MenuItem(char* text, Vector2 size, const char* id);
+	MenuItem(char* text, Vector2 size, char* id);
 	virtual ~MenuItem();
 
 	void Initialize(char* text, Vector2 size);
