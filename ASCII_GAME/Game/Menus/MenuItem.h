@@ -36,7 +36,7 @@ public:
 	void SetPos(Vector2& position);
 
 private:
-	std::string id;
+	std::string m_id;
 	std::string m_text;
 	std::vector<CHAR_INFO> m_MenuItemSprite;
 
