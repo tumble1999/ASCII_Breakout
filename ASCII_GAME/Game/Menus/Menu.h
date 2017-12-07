@@ -15,7 +15,7 @@ public:
 
 	void GoUp();
 	void GoDown();
-	void RunSelected();
+	std::string GetSelectedMenuItemID();
 
 private:
 	Vector2 m_pos;
