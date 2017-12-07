@@ -19,6 +19,7 @@ MenuItem::~MenuItem()
 
 void MenuItem::Initialize(char* text, Vector2 size, std::string id)
 {
+	m_id = id;
 	
 	Sprite::Initialise(text, FOREGROUND_WHITE, size);
 
