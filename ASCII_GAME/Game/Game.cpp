@@ -130,6 +130,7 @@ void Game::Run()
 
 void Game::Update()
 {
+	inputHandler.Update();
 	if (GetKeyState(VK_ESCAPE) < 0)
 	{
 		m_EscPressed++;
@@ -153,7 +154,7 @@ void Game::Update()
 
 
 
-		if (GetKeyState(VK_SPACE) < 0)
+		if (inputHandler.GetKeyDown(VK_SPACE))
 		{
 			char* id = m_mainMenu.GetSelectedMenuItemID();
 
@@ -167,10 +168,10 @@ void Game::Update()
 				return;
 			}
 		}
-		if (GetKeyState(VK_W) < 0) {
+		if (inputHandler.GetKeyDown(VK_W)) {
 			m_mainMenu.GoUp();
 		}
-		if (GetKeyState(VK_S) < 0) {
+		if (inputHandler.GetKeyDown(VK_S)) {
 			m_mainMenu.GoDown();
 		}
 

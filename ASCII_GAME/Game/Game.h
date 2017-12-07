@@ -5,6 +5,7 @@
 #include "GameObjects\ObjectBall.h"
 #include "GameObjects\BrickMatrix.h"
 #include "Menus\Menu.h"
+#include "../Core/Input.h"
 
 #include "GameObjects\Player.h"
 
@@ -41,6 +42,8 @@ private:
 	int m_EscPressed;
 
 	// Objects
+
+	Input inputHandler;
 
 	Sprite m_LOGO;
 	Player m_player;
