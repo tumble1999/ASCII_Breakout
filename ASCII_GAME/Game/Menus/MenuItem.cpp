@@ -94,6 +94,7 @@ void MenuItem::InitializeMemberVars()
 	m_initialized = false;
 	m_text = "";
 	m_highlighted = false;
+	m_id = "";
 
 	
 }
