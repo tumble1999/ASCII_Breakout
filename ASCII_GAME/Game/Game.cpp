@@ -153,6 +153,9 @@ void Game::Update()
 		if (GetKeyState(VK_SPACE) < 0)
 		{
 			//m_gameState = E_GAME_STATE_IN_GAME;
+			std::string id = m_mainMenu.GetSelectedMenuItemID();
+
+			throw id;
 		}
 		if (GetKeyState(VK_W) < 0) {
 			m_mainMenu.GoUp();
