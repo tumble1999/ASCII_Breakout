@@ -20,12 +20,14 @@ class MenuItem: public GameObject
 {
 public:
 	MenuItem();
-	MenuItem(char* text, Vector2 size);
+	MenuItem(char* text, Vector2 size, std::string id);
 	virtual ~MenuItem();
 
 	void Initialize(char* text, Vector2 size);
 	void Update();
 	void Render(ASCIIRenderer* pRenderer);
+
+	std::string GetId();
 
 	void Select();
 	void Deselect();
@@ -34,6 +36,7 @@ public:
 	void SetPos(Vector2& position);
 
 private:
+	std::string id;
 	std::string m_text;
 	std::vector<CHAR_INFO> m_MenuItemSprite;
 
