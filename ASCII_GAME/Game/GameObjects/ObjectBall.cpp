@@ -47,7 +47,7 @@ void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 	m_initialised = true;
 }
 
-void ObjectBall::Update(Input* inputHandler)
+void ObjectBall::Update(Input* pInputHandler)
 {
 	if (!m_initialised)
 	{
@@ -64,7 +64,7 @@ void ObjectBall::Update(Input* inputHandler)
 	}
 	else
 	{
-		bool spaceStatus = KeyDown(VK_SPACE);
+		bool spaceStatus = pInputHandler->GetKeyDown(VK_SPACE);
 
 		if (spaceStatus)
 		{
