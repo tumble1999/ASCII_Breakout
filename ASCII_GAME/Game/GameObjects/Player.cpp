@@ -2,10 +2,13 @@
 
 #include <math.h>
 
+const int INIT_HEALTH = 5;
+const int INIT_SCORE = 10000;
+
 Player::Player()
 {
-	m_health = 5;
-	m_initialized = 0;
+	m_health = INIT_HEALTH;
+	m_initialized = INIT_SCORE;
 	/*m_pObjectBall = new ObjectBall;
 	m_pPlayerPaddle = new PlayerPaddle;
 	m_pSDHealth = new ScoreDisplay;
@@ -77,7 +80,7 @@ void Player::GainHealth(int amount)
 
 void Player::ResetHealth()
 {
-	m_health = 0;
+	m_health = INIT_HEALTH;
 	UpdateScoreDisplays();
 }
 
@@ -106,7 +109,7 @@ void Player::AppendScore(int amount)
 
 void Player::ResetScore()
 {
-	m_score = 0;
+	m_score = INIT_SCORE;
 	UpdateScoreDisplays();
 }
 
