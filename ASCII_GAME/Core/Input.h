@@ -17,6 +17,10 @@ public:
 	bool GetKeyDown(int key);
 	bool GetKeyUp(int key);
 
+	bool GetKey(int* key, int n);
+	bool GetKeyDown(int* key, int n);
+	bool GetKeyUp(int* key, int n);
+
 private:
 	bool m_keyPressed[KEY_COUNT];
 	bool m_lastKeyPressed[KEY_COUNT];

@@ -12,7 +12,7 @@ public:
 	PlayerPaddle();
 	~PlayerPaddle();
 
-	void Initialise(Vector2& pos, int leftKey, int rightKey, int width);
+	void Initialise(Vector2& pos, std::vector<int> leftKey, std::vector<int> rightKey, int width);
 	void Update(Input* pInputHandler);
 	void Render(ASCIIRenderer* pRenderer);
 
@@ -28,8 +28,10 @@ private:
 	bool m_initialised;
 
 	int m_speed;
-	int m_leftKey;
-	int m_rightKey;
+
+	std::vector<int> m_leftKey;
+	std::vector<int> m_rightKey;
+
 	int m_newWidth;
 
 	Vector2 m_startPos;

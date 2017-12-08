@@ -50,6 +50,56 @@ void Game::Initialise()
 " `Y8bood8P'   `Y888\"\"8o o888o o888o o888o `Y8bod8P'      o8o        `8  `Y888\"\"8o o888o o888o o888o `Y8bod8P' "
 		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(110, 7)
 	);
+	m_WIN.Initialise(
+		"      _____                    _____                _____          "
+		"     |\\    \\                  /\\    \\              |\\    \\         "
+		"     |:\\____\\                /::\\    \\             |:\\____\\        "
+		"     |::|   |               /::::\\    \\            |::|   |        "
+		"     |::|   |              /::::::\\    \\           |::|   |        "
+		"     |::|   |             /:::/\\:::\\    \\          |::|   |        "
+		"     |::|   |            /:::/__\\:::\\    \\         |::|   |        "
+		"     |::|   |           /::::\\   \\:::\\    \\        |::|   |        "
+		"     |::|___|______    /::::::\\   \\:::\\    \\       |::|___|______  "
+		"     /::::::::\\    \\  /:::/\\:::\\   \\:::\\    \\      /::::::::\\    \\ "
+		"    /::::::::::\\____\\/:::/  \\:::\\   \\:::\\____\\    /::::::::::\\____\\"
+		"   /:::/~~~~/~~      \\::/    \\:::\\  /:::/    /   /:::/~~~~/~~      "
+		"  /:::/    /          \\/____/ \\:::\\/:::/    /   /:::/    /         "
+		" /:::/    /                    \\::::::/    /   /:::/    /          "
+		"/:::/    /                      \\::::/    /   /:::/    /           "
+		"\\::/    /                       /:::/    /    \\::/    /            "
+		" \\/____/                       /:::/    /      \\/____/             "
+		"                              /:::/    /                           "
+		"                             /:::/    /                            "
+		"                             \\::/    /                             "
+		"                              \\/____/                              "
+		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(68, 21)
+	);
+	m_LOOSE.Initialise(
+		
+"          _____                   _______                  _______         "
+"         /\\    \\                 /::\\    \\                /::\\    \\        "
+"        /::\\    \\               /::::\\    \\              /::::\\    \\       "
+"       /::::\\    \\             /::::::\\    \\            /::::::\\    \\      "
+"      /::::::\\    \\           /::::::::\\    \\          /::::::::\\    \\     "
+"     /:::/\\:::\\    \\         /:::/~~\\:::\\    \\        /:::/~~\\:::\\    \\    "
+"    /:::/__\\:::\\    \\       /:::/    \\:::\\    \\      /:::/    \\:::\\    \\   "
+"   /::::\\   \\:::\\    \\     /:::/    / \\:::\\    \\    /:::/    / \\:::\\    \\  "
+"  /::::::\\   \\:::\\    \\   /:::/____/   \\:::\\____\\  /:::/____/   \\:::\\____\\ "
+" /:::/\\:::\\   \\:::\\ ___\\ |:::|    |     |:::|    ||:::|    |     |:::|    |"
+"/:::/__\\:::\\   \\:::|    ||:::|____|     |:::|    ||:::|____|     |:::|    |"
+"\\:::\\   \\:::\\  /:::|____| \\:::\\    \\   /:::/    /  \\:::\\    \\   /:::/    / "
+" \\:::\\   \\:::\\/:::/    /   \\:::\\    \\ /:::/    /    \\:::\\    \\ /:::/    /  "
+"  \\:::\\   \\::::::/    /     \\:::\\    /:::/    /      \\:::\\    /:::/    /   "
+"   \\:::\\   \\::::/    /       \\:::\\__/:::/    /        \\:::\\__/:::/    /    "
+"    \\:::\\  /:::/    /         \\::::::::/    /          \\::::::::/    /     "
+"     \\:::\\/:::/    /           \\::::::/    /            \\::::::/    /      "
+"      \\::::::/    /             \\::::/    /              \\::::/    /       "
+"       \\::::/    /               \\::/____/                \\::/____/        "
+"        \\::/____/                 ~~                       ~~              "
+"         ~~                                                                "
+		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(68, 21)
+	);
+	
 
 
 	std::vector<MenuItem*> menuItems;
@@ -155,9 +205,8 @@ void Game::Update()
 	{
 		Reset();
 
-
-
-		if (m_pInputHandler->GetKeyDown(VK_SPACE))
+		int keysGo[2] = { VK_SPACE, VK_RETURN };
+		if (m_pInputHandler->GetKeyDown(keysGo,2))
 		{
 			char* id = m_mainMenu.GetSelectedMenuItemID();
 
@@ -171,10 +220,13 @@ void Game::Update()
 				return;
 			}
 		}
-		if (m_pInputHandler->GetKeyDown(VK_W)) {
+		
+		int keysU[2] = { VK_W, VK_UP };
+		int keysD[2] = { VK_S, VK_DOWN };
+		if (m_pInputHandler->GetKeyDown(keysU,2)) {
 			m_mainMenu.GoUp();
 		}
-		if (m_pInputHandler->GetKeyDown(VK_S)) {
+		if (m_pInputHandler->GetKeyDown(keysD,2)) {
 			m_mainMenu.GoDown();
 		}
 
@@ -246,8 +298,12 @@ void Game::Update()
 		break;
 	case E_GAME_STATE_WIN_GAME:
 	{
-		m_gameState = E_GAME_STATE_IN_GAME;
-		Reset();
+		
+		if (GetKeyState(VK_SPACE) < 0)
+		{
+			m_gameState = E_GAME_STATE_IN_GAME;
+			Reset();
+		}
 	}
 		break;
 	default:
@@ -289,9 +345,12 @@ void Game::Render()
 	case E_GAME_STATE_LOSE_GAME:
 	{
 		m_player.Render(m_pRenderer);
+		m_LOOSE.Render(m_pRenderer);
 	}
 		break;
 	case E_GAME_STATE_WIN_GAME:
+		//m_player.Render(m_pRenderer);
+		m_WIN.Render(m_pRenderer);
 		break;
 	default:
 		break;

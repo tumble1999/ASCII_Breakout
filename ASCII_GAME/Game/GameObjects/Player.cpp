@@ -29,7 +29,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 	m_playerPaddle.SetGameStatePointer(gameState);
 	m_playerPaddle.SetGamePausedPointer(gamePaused);
 	m_playerPaddle.SetPlayerPointer(this);
-	m_playerPaddle.Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 90 / 100), 0x41, 0x44, 10);
+	m_playerPaddle.Initialise(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 90 / 100), { 0x41, VK_LEFT }, { 0x44, VK_RIGHT }, 10);
 
 	m_objectBall.SetGameStatePointer(gameState);
 	m_objectBall.SetGamePausedPointer(gamePaused);

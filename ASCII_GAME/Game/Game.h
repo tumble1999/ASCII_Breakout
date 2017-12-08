@@ -45,6 +45,8 @@ private:
 	// Objects
 
 	Sprite m_LOGO;
+	Sprite m_WIN;
+	Sprite m_LOOSE;
 	Player m_player;
 
 	//PlayerPaddle m_playerPaddle;

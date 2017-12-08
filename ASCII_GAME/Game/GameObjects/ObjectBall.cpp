@@ -64,7 +64,8 @@ void ObjectBall::Update(Input* pInputHandler)
 	}
 	else
 	{
-		bool spaceStatus = pInputHandler->GetKeyUp(VK_SPACE);
+		int keysBallRelease[2] = { VK_SPACE, VK_RETURN };
+		bool spaceStatus = pInputHandler->GetKeyUp(keysBallRelease,2);
 
 		if (spaceStatus)
 		{

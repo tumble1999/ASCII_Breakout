@@ -5,15 +5,13 @@ const int ACCELERATION = 1;
 const int TOP_SPEED = 10;
 const int HEIGHT = 2;
 
-const bool DEMO = false;
+const bool DEMO = true;
 
 std::vector<CHAR_INFO> PlayerSprite;
 
 PlayerPaddle::PlayerPaddle()
 {
 	m_initialised = false;
-	this->m_leftKey = 0;
-	this->m_rightKey = 0;
 	m_INIT_WIDTH = 0;
 	m_moveable = false;
 	m_newWidth = 0;
@@ -24,7 +22,7 @@ PlayerPaddle::~PlayerPaddle()
 {
 }
 
-void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width)
+void PlayerPaddle::Initialise(Vector2& pos, std::vector<int> leftKey, std::vector<int> rightKey, int width)
 {
 
 	m_leftKey = leftKey;
@@ -183,12 +181,12 @@ void PlayerPaddle::CheckBallCollision()
 
 bool PlayerPaddle::LeftKeyPressed(Input* pInputHandler)
 {
-	return (pInputHandler->GetKey(m_leftKey));
+	return (pInputHandler->GetKey(m_leftKey.data(), m_leftKey.size()));
 }
 
 bool PlayerPaddle::RightKeyPressed(Input* pInputHandler)
 {
-	return (pInputHandler->GetKey(m_rightKey));
+	return (pInputHandler->GetKey(m_rightKey.data(), m_rightKey.size()));
 }
 
 

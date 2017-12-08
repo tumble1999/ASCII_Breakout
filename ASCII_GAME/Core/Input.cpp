@@ -39,3 +39,40 @@ bool Input::GetKeyUp(int key)
 {
 	return m_lastKeyPressed[key] && !m_keyPressed[key];
 }
+
+bool Input::GetKey(int * key, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (GetKey(key[i]))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Input::GetKeyDown(int * key, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (GetKeyDown(key[i]))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Input::GetKeyUp(int * key, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (GetKeyUp(key[i]))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
