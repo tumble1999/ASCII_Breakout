@@ -193,24 +193,27 @@ void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 	case E_SIDE_TOP:
 	{
 		//Beep(257, 100);//b
-		PlaySound(TEXT("../../../sound/b.wav"), NULL, SND_FILENAME);
+		PlaySound(TEXT("sound/b.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		m_direction = Vector2(m_direction.x, SPEED);
 	}
 		break;
 	case E_SIDE_BOTTOM: {
-		Beep(262, 100);//c
+		//Beep(262, 100);//c
+		PlaySound(TEXT("sound/c.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		m_direction = Vector2(m_direction.x, -SPEED);
 	}
 		break;
 	case E_SIDE_LEFT:
 	{
-		Beep(370, 100);//f#
+		//Beep(370, 100);//f#
+		PlaySound(TEXT("sound/f#.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		m_direction = Vector2(SPEED, m_direction.y);
 	}
 		break;
 	case E_SIDE_RIGHT:
 	{
-		Beep(392, 100);//g
+		//Beep(392, 100);//g
+		PlaySound(TEXT("sound/g.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		m_direction = Vector2(-SPEED, m_direction.y);
 	}
 		break;
