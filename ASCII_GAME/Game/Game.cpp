@@ -274,6 +274,10 @@ void Game::Update()
 				m_player.ResetHealth();
 			}
 		}
+		if (m_brickMatrix.BrickCount() <=0)
+		{
+			m_gameState = E_GAME_STATE_WIN_GAME;
+		}
 
 	}
 	break;
