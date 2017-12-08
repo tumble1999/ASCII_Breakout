@@ -13,7 +13,7 @@ public:
 	~PlayerPaddle();
 
 	void Initialise(Vector2& pos, int leftKey, int rightKey, int width);
-	void Update();
+	void Update(Input* pInputHandler);
 	void Render(ASCIIRenderer* pRenderer);
 
 	void ChangeWidth(int newWidth);

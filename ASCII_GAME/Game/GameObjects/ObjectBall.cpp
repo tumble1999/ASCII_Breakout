@@ -64,7 +64,7 @@ void ObjectBall::Update(Input* pInputHandler)
 	}
 	else
 	{
-		bool spaceStatus = pInputHandler->GetKeyDown(VK_SPACE);
+		bool spaceStatus = pInputHandler->GetKeyUp(VK_SPACE);
 
 		if (spaceStatus)
 		{

@@ -43,7 +43,7 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 	m_initialised = true;
 }
 
-void PlayerPaddle::Update()
+void PlayerPaddle::Update(Input* pInputHandler)
 {
 	if (!m_initialised)
 		return;

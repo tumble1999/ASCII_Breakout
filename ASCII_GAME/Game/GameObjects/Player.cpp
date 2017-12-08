@@ -40,7 +40,7 @@ void Player::Update(Input* pInputHandler)
 {
 	//UpdateScoreDisplay();
 	m_objectBall.Update(pInputHandler);
-	m_playerPaddle.Update();
+	m_playerPaddle.Update(pInputHandler);
 }
 
 void Player::Render(ASCIIRenderer* pRenderer)
