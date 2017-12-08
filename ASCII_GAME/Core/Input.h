@@ -3,7 +3,7 @@
 
 #include <windows.h>
 
-extern const int KEY_COUNT;
+const int KEY_COUNT = 256;
 
 class Input
 {

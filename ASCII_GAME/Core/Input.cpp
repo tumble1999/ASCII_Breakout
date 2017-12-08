@@ -1,6 +1,6 @@
 #include "Input.h"
 
-const int KEY_COUNT = 65535;
+
 
 Input::Input()
 {

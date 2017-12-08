@@ -33,6 +33,7 @@ private:
 
 	// Variables
 	ASCIIRenderer* m_pRenderer;
+	Input* m_pInputHandler;
 	E_GAME_STATE m_gameState;
 	bool m_gamePaused;
 
@@ -42,8 +43,6 @@ private:
 	int m_EscPressed;
 
 	// Objects
-
-	Input inputHandler;
 
 	Sprite m_LOGO;
 	Player m_player;

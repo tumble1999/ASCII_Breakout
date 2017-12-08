@@ -14,7 +14,7 @@ public:
 	~Player();
 
 	void Initialize(E_GAME_STATE *gameState, bool *gamePaused);
-	void Update();
+	void Update(Input* pInputHandler);
 	void Render(ASCIIRenderer* pRenderer);
 
 	void LoseHealth(int amount);

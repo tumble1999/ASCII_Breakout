@@ -26,16 +26,19 @@ Game::Game()
 	, m_EscPressed(0)
 {
 	m_gameState = E_GAME_STATE_MAIN_MENU;
+	m_pInputHandler = NULL;
 }
 
 Game::~Game()
 {
 	SAFE_DELETE_PTR(m_pRenderer);
+	SAFE_DELETE_PTR(m_pInputHandler);
 }
 
 void Game::Initialise()
 {
 	InitialiseRenderer();
+	m_pInputHandler = new Input();
 
 	m_LOGO.Initialise(
 "  .oooooo.                                               ooooo      ooo                                       "
@@ -130,7 +133,7 @@ void Game::Run()
 
 void Game::Update()
 {
-	inputHandler.Update();
+	m_pInputHandler->Update();
 	if (GetKeyState(VK_ESCAPE) < 0)
 	{
 		m_EscPressed++;
@@ -154,7 +157,7 @@ void Game::Update()
 
 
 
-		if (inputHandler.GetKeyDown(VK_SPACE))
+		if (m_pInputHandler->GetKeyDown(VK_SPACE))
 		{
 			char* id = m_mainMenu.GetSelectedMenuItemID();
 
@@ -168,10 +171,10 @@ void Game::Update()
 				return;
 			}
 		}
-		if (inputHandler.GetKeyDown(VK_W)) {
+		if (m_pInputHandler->GetKeyDown(VK_W)) {
 			m_mainMenu.GoUp();
 		}
-		if (inputHandler.GetKeyDown(VK_S)) {
+		if (m_pInputHandler->GetKeyDown(VK_S)) {
 			m_mainMenu.GoDown();
 		}
 
@@ -251,7 +254,7 @@ void Game::Update()
 	};
 
 
-	m_player.Update();
+	m_player.Update(m_pInputHandler);
 	//m_playerPaddle.Update();
 	//m_objectBall.Update();
 	//m_testBrick.Update();

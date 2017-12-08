@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "../GameStates.h"
+#include "../../Core/Input.h"
 #include "../../Core/Maths/Vector2.h"
 #include "../../Core/Renderer/ConsoleColours.h"
 #include "../../Core/Renderer/SpriteTools.h"
