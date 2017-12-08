@@ -135,7 +135,7 @@ const int PlayerPaddle::GetWidth()
 void PlayerPaddle::Reset()
 {
 	SetPosition(m_startPos);
-	ChangeWidth(m_INIT_WIDTH)
+	ChangeWidth(m_INIT_WIDTH);
 }
 
 
