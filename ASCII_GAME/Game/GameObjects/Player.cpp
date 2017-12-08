@@ -36,7 +36,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 
 }
 
-void Player::Update()
+void Player::Update(Input* pInputHandler)
 {
 	//UpdateScoreDisplay();
 	m_objectBall.Update();

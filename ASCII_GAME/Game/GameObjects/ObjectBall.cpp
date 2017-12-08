@@ -47,7 +47,7 @@ void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 	m_initialised = true;
 }
 
-void ObjectBall::Update(Input inputHandler)
+void ObjectBall::Update(Input* inputHandler)
 {
 	if (!m_initialised)
 	{
