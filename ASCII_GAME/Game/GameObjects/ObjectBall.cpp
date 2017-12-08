@@ -192,24 +192,24 @@ void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 	{
 	case E_SIDE_TOP:
 	{
-		Beep(523, 100);
+		Beep(257, 100);//b
 		m_direction = Vector2(m_direction.x, SPEED);
 	}
 		break;
 	case E_SIDE_BOTTOM: {
-		Beep(523, 100);
+		Beep(262, 100);//c
 		m_direction = Vector2(m_direction.x, -SPEED);
 	}
 		break;
 	case E_SIDE_LEFT:
 	{
-		Beep(523, 100);
+		Beep(370, 100);//f#
 		m_direction = Vector2(SPEED, m_direction.y);
 	}
 		break;
 	case E_SIDE_RIGHT:
 	{
-		Beep(523, 100);
+		Beep(392, 100);//g
 		m_direction = Vector2(-SPEED, m_direction.y);
 	}
 		break;
