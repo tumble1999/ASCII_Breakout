@@ -81,7 +81,7 @@ void PlayerPaddle::Update(Input* pInputHandler)
 			));
 		}
 
-		if (LeftKeyPressed() | RightKeyPressed())
+		if (LeftKeyPressed(pInputHandler) | RightKeyPressed(pInputHandler))
 		{
 			if (m_speed < TOP_SPEED)
 			{
@@ -96,11 +96,11 @@ void PlayerPaddle::Update(Input* pInputHandler)
 		{
 			m_speed = 0;
 		}
-		if (LeftKeyPressed())
+		if (LeftKeyPressed(pInputHandler))
 		{
 			MoveLeft();
 		}
-		if (RightKeyPressed())
+		if (RightKeyPressed(pInputHandler))
 		{
 			MoveRight();
 		}
@@ -176,14 +176,14 @@ void PlayerPaddle::CheckBallCollision()
 	}
 }
 
-bool PlayerPaddle::LeftKeyPressed()
+bool PlayerPaddle::LeftKeyPressed(Input* pInputHandler)
 {
-	return (GetKeyState(m_leftKey) < 0);
+	return (pInputHandler->GetKey(m_leftKey));
 }
 
-bool PlayerPaddle::RightKeyPressed()
+bool PlayerPaddle::RightKeyPressed(Input* pInputHandler)
 {
-	return (GetKeyState(m_rightKey) < 0);
+	return (pInputHandler->GetKey(m_rightKey));
 }
 
 

@@ -35,8 +35,8 @@ private:
 
 	void CheckBallCollision();
 
-	bool LeftKeyPressed();
-	bool RightKeyPressed();
+	bool LeftKeyPressed(Input* pInputHandler);
+	bool RightKeyPressed(Input* pInputHandler);
 
 	int GetCurrentWidth() const;
 	CHAR_INFO* GetPlayerSprite();
