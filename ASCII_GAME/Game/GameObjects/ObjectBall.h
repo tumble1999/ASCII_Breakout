@@ -15,7 +15,7 @@ public:
 	~ObjectBall();
 
 	void Initialise(Sprite* pPlayerPaddle);
-	void Update();
+	void Update(Input* pInputHandler);
 	void Render(ASCIIRenderer* pRenderer);
 
 	void CheckSpriteCollision(Sprite& otherSprite);
