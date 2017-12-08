@@ -73,6 +73,9 @@
     <Filter Include="Game\Menus">
       <UniqueIdentifier>{e22c89f1-8d55-41df-b8e8-f232be603e64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sound">
+      <UniqueIdentifier>{0bfa5145-f380-451e-9a46-38db5716ad73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -141,5 +144,24 @@
     <ClInclude Include="Core\Input.h">
       <Filter>Core</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound\b.wav">
+      <Filter>sound</Filter>
+    </Media>
+    <Media Include="sound\c.wav">
+      <Filter>sound</Filter>
+    </Media>
+    <Media Include="sound\f#.wav">
+      <Filter>sound</Filter>
+    </Media>
+    <Media Include="sound\g.wav">
+      <Filter>sound</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="sound\order.txt">
+      <Filter>sound</Filter>
+    </Text>
   </ItemGroup>
 </Project>
