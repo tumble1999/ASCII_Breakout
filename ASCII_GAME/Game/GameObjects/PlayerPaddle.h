@@ -22,6 +22,7 @@ public:
 	void Reset();
 
 private:
+	int m_INIT_WIDTH;
 
 	bool m_moveable;
 	bool m_initialised;

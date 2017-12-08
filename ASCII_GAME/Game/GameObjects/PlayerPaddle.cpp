@@ -14,6 +14,10 @@ PlayerPaddle::PlayerPaddle()
 	m_initialised = false;
 	this->m_leftKey = 0;
 	this->m_rightKey = 0;
+	m_INIT_WIDTH = 0;
+	m_moveable = false;
+	m_newWidth = 0;
+	m_speed = 0;
 }
 
 PlayerPaddle::~PlayerPaddle()
@@ -26,8 +30,8 @@ void PlayerPaddle::Initialise(Vector2& pos, int leftKey, int rightKey, int width
 	m_leftKey = leftKey;
 	m_rightKey = rightKey;
 	m_newWidth = 2*width;
-	m_speed = 0;
 	m_moveable = false;
+	m_INIT_WIDTH = width;
 	SetPosition(pos);
 
 	Sprite::Initialise(
@@ -131,6 +135,7 @@ const int PlayerPaddle::GetWidth()
 void PlayerPaddle::Reset()
 {
 	SetPosition(m_startPos);
+	ChangeWidth(m_INIT_WIDTH)
 }
 
 
