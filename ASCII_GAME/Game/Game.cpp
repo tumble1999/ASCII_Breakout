@@ -277,6 +277,7 @@ void Game::Update()
 		if (m_brickMatrix.BrickCount() <=0)
 		{
 			m_gameState = E_GAME_STATE_WIN_GAME;
+			Reset();
 		}
 
 	}
@@ -303,7 +304,7 @@ void Game::Update()
 	case E_GAME_STATE_WIN_GAME:
 	{
 		
-		if (GetKeyState(VK_SPACE) < 0)
+		if (m_pInputHandler->GetKeyDown(VK_SPACE)
 		{
 			m_gameState = E_GAME_STATE_IN_GAME;
 			Reset();
