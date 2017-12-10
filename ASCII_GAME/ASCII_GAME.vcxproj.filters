@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Renderer\ASCIIRenderer.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Renderer\Sprite.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Maths\Vector2.cpp">
+      <Filter>Core\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Renderer\AnimatedSprite.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Maths\Vector3.cpp">
+      <Filter>Core\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ScoreDisplay.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\PlayerPaddle.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\ObjectBall.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\GameObject.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Renderer\SpriteTools.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Brick.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\BrickMatrix.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Menus\Menu.cpp">
+      <Filter>Game\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Menus\MenuItem.cpp">
+      <Filter>Game\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjects\Player.cpp">
+      <Filter>Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Input.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4458fac5-906c-4cb5-9399-ed656e517517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{3fe4f25b-4cab-466a-9a7b-85b3e701b26d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer">
+      <UniqueIdentifier>{3d915fb0-1ffd-4f36-a51f-1f7cce5ee000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Maths">
+      <UniqueIdentifier>{82fa3e56-8968-4637-b5d3-20371d11b230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameObjects">
+      <UniqueIdentifier>{872a3f34-878d-4c9a-ae1c-a6e597d3af18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Menus">
+      <UniqueIdentifier>{e22c89f1-8d55-41df-b8e8-f232be603e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sound">
+      <UniqueIdentifier>{0bfa5145-f380-451e-9a46-38db5716ad73}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer\ASCIIRenderer.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameStates.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer\ConsoleColours.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer\Sprite.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Maths\Vector2.h">
+      <Filter>Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer\AnimatedSprite.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Maths\Vector3.h">
+      <Filter>Core\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ScoreDisplay.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\PlayerPaddle.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\ObjectBall.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Directions.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Sides.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer\SpriteTools.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\GameObject.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Brick.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\BrickMatrix.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Menus\Menu.h">
+      <Filter>Game\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Menus\MenuItem.h">
+      <Filter>Game\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjects\Player.h">
+      <Filter>Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound\b.wav">
+      <Filter>sound</Filter>
+    </Media>
+    <Media Include="sound\c.wav">
+      <Filter>sound</Filter>
+    </Media>
+    <Media Include="sound\f#.wav">
+      <Filter>sound</Filter>
+    </Media>
+    <Media Include="sound\g.wav">
+      <Filter>sound</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="sound\order.txt">
+      <Filter>sound</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+</Project>
