@@ -3,17 +3,17 @@
 #include <math.h>
 
 const int INIT_HEALTH = 5;
-const int INIT_SCORE = 10000;
+const int INIT_SCORE = 0;
 
 Player::Player()
 {
 	m_health = INIT_HEALTH;
-	m_initialized = INIT_SCORE;
+	m_score = INIT_SCORE;
+	m_initialized = false;
 	/*m_pObjectBall = new ObjectBall;
 	m_pPlayerPaddle = new PlayerPaddle;
 	m_pSDHealth = new ScoreDisplay;
 	m_pSDScore = new ScoreDisplay;*/
-	m_score = 0;
 }
 
 Player::~Player()

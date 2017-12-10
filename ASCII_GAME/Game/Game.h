@@ -47,6 +47,7 @@ private:
 	Sprite m_LOGO;
 	Sprite m_WIN;
 	Sprite m_LOOSE;
+	Sprite m_PAUSED;
 	Player m_player;
 
 	//PlayerPaddle m_playerPaddle;

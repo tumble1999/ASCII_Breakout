@@ -82,9 +82,7 @@ void BrickMatrix::InitialiseBricks()
 			m_bricks[y][x].SetPlayerPointer(m_pPlayer);
 			m_bricks[y][x].Initialise(pointsForCurrentRow, pos, colorForCurrentRow);
 			//FIXED:(error: deconstructs after second brick made)
-			break;
 		}
-		break;
 	}
 }
 
@@ -141,5 +139,5 @@ int BrickMatrix::BrickCount()
 			}
 		}
 	}
-	return count;
+   	return count;
 }

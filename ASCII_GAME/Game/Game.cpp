@@ -48,8 +48,11 @@ void Game::Initialise()
 "888     ooooo  .oP\"888   888   888   888  888ooo888       8     `88b.8   .oP\"888   888   888   888  888ooo888 "
 "`88.    .88'  d8(  888   888   888   888  888    .o       8       `888  d8(  888   888   888   888  888    .o "
 " `Y8bood8P'   `Y888\"\"8o o888o o888o o888o `Y8bod8P'      o8o        `8  `Y888\"\"8o o888o o888o o888o `Y8bod8P' "
-		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(110, 7)
+		, FOREGROUND_WHITE | BACKGROUND_BLACK | BOLD_FONTTYPE, Vector2(110, 7)
 	);
+	m_LOGO.SetPosition(
+		Vector2((SCREEN_WIDTH - m_LOGO.GetSize().x)/2,3)
+			);
 	m_WIN.Initialise(
 		"      _____                    _____                _____          "
 		"     |\\    \\                  /\\    \\              |\\    \\         "
@@ -72,8 +75,11 @@ void Game::Initialise()
 		"                             /:::/    /                            "
 		"                             \\::/    /                             "
 		"                              \\/____/                              "
-		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(68, 21)
+		, FOREGROUND_WHITE | BACKGROUND_BLACK | BOLD_FONTTYPE, Vector2(67, 21)
 	);
+	m_WIN.SetPosition(
+		(Vector2(SCREEN_WIDTH,SCREEN_HEIGHT) - m_WIN.GetSize())/2
+		);
 	m_LOOSE.Initialise(
 		
 "          _____                   _______                  _______         "
@@ -97,9 +103,38 @@ void Game::Initialise()
 "       \\::::/    /               \\::/____/                \\::/____/        "
 "        \\::/____/                 ~~                       ~~              "
 "         ~~                                                                "
-		, FOREGROUND_BRIGHT_RED | BACKGROUND_YELLOW, Vector2(68, 21)
+		, FOREGROUND_WHITE | BACKGROUND_BLACK | BOLD_FONTTYPE, Vector2(75, 21)
 	);
-	
+	m_LOOSE.SetPosition(
+		(Vector2(SCREEN_WIDTH, SCREEN_HEIGHT) - m_LOOSE.GetSize()) / 2
+	);
+
+	m_PAUSED.Initialise(
+"          _____                    _____                    _____                    _____                    _____                    _____          "
+"         /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\         "
+"        /::\\    \\                /::\\    \\                /::\\____\\                /::\\    \\                /::\\    \\                /::\\    \\        "
+"       /::::\\    \\              /::::\\    \\              /:::/    /               /::::\\    \\              /::::\\    \\              /::::\\    \\       "
+"      /::::::\\    \\            /::::::\\    \\            /:::/    /               /::::::\\    \\            /::::::\\    \\            /::::::\\    \\      "
+"     /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/    /               /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\     "
+"    /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/    /               /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\    "
+"   /::::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /:::/    /                \\:::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\   "
+"  /::::::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /:::/    /      _____    ___\\:::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\  "
+" /:::/\\:::\\   \\:::\\____\\  /:::/\\:::\\   \\:::\\    \\  /:::/____/      /\\    \\  /\\   \\:::\\   \\:::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /   \\:::\\ ___\\ "
+"/:::/  \\:::\\   \\:::|    |/:::/  \\:::\\   \\:::\\____\\|:::|    /      /::\\____\\/::\\   \\:::\\   \\:::\\____\\/:::/__\\:::\\   \\:::\\____\\/:::/____/     \\:::|    |"
+"\\::/    \\:::\\  /:::|____|\\::/    \\:::\\  /:::/    /|:::|____\\     /:::/    /\\:::\\   \\:::\\   \\::/    /\\:::\\   \\:::\\   \\::/    /\\:::\\    \\     /:::|____|"
+" \\/_____/\\:::\\/:::/    /  \\/____/ \\:::\\/:::/    /  \\:::\\    \\   /:::/    /  \\:::\\   \\:::\\   \\/____/  \\:::\\   \\:::\\   \\/____/  \\:::\\    \\   /:::/    / "
+"          \\::::::/    /            \\::::::/    /    \\:::\\    \\ /:::/    /    \\:::\\   \\:::\\    \\       \\:::\\   \\:::\\    \\       \\:::\\    \\ /:::/    /  "
+"           \\::::/    /              \\::::/    /      \\:::\\    /:::/    /      \\:::\\   \\:::\\____\\       \\:::\\   \\:::\\____\\       \\:::\\    /:::/    /   "
+"            \\::/____/               /:::/    /        \\:::\\__/:::/    /        \\:::\\  /:::/    /        \\:::\\   \\::/    /        \\:::\\  /:::/    /    "
+"             ~~                    /:::/    /          \\::::::::/    /          \\:::\\/:::/    /          \\:::\\   \\/____/          \\:::\\/:::/    /     "
+"                                  /:::/    /            \\::::::/    /            \\::::::/    /            \\:::\\    \\               \\::::::/    /      "
+"                                 /:::/    /              \\::::/    /              \\::::/    /              \\:::\\____\\               \\::::/    /       "
+"                                 \\::/    /                \\::/____/                \\::/    /                \\::/    /                \\::/____/        "
+"                                  \\/____/                  ~~                       \\/____/                  \\/____/                  ~~              "
+		, FOREGROUND_WHITE | BACKGROUND_BLACK | BOLD_FONTTYPE, Vector2(150, 21));
+	m_PAUSED.SetPosition(
+		(Vector2(SCREEN_WIDTH, SCREEN_HEIGHT) - m_PAUSED.GetSize()) / 2
+	);
 
 
 	std::vector<MenuItem*> menuItems;
@@ -304,9 +339,9 @@ void Game::Update()
 	case E_GAME_STATE_WIN_GAME:
 	{
 		
-		if (m_pInputHandler->GetKeyDown(VK_SPACE)
+		if (m_pInputHandler->GetKeyDown(VK_SPACE))
 		{
-			m_gameState = E_GAME_STATE_IN_GAME;
+			m_gameState = E_GAME_STATE_MAIN_MENU;
 			Reset();
 		}
 	}
@@ -347,6 +382,12 @@ void Game::Render()
 		m_player.Render(m_pRenderer);
 	}
 		break;
+	case E_GAME_STATE_PAUSE_MENU:
+	{
+		m_player.Render(m_pRenderer);
+		m_PAUSED.Render(m_pRenderer);
+	}
+	break;
 	case E_GAME_STATE_LOSE_GAME:
 	{
 		m_player.Render(m_pRenderer);
@@ -354,7 +395,7 @@ void Game::Render()
 	}
 		break;
 	case E_GAME_STATE_WIN_GAME:
-		//m_player.Render(m_pRenderer);
+		m_player.Render(m_pRenderer);
 		m_WIN.Render(m_pRenderer);
 		break;
 	default:
