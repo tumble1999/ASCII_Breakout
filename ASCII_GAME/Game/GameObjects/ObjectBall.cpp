@@ -56,13 +56,9 @@ void ObjectBall::Update(Input* pInputHandler)
 	if (!GameStateIs({ E_GAME_STATE_IN_GAME,E_GAME_STATE_DEMO_GAME })|GamePaused())
 		return;
 
-	if (GameStateIs(E_GAME_STATE_DEMO_GAME))
+	if (GameStateIs(E_GAME_STATE_DEMO_GAME) & !m_active)
 	{
 		m_active = true;
-	}
-	else
-	{
-		Reset();
 	}
 
 	UpdatePosition();

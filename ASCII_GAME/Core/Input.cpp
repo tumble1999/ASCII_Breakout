@@ -76,3 +76,14 @@ bool Input::GetKeyUp(int * key, int n)
 	return false;
 }
 
+
+bool Input::AnyKeyDown() {
+	for (int i = 0; i < KEY_COUNT; i++)
+	{
+		if (GetKeyDown(i))
+		{
+			return true;
+		}
+	}
+	return false;
+}

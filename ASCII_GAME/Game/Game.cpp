@@ -11,7 +11,7 @@ const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage wit
 const int SCREEN_HEIGHT = 96;		//*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
-const int DEMO_TIMER = 100;
+const int DEMO_TIMER = 500;
 
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27
@@ -285,7 +285,7 @@ void Game::Update()
 	case E_GAME_STATE_DEMO_GAME:
 	{
 		m_demoTimer--;
-		if (m_demoTimer <= 0)
+		if (m_demoTimer <= 0 | m_pInputHandler->AnyKeyDown())
 		{
 			Reset();
 			m_demoTimer = DEMO_TIMER;
@@ -431,6 +431,8 @@ void Game::Reset()
 	//m_playerPaddle.Reset();
 	//m_objectBall.Reset();
 	m_brickMatrix.Reset();
+	m_player.ResetHealth();
+	m_player.ResetScore();
 }
 void Game::LightReset()
 {
