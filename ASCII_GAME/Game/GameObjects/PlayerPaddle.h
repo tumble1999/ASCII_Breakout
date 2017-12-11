@@ -18,6 +18,7 @@ public:
 
 	void ChangeWidth(int newWidth);
 	const int GetWidth();
+	bool GetDemo();
 
 	void Reset();
 
@@ -26,6 +27,7 @@ private:
 
 	bool m_moveable;
 	bool m_initialised;
+	bool m_demo;
 
 	int m_speed;
 

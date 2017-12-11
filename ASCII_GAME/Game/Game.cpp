@@ -189,7 +189,7 @@ void Game::Initialise()
 	int brickpos_x = (SCREEN_WIDTH-gridWidth)/2;
 
 	//m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
-	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_player , Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
+	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_player , Vector2(brickpos_x, 10), Vector2(bricksize_x, 10));
 
 	m_bInitialised = true;
 

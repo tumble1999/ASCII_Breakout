@@ -5,8 +5,6 @@ const int ACCELERATION = 1;
 const int TOP_SPEED = 10;
 const int HEIGHT = 2;
 
-const bool DEMO = false;
-
 std::vector<CHAR_INFO> PlayerSprite;
 
 PlayerPaddle::PlayerPaddle()
@@ -16,6 +14,7 @@ PlayerPaddle::PlayerPaddle()
 	m_moveable = false;
 	m_newWidth = 0;
 	m_speed = 0;
+	m_demo = false;
 }
 
 PlayerPaddle::~PlayerPaddle()
@@ -49,8 +48,17 @@ void PlayerPaddle::Update(Input* pInputHandler)
 {
 	if (!m_initialised)
 		return;
-	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+	if (!GameStateIs({ E_GAME_STATE_IN_GAME ,E_GAME_STATE_DEMO_GAME}))
 		return;
+
+	if (GameStateIs(E_GAME_STATE_DEMO_GAME))
+	{
+		m_demo = true;
+	}
+	else
+	{
+		m_demo = false;
+	}
 
 	
 
@@ -74,7 +82,7 @@ void PlayerPaddle::Update(Input* pInputHandler)
 	{
 		CheckBallCollision();
 
-		if (DEMO)
+		if (m_demo)
 		{
 			SetPosition(Vector2(
 				GetObjectBall()->GetPosition().x -
@@ -82,30 +90,34 @@ void PlayerPaddle::Update(Input* pInputHandler)
 				, GetPosition().y
 			));
 		}
-
-		if (LeftKeyPressed(pInputHandler) | RightKeyPressed(pInputHandler))
+		else
 		{
-			if (m_speed < TOP_SPEED)
+			if (LeftKeyPressed(pInputHandler) | RightKeyPressed(pInputHandler))
 			{
-				m_speed += ACCELERATION;
+				if (m_speed < TOP_SPEED)
+				{
+					m_speed += ACCELERATION;
+				}
+				else
+				{
+					m_speed = TOP_SPEED;
+				}
 			}
 			else
 			{
-				m_speed = TOP_SPEED;
+				m_speed = 0;
+			}
+			if (LeftKeyPressed(pInputHandler))
+			{
+				MoveLeft();
+			}
+			if (RightKeyPressed(pInputHandler))
+			{
+				MoveRight();
 			}
 		}
-		else
-		{
-			m_speed = 0;
-		}
-		if (LeftKeyPressed(pInputHandler))
-		{
-			MoveLeft();
-		}
-		if (RightKeyPressed(pInputHandler))
-		{
-			MoveRight();
-		}
+
+		
 	}
 }
 
@@ -115,7 +127,7 @@ void PlayerPaddle::Render(ASCIIRenderer* pRenderer)
 	{
 		return;//GO AWAY, THIS DOESNT EXIST YET !!!
 	}
-	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+	if (!GameStateIs({ E_GAME_STATE_IN_GAME,E_GAME_STATE_DEMO_GAME }))
 		return;
 	Sprite::Render(pRenderer);
 }
@@ -128,6 +140,11 @@ void PlayerPaddle::ChangeWidth(int newSize)
 const int PlayerPaddle::GetWidth()
 {
 	return m_newWidth/2;
+}
+
+bool PlayerPaddle::GetDemo()
+{
+	return m_demo;
 }
 
 void PlayerPaddle::Reset()

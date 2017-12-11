@@ -53,7 +53,7 @@ void ObjectBall::Update(Input* pInputHandler)
 	{
 		return;
 	}
-	if (!GameStateIs(E_GAME_STATE_IN_GAME)|GamePaused())
+	if (!GameStateIs({ E_GAME_STATE_IN_GAME,E_GAME_STATE_DEMO_GAME })|GamePaused())
 		return;
 
 	UpdatePosition();
@@ -79,7 +79,7 @@ void ObjectBall::Render(ASCIIRenderer* pRenderer)
 {
 	if (!m_initialised|GamePaused())
 		return;
-	if (!GameStateIs(E_GAME_STATE_IN_GAME))
+	if (!GameStateIs({ E_GAME_STATE_IN_GAME,E_GAME_STATE_DEMO_GAME }))
 		return;
 
 	// Sprite rendering
