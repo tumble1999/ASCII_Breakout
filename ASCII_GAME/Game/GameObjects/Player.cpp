@@ -71,9 +71,9 @@ void Player::GainHealth(int amount)
 {
 	float testValue = m_health + std::abs(amount);
 
-	if (testValue >= SCREEN_WIDTH - SCREEN_MARGIN_LEFTRIGHT*2)
+	if (testValue >= 41)
 	{
-		testValue = SCREEN_WIDTH - SCREEN_MARGIN_LEFTRIGHT*2;
+		testValue = 41;
 	}
 	m_health = testValue;
 	UpdateScoreDisplays();
