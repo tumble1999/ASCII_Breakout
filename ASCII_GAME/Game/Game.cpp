@@ -11,7 +11,7 @@ const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage wit
 const int SCREEN_HEIGHT = 96;		//*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
-const int DEMO_TIMER = 100;
+const int DEMO_TIMER = 250;
 
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27
@@ -138,6 +138,10 @@ void Game::Initialise()
 	m_PAUSED.SetPosition(
 		(Vector2(SCREEN_WIDTH, SCREEN_HEIGHT) - m_PAUSED.GetSize()) / 2
 	);
+
+	m_demoMode.Initialise(
+
+	)
 
 
 	std::vector<MenuItem*> menuItems;
