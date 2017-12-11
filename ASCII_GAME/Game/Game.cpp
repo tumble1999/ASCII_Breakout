@@ -11,6 +11,8 @@ const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage wit
 const int SCREEN_HEIGHT = 96;		//*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
+const int DEMO_TIMER = 100;
+
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27
 #define VK_SPACE	0x20       
@@ -27,6 +29,7 @@ Game::Game()
 {
 	m_gameState = E_GAME_STATE_MAIN_MENU;
 	m_pInputHandler = NULL;
+	m_demoTimer = DEMO_TIMER;
 }
 
 Game::~Game()
@@ -238,6 +241,12 @@ void Game::Update()
 	{
 	case E_GAME_STATE_MAIN_MENU:
 	{
+		m_demoTimer--;
+		if (m_demoTimer <= 0)
+		{
+			m_demoTimer = DEMO_TIMER;
+			m_gameState = E_GAME_STATE_DEMO_GAME;
+		}
 		Reset();
 
 		int keysGo[2] = { VK_SPACE, VK_RETURN };
@@ -248,6 +257,11 @@ void Game::Update()
 			if (id == "startGame")
 			{
 				m_gameState = E_GAME_STATE_IN_GAME;
+			}
+
+			else if (id == "demoGame")
+			{
+				m_gameState = E_GAME_STATE_DEMO_GAME;
 			}
 			else if (id == "exitGame")
 			{
@@ -268,17 +282,37 @@ void Game::Update()
 		m_mainMenu.Update();
 	}
 		break;
+	case E_GAME_STATE_DEMO_GAME:
+	{
+		m_demoTimer--;
+		if (m_demoTimer <= 0)
+		{
+			Reset();
+			m_demoTimer = DEMO_TIMER;
+			m_gameState = E_GAME_STATE_MAIN_MENU;
+		}
+	}
+	break;
 	case E_GAME_STATE_IN_GAME:
 	{
+
+		if (m_player.GetObjectBall()->OffScreen()) {
+			LightReset();
+			m_player.LoseHealth(1);
+			if (m_player.GetHealth() <= 0)
+			{
+				m_gameState = E_GAME_STATE_LOSE_GAME;
+				m_player.ResetHealth();
+			}
+		}
+
+
 		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
 		{
 			//uncomment when pause menu implemented
 			m_gameState = E_GAME_STATE_PAUSE_MENU;
 			m_gamePaused = !m_gamePaused;
 		}
-		
-
-
 		if (GetKeyState(VK_NUMPAD9) < 0)
 		{
 			m_player.LoseHealth(1);
@@ -293,23 +327,14 @@ void Game::Update()
 		}
 		if (GetKeyState(VK_NUMPAD6) < 0)
 		{
-			m_player.LoseHealth(m_player.GetHealth()/2);
+			m_player.LoseHealth(m_player.GetHealth() / 2);
 		}
-
-		if (m_player.GetObjectBall()->OffScreen()) {
-			LightReset();
-			m_player.LoseHealth(1);
-			if (m_player.GetHealth() <= 0)
-			{
-				m_gameState = E_GAME_STATE_LOSE_GAME;
-				m_player.ResetHealth();
-			}
-		}
-		if (m_brickMatrix.BrickCount() <=0)
+		if (m_brickMatrix.BrickCount() <= 0)
 		{
 			m_gameState = E_GAME_STATE_WIN_GAME;
 			Reset();
 		}
+
 
 	}
 	break;
@@ -365,6 +390,7 @@ void Game::Render()
 		m_LOGO.Render(m_pRenderer);
 	}
 		break;
+	case E_GAME_STATE_DEMO_GAME:
 	case E_GAME_STATE_IN_GAME:
 	{
 		//m_playerPaddle.Render(m_pRenderer);

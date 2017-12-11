@@ -36,6 +36,7 @@ private:
 	Input* m_pInputHandler;
 	E_GAME_STATE m_gameState;
 	bool m_gamePaused;
+	int m_demoTimer;
 
 	bool m_bInitialised;
 	bool m_bExitApp;
