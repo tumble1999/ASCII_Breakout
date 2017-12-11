@@ -37,11 +37,10 @@ private:
 	E_GAME_STATE m_gameState;
 	bool m_gamePaused;
 	int m_demoTimer;
+	int m_pauseTimer;
 
 	bool m_bInitialised;
 	bool m_bExitApp;
-
-	int m_EscPressed;
 
 	// Objects
 

@@ -25,11 +25,11 @@ Game::Game()
 	:m_pRenderer(NULL)
 	, m_bInitialised(false)
 	, m_bExitApp(false)
-	, m_EscPressed(0)
 {
 	m_gameState = E_GAME_STATE_MAIN_MENU;
 	m_pInputHandler = NULL;
 	m_demoTimer = DEMO_TIMER;
+	m_pauseTimer = 0;
 }
 
 Game::~Game()
@@ -222,19 +222,6 @@ void Game::Run()
 void Game::Update()
 {
 	m_pInputHandler->Update();
-	if (GetKeyState(VK_ESCAPE) < 0)
-	{
-		m_EscPressed++;
-		if(m_EscPressed>=10)
-		{
-			m_bExitApp = true;
-			return;
-		}
-	
-	} else
-	{
-		m_EscPressed = 0;
-	}
 
 
 	switch (m_gameState)
@@ -248,6 +235,12 @@ void Game::Update()
 			m_gameState = E_GAME_STATE_DEMO_GAME;
 		}
 		Reset();
+
+		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
+		{
+			m_bExitApp = true;
+			return;
+		}
 
 		int keysGo[2] = { VK_SPACE, VK_RETURN };
 		if (m_pInputHandler->GetKeyDown(keysGo,2))
@@ -295,7 +288,7 @@ void Game::Update()
 	break;
 	case E_GAME_STATE_IN_GAME:
 	{
-
+		m_pauseTimer = 10;
 		if (m_player.GetObjectBall()->OffScreen()) {
 			LightReset();
 			m_player.LoseHealth(1);
@@ -340,10 +333,21 @@ void Game::Update()
 	break;
 	case E_GAME_STATE_PAUSE_MENU:
 	{
-		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
-		{
-			m_gameState = E_GAME_STATE_IN_GAME;
+		if (m_pauseTimer <= 0) {
+			if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
+			{
+				m_gameState = E_GAME_STATE_IN_GAME;
+			}
 		}
+		else
+		{
+			if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
+			{
+				m_gameState = E_GAME_STATE_MAIN_MENU;
+			}
+			m_pauseTimer--;
+		}
+		
 	}
 		break;
 	case E_GAME_STATE_LOSE_GAME:
