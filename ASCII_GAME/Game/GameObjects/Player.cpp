@@ -42,6 +42,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 void Player::Update(Input* pInputHandler)
 {
 	//UpdateScoreDisplay();
+	m_playerPaddle.ChangeWidth(m_health * 2);
 	m_objectBall.Update(pInputHandler);
 	m_playerPaddle.Update(pInputHandler);
 }
@@ -70,9 +71,9 @@ void Player::GainHealth(int amount)
 {
 	float testValue = m_health + std::abs(amount);
 
-	if (testValue > 2147483647)
+	if (testValue >= SCREEN_WIDTH-SCREEN_MARGIN_LEFTRIGHT)
 	{
-		testValue = 2147483647;
+		testValue = SCREEN_WIDTH - SCREEN_MARGIN_LEFTRIGHT;
 	}
 	m_health = testValue;
 	UpdateScoreDisplays();

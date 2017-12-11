@@ -299,7 +299,6 @@ void Game::Update()
 		if (m_player.GetObjectBall()->OffScreen()) {
 			LightReset();
 			m_player.LoseHealth(1);
-			m_player.GetPlayerPaddle()->ChangeWidth(m_player.GetPlayerPaddle()->GetWidth() - 2);
 			if (m_player.GetHealth() <= 0)
 			{
 				m_gameState = E_GAME_STATE_LOSE_GAME;
