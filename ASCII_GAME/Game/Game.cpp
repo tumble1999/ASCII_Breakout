@@ -140,8 +140,17 @@ void Game::Initialise()
 	);
 
 	m_demoMode.Initialise(
-
-	)
+"########  ######## ##     ##  #######     ##     ##  #######  ########  ######## "
+"##     ## ##       ###   ### ##     ##    ###   ### ##     ## ##     ## ##       "
+"##     ## ##       #### #### ##     ##    #### #### ##     ## ##     ## ##       "
+"##     ## ######   ## ### ## ##     ##    ## ### ## ##     ## ##     ## ######   "
+"##     ## ##       ##     ## ##     ##    ##     ## ##     ## ##     ## ##       "
+"##     ## ##       ##     ## ##     ##    ##     ## ##     ## ##     ## ##       "
+"########  ######## ##     ##  #######     ##     ##  #######  ########  ######## "
+		,FOREGROUND_WHITE | BACKGROUND_BLACK | BOLD_FONTTYPE, Vector2(81, 7));
+	m_demoMode.SetPosition(Vector2(
+		(SCREEN_WIDTH - m_demoMode.GetSize().x) / 2
+		, 1));
 
 
 	std::vector<MenuItem*> menuItems;
@@ -270,9 +279,11 @@ void Game::Update()
 		int keysU[2] = { VK_W, VK_UP };
 		int keysD[2] = { VK_S, VK_DOWN };
 		if (m_pInputHandler->GetKeyDown(keysU,2)) {
+			m_demoTimer = DEMO_TIMER;
 			m_mainMenu.GoUp();
 		}
 		if (m_pInputHandler->GetKeyDown(keysD,2)) {
+			m_demoTimer = DEMO_TIMER;
 			m_mainMenu.GoDown();
 		}
 
@@ -407,6 +418,10 @@ void Game::Render()
 		m_brickMatrix.Render(m_pRenderer);
 		
 		m_player.Render(m_pRenderer);
+		if (m_gameState==E_GAME_STATE_DEMO_GAME)
+		{
+			m_demoMode.Render(m_pRenderer);
+		}
 	}
 		break;
 	case E_GAME_STATE_PAUSE_MENU:
