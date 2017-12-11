@@ -11,7 +11,7 @@ const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage wit
 const int SCREEN_HEIGHT = 96;		//*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
-const int DEMO_TIMER = 500;
+const int DEMO_TIMER = 100;
 
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27

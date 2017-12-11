@@ -38,15 +38,12 @@ public:
 	void SetPlayerPointer(Player* pPlayer);
 
 
+	//Function usefull for break points where there is no code where i want the brakpoint
+	void DoNothing(){}
 
-	void DoNothing()
-	{
-
-	}
-
-	bool KeyPressed(int key);
-	bool KeyDown(int key);
-	bool KeyUp(int key);
+	//bool KeyPressed(int key);
+	//bool KeyDown(int key);
+	//bool KeyUp(int key);
 
 private:
 	E_GAME_STATE* m_pGameState;
