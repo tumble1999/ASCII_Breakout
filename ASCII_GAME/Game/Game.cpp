@@ -7,8 +7,8 @@
 #include "../Core/Utils.h"
 #include "../Core/Renderer/ASCIIRenderer.h"
 
-const int SCREEN_WIDTH = 256		*2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
-const int SCREEN_HEIGHT = 96		*2 / 3;
+const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
+const int SCREEN_HEIGHT = 96;		//*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
 #define VK_LEFT		0x25
