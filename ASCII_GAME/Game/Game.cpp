@@ -270,14 +270,11 @@ void Game::Update()
 		break;
 	case E_GAME_STATE_IN_GAME:
 	{
-		if (GetKeyState(VK_ESCAPE) < 0)
+		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
 		{
-			if (m_EscPressed>0)
-			{
-				//uncomment when pause menu implemented
-				m_gameState = E_GAME_STATE_PAUSE_MENU;
-				m_gamePaused = !m_gamePaused;
-			}
+			//uncomment when pause menu implemented
+			m_gameState = E_GAME_STATE_PAUSE_MENU;
+			m_gamePaused = !m_gamePaused;
 		}
 		
 
@@ -319,12 +316,9 @@ void Game::Update()
 	break;
 	case E_GAME_STATE_PAUSE_MENU:
 	{
-		if (GetKeyState(VK_ESCAPE) < 0)
+		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
 		{
-			if (m_EscPressed==1)
-			{
-				m_gameState = E_GAME_STATE_IN_GAME;
-			}
+			m_gameState = E_GAME_STATE_IN_GAME;
 		}
 	}
 		break;
