@@ -5,6 +5,8 @@
 const int INIT_HEALTH = 5;
 const int INIT_SCORE = 0;
 
+//TODO: Add comments to this file
+
 Player::Player()
 {
 	m_health = INIT_HEALTH;

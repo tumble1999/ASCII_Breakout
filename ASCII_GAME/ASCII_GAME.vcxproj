@@ -101,7 +101,6 @@
     <ClInclude Include="Core\Renderer\Sprite.h" />
     <ClInclude Include="Core\Renderer\SpriteTools.h" />
     <ClInclude Include="Core\Utils.h" />
-    <ClInclude Include="Game\Directions.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\GameObjects\Brick.h" />
     <ClInclude Include="Game\GameObjects\BrickMatrix.h" />

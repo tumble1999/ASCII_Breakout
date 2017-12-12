@@ -1,6 +1,6 @@
 #include "MenuItem.h"
 
-
+//TODO: Add comments to this file
 
 MenuItem::MenuItem()
 {

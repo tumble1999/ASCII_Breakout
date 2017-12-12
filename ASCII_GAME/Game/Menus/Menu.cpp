@@ -1,6 +1,8 @@
 #include "Menu.h"
 #include "../../Core/Utils.h"
 
+//TODO: Add comments to this file
+
 Menu::Menu()
 {
 	m_pos = Vector2(0,0);

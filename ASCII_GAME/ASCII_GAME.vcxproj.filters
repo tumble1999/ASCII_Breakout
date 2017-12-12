@@ -114,9 +114,6 @@
     <ClInclude Include="Game\GameObjects\ObjectBall.h">
       <Filter>Game\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Directions.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Sides.h">
       <Filter>Game</Filter>
     </ClInclude>

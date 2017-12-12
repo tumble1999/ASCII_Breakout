@@ -7,6 +7,8 @@ const int HEIGHT = 2;
 
 std::vector<CHAR_INFO> PlayerSprite;
 
+//TODO: Add comments to this file
+
 PlayerPaddle::PlayerPaddle()
 {
 	m_initialised = false;
