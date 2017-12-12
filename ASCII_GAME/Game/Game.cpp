@@ -7,13 +7,23 @@
 #include "../Core/Utils.h"
 #include "../Core/Renderer/ASCIIRenderer.h"
 
+//The Width of the screen
 const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
+
+//Screen Height
 const int SCREEN_HEIGHT = 96;		//*2 / 3;
+
+//The buffer before the player paddle hits the edge
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
+//The wait for the demo to start
 const int DEMO_TIMER = 250;
+
+//The time that you can press escape to goto main menu other wise it goes back to the game
 const int PAUSE_TIMER = 0.125 * 30;
 
+
+//KEY CODES
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27
 #define VK_SPACE	0x20       
@@ -39,11 +49,14 @@ Game::~Game()
 	SAFE_DELETE_PTR(m_pInputHandler);
 }
 
+
+//sETS UP THE GAME WITH INITIAL VARIABLES
 void Game::Initialise()
 {
 	InitialiseRenderer();
 	m_pInputHandler = new Input();
 
+	// THE LOGO OF THE GAME
 	m_LOGO.Initialise(
 "  .oooooo.                                               ooooo      ooo                                       "
 " d8P'  `Y8b                                              `888b.     `8'                                       "
@@ -233,6 +246,7 @@ void Game::Run()
 	}
 }
 
+//CHAGES SOME VALUES AND STUFF 
 void Game::Update()
 {
 	m_pInputHandler->Update();

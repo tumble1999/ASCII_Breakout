@@ -7,11 +7,13 @@
 //const CHAR_INFO& PIXEL_ON = PIXEL;
 //const CHAR_INFO PIXEL_OFF = { 0 ,BACKGROUND_BLACK };
 
+//makes a pixel of colour color
 inline CHAR_INFO PIXEL_COLORED(unsigned short color)
 {
 	return { 0, color };
 }
 
+//presets of PIXEL_COLORED
 extern const CHAR_INFO PIXEL;
 extern const CHAR_INFO& PIXEL_ON;
 extern const CHAR_INFO PIXEL_OFF;
