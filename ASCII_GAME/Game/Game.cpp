@@ -8,10 +8,10 @@
 #include "../Core/Renderer/ASCIIRenderer.h"
 
 //The Width of the screen
-const int SCREEN_WIDTH = 256;		//*2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
+const int SCREEN_WIDTH = 256		*2 / 3; //resolution shrunk so i can manage with my small 1366x768 screen
 
 //Screen Height
-const int SCREEN_HEIGHT = 96;		//*2 / 3;
+const int SCREEN_HEIGHT = 96		*2 / 3;
 
 //The buffer before the player paddle hits the edge
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
@@ -20,7 +20,7 @@ const int SCREEN_MARGIN_LEFTRIGHT = 2;
 const int DEMO_TIMER = 250;
 
 //The time that you can press escape to goto main menu other wise it goes back to the game
-const int PAUSE_TIMER = 0.125 * 30;
+const int PAUSE_TIMER = 0.25 * 30;
 
 
 //KEY CODES
@@ -219,7 +219,7 @@ void Game::Initialise()
 	int brickpos_x = (SCREEN_WIDTH-gridWidth)/2;
 
 	//m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_objectBall, Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
-	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_player , Vector2(brickpos_x, 10), Vector2(bricksize_x, 10));
+	m_brickMatrix.Initialise(&m_gamePaused, &m_gameState, &m_player , Vector2(brickpos_x, 10), Vector2(bricksize_x, 5));
 
 	m_bInitialised = true;
 
