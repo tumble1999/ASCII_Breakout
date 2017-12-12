@@ -77,3 +77,16 @@ char* Menu::GetSelectedMenuItemID() const
 {
 	return m_menuItems[m_selectedItem]->GetId();
 }
+
+void Menu::SetActive(char* id)
+{
+	for (int i = 0; i < m_menuItems.size(); i++)
+	{
+		MenuItem* menuItem = m_menuItems[i];
+		if (menuItem->GetId() == id)
+		{
+			m_selectedItem = i;
+			return;
+		}
+	}
+}

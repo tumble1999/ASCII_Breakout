@@ -17,6 +17,8 @@ public:
 	void GoDown();
 	char* GetSelectedMenuItemID() const;
 
+	void SetActive(char * id);
+
 private:
 	Vector2 m_pos;
 	std::vector<MenuItem*> m_menuItems;

@@ -153,7 +153,6 @@ void PlayerPaddle::Reset()
 	ChangeWidth(m_INIT_WIDTH);
 }
 
-
 int PlayerPaddle::GetCurrentWidth() const
 {
 	const int width = PlayerSprite.size() / HEIGHT;

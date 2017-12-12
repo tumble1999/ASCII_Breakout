@@ -12,6 +12,7 @@ const int SCREEN_HEIGHT = 96;		//*2 / 3;
 const int SCREEN_MARGIN_LEFTRIGHT = 2;
 
 const int DEMO_TIMER = 250;
+const int PAUSE_TIMER = 0.125 * 30;
 
 #define VK_LEFT		0x25
 #define VK_RIGHT	0x27
@@ -251,8 +252,23 @@ void Game::Update()
 
 		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
 		{
-			m_bExitApp = true;
-			return;
+			m_mainMenu.SetActive("exitGame");
+		}
+
+		
+		if (0 < m_pauseTimer)
+		{
+			if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
+			{
+				m_bExitApp = true;
+				return;
+			}
+			else {
+				m_pauseTimer--;
+			}
+		} else if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
+		{
+			m_pauseTimer = PAUSE_TIMER;
 		}
 
 		int keysGo[2] = { VK_SPACE, VK_RETURN };
@@ -303,7 +319,7 @@ void Game::Update()
 	break;
 	case E_GAME_STATE_IN_GAME:
 	{
-		m_pauseTimer = 10;
+		m_pauseTimer = PAUSE_TIMER;
 		if (m_player.GetObjectBall()->OffScreen()) {
 			LightReset();
 			m_player.LoseHealth(1);
