@@ -309,6 +309,7 @@ void Game::Update()
 	case E_GAME_STATE_DEMO_GAME:
 	{
 		m_demoTimer--;
+
 		if (m_demoTimer <= 0 | m_pInputHandler->AnyKeyDown())
 		{
 			Reset();
