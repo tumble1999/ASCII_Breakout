@@ -19,11 +19,14 @@ Brick::~Brick()
 	}
 }
 
+//sets variables to specified values
 void Brick::Initialise(int points ,Vector2 & pos, unsigned short color) {
 	m_points = points;
 	Initialise(pos, color);
 }
 
+
+//sets variables to specified values
 void Brick::Initialise(Vector2 & pos, unsigned short color)
 {
 	if (m_initialised)
@@ -36,6 +39,7 @@ void Brick::Initialise(Vector2 & pos, unsigned short color)
 	m_initialised = true;
 }
 
+//amkes sure pixels are set
 void Brick::Update()
 {
  	if (!m_initialised | m_destroyed)
@@ -46,6 +50,11 @@ void Brick::Update()
 	Sprite::SetPixels(GetBrickSpriteArray());
 }
 
+/*
+tells the sprite class to display the brick#
+
+pRenderer: the rendering engine to use.
+*/
 void Brick::Render(ASCIIRenderer * pRenderer)
 {
 	if (!m_initialised | m_destroyed)
@@ -54,6 +63,7 @@ void Brick::Render(ASCIIRenderer * pRenderer)
 	Sprite::Render(pRenderer);
 }
 
+//destrys the brick
 void Brick::Destroy()
 {
 	if (!m_initialised | m_destroyed)
@@ -62,15 +72,20 @@ void Brick::Destroy()
 	m_destroyed = true;
 }
 
+
+//returns true if the brick is destryed
 bool Brick::Destroyed()
 {
 	return m_destroyed;
 }
 
+
+//checks ball collission
 void Brick::CheckBallCollision()
 {
 	if (!m_initialised | m_destroyed)
 		return;
+
 
 	if (GetObjectBall()->CollidesWith(*this))
 	{
@@ -81,6 +96,7 @@ void Brick::CheckBallCollision()
 	
 }
 
+//initialises the sprite
 void Brick::InitialiseBrickSprite(unsigned short color)
 {
 	if (m_initialised)
@@ -96,6 +112,8 @@ void Brick::InitialiseBrickSprite(unsigned short color)
 	}
 }
 
+
+//gets the sprite information
 CHAR_INFO* Brick::GetBrickSpriteArray()
 {
 	return m_BrickSprite.data();

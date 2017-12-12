@@ -51,7 +51,7 @@ private:
 	ObjectBall* m_pObjectBall;
 	Player* m_pPlayer;
 
-	bool KeyToggle(int key);
+	//bool KeyToggle(int key);
 };
 
 #endif // !_GAME_OBJECT_H_
