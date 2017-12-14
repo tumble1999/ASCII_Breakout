@@ -108,6 +108,7 @@ void ObjectBall::CheckCollision()
 	}
 }
 
+
 void ObjectBall::UpdatePosition()
 {
 	Vector2 newPos;

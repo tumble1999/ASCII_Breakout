@@ -46,6 +46,7 @@ void PlayerPaddle::Initialise(Vector2& pos, std::vector<int> leftKey, std::vecto
 	m_initialised = true;
 }
 
+
 void PlayerPaddle::Update(Input* pInputHandler)
 {
 	if (!m_initialised)
@@ -123,6 +124,7 @@ void PlayerPaddle::Update(Input* pInputHandler)
 	}
 }
 
+//displays the player paddle to the screen
 void PlayerPaddle::Render(ASCIIRenderer* pRenderer)
 {
 	if (!m_initialised)
@@ -134,6 +136,7 @@ void PlayerPaddle::Render(ASCIIRenderer* pRenderer)
 	Sprite::Render(pRenderer);
 }
 
+//modifyes the width of the paddle
 void PlayerPaddle::ChangeWidth(int newSize)
 {
 	m_newWidth = 2*newSize;
@@ -149,6 +152,7 @@ bool PlayerPaddle::GetDemo()
 	return m_demo;
 }
 
+//resets the values to the initial values
 void PlayerPaddle::Reset()
 {
 	SetPosition(m_startPos);

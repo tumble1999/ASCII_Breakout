@@ -41,6 +41,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 
 }
 
+//
 void Player::Update(Input* pInputHandler)
 {
 	//UpdateScoreDisplay();
