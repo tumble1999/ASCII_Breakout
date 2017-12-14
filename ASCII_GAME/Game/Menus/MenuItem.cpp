@@ -20,7 +20,7 @@ MenuItem::~MenuItem()
 
 
 
-//setts up the menu item
+//set up the menu item
 void MenuItem::Initialize(char* text, Vector2 size)
 {
 	

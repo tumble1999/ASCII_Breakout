@@ -171,7 +171,7 @@ CHAR_INFO* PlayerPaddle::GetPlayerSprite()
 	return playerSpriteArray;
 }
 
-
+//Makes the paddle Bigger
 void PlayerPaddle::IncreaseWidth(int amount)
 {
 	for (int i = 0; i < 2*amount; i++)
@@ -182,6 +182,7 @@ void PlayerPaddle::IncreaseWidth(int amount)
 	MoveLeft(amount/2);
 }
 
+//shrinks the paddle
 void PlayerPaddle::DecreaseWidth(int amount)
 {
 	for (int i = 0; i < 2*amount; i++)
@@ -222,6 +223,8 @@ void PlayerPaddle::MoveRight()
 	MoveRight(m_speed);
 }
 
+
+//moves the paddle right
 void PlayerPaddle::MoveLeft(int amount)
 {
 	SetPosition(GetPosition() - Vector2(amount, 0));
@@ -231,6 +234,7 @@ void PlayerPaddle::MoveLeft(int amount)
 	}
 }
 
+//moves the paddle left
 void PlayerPaddle::MoveRight(int amount)
 {
 	SetPosition(GetPosition() + Vector2(amount, 0));

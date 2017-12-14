@@ -53,6 +53,7 @@ void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 	m_initialised = true;
 }
 
+//keeps the ball uptodate with whats going on
 void ObjectBall::Update(Input* pInputHandler)
 {
 	if (!m_initialised)
@@ -86,6 +87,8 @@ void ObjectBall::Update(Input* pInputHandler)
 	}
 }
 
+
+//displays the ball on the screen
 void ObjectBall::Render(ASCIIRenderer* pRenderer)
 {
 	if (!m_initialised|GamePaused())
@@ -98,6 +101,7 @@ void ObjectBall::Render(ASCIIRenderer* pRenderer)
 	Sprite::Render(pRenderer);
 }
 
+//checks the ball in relation to the wall
 void ObjectBall::CheckCollision()
 {
 
@@ -109,6 +113,7 @@ void ObjectBall::CheckCollision()
 }
 
 
+//moves the ball depending on the direction
 void ObjectBall::UpdatePosition()
 {
 	Vector2 newPos;
@@ -133,6 +138,7 @@ void ObjectBall::UpdatePosition()
 	m_BoundingBox.SetPosition(GetPosition() - boundingPos);
 }
 
+//Checks the ball inrelation to specified sprite
 void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
 {
 	if (IsNear(otherSprite))
@@ -142,21 +148,26 @@ void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
 	}
 }
 
+
+//cheacks if tyhe ball is near a sprite
 bool ObjectBall::IsNear(Sprite & otherSprite)
 {
 	return m_BoundingBox.Collides(otherSprite);
 }
 
+//cheacks if the ball is going to hit the specified sprite
 bool ObjectBall::CollidesWith(Sprite & otherSprite)
 {
 	return IsNear(otherSprite)&((GetSpriteSideH(otherSprite) != E_SIDE_NULL) | (GetSpriteSideV(otherSprite) != E_SIDE_NULL));
 }
 
+//checks if the ball is below the botomn of the screen
 bool ObjectBall::OffScreen()
 {
 	return GetWallSideV() == E_SIDE_BOTTOM;
 }
 
+//checks if the ball can move
 bool ObjectBall::IsActive()
 {
 	return m_active;
@@ -197,6 +208,8 @@ E_SIDE ObjectBall::GetWallSideV()
 	return wallSide;
 }
 
+
+//checks where the ball is in relation to the wall
 bool ObjectBall::AtWallSide(E_SIDE wallSide)
 {
 	return (wallSide == GetWallSideH())|(wallSide == GetWallSideV());
@@ -205,7 +218,7 @@ bool ObjectBall::AtWallSide(E_SIDE wallSide)
 
 
 
-
+//flips the x or y value of the directions dependomg on what side to bounce off
 void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 {
 	switch (bounceOffSide)

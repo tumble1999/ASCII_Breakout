@@ -26,6 +26,7 @@ Player::~Player()
 	delete m_pSDScore;*/
 }
 
+//sets variables to initial and specified values
 void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 {
 	m_playerPaddle.SetGameStatePointer(gameState);
@@ -138,6 +139,7 @@ void Player::Reset()
 	m_objectBall.Reset();
 }
 
+//updates all the displays
 void Player::UpdateScoreDisplays()
 {
 	//HEALTH DISPLAY
