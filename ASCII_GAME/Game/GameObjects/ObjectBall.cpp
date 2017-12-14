@@ -20,10 +20,6 @@ CHAR_INFO BallBoundingSprite[] = {
 };
 
 
-
-//TODO: Add comments to this file
-
-
 ObjectBall::ObjectBall()
 {
 	m_initialised = false;
@@ -35,6 +31,8 @@ ObjectBall::ObjectBall()
 ObjectBall::~ObjectBall()
 {
 }
+
+
 
 void ObjectBall::Initialise(Sprite* pPlayerPaddle)
 {
@@ -98,6 +96,8 @@ void ObjectBall::Render(ASCIIRenderer* pRenderer)
 	Sprite::Render(pRenderer);
 }
 
+
+//Cheacks the collision with the wall
 void ObjectBall::CheckCollision()
 {
 
@@ -108,6 +108,15 @@ void ObjectBall::CheckCollision()
 	}
 }
 
+
+/*
+
+if player has started moving the ball:
+	move the ball by (1) in the direction currently aiming
+if not:
+	go ontop of the player
+
+*/
 void ObjectBall::UpdatePosition()
 {
 	Vector2 newPos;
@@ -132,6 +141,10 @@ void ObjectBall::UpdatePosition()
 	m_BoundingBox.SetPosition(GetPosition() - boundingPos);
 }
 
+
+/*
+a more improved version of sprite::collide involving the ball having a collission box
+*/
 void ObjectBall::CheckSpriteCollision(Sprite& otherSprite)
 {
 	if (IsNear(otherSprite))
@@ -161,6 +174,7 @@ bool ObjectBall::IsActive()
 	return m_active;
 }
 
+//Finds out whitch wall side the ball is on
 E_SIDE ObjectBall::GetWallSideH()
 {
 	E_SIDE wallSide = E_SIDE_NULL;
@@ -176,6 +190,8 @@ E_SIDE ObjectBall::GetWallSideH()
 	}
 	return wallSide;
 }
+
+//finds out of the ball is on the ceiling or the floor
 E_SIDE ObjectBall::GetWallSideV()
 {
 	E_SIDE wallSide = E_SIDE_NULL;
@@ -198,6 +214,7 @@ bool ObjectBall::AtWallSide(E_SIDE wallSide)
 	return (wallSide == GetWallSideH())|(wallSide == GetWallSideV());
 }
 
+//bounces of a cirtain side by just flipping the x or y direction
 void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 {
 	switch (bounceOffSide)
@@ -239,6 +256,8 @@ void ObjectBall::Reset()
 	m_active = false;
 }
 
+
+//sees which side the sprite is on in relation to the ball left, right
 E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
@@ -259,6 +278,8 @@ E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 
 	return spriteSide;
 }
+
+//sees which side the sprite is on in relation to the ball top, bottom
 E_SIDE ObjectBall::GetSpriteSideV(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
