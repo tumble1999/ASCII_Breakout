@@ -46,7 +46,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 void Player::Update(Input* pInputHandler)
 {
 	//UpdateScoreDisplay();
-	m_playerPaddle.ChangeWidth(m_health*2);
+	m_playerPaddle.ChangeWidth(m_health*2);//NOT A BUG: CHANGING SIZE DEPENDING ON HEALTH
 	m_objectBall.Update(pInputHandler);
 	m_playerPaddle.Update(pInputHandler);
 }

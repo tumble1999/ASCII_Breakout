@@ -360,6 +360,10 @@ void Game::Update()
 			m_gameState = E_GAME_STATE_PAUSE_MENU;
 			m_gamePaused = !m_gamePaused;
 		}
+
+
+		//<DEBUG KEYS>
+		//these keys are only used in development for testing purpouses
 		if (GetKeyState(VK_NUMPAD9) < 0)
 		{
 			m_player.LoseHealth(1);
@@ -376,6 +380,9 @@ void Game::Update()
 		{
 			m_player.LoseHealth(m_player.GetHealth() / 2);
 		}
+		// <DEBUG KEYS/>
+
+
 		if (m_brickMatrix.BrickCount() <= 0)
 		{
 			m_gameState = E_GAME_STATE_WIN_GAME;
