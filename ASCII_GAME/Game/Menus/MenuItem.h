@@ -6,7 +6,7 @@
 
 #include "../GameObjects/GameObject.h"
 
-/* The slector
+/* The selector
 ###### ######
 ##         ##
 ##         ##

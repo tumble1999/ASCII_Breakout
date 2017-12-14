@@ -1,7 +1,7 @@
 #ifndef _SIDES_H_
 #define _SIDES_H_
 
-//TODO: Add comments to this file
+//Sides of an object or thing
 
 enum E_SIDE
 {
