@@ -228,6 +228,8 @@ void Game::Initialise()
 //TODO: Add comments to this file
 
 
+
+//Sets up the renderer
 void Game::InitialiseRenderer()
 {
 	m_pRenderer = new ASCIIRenderer();
@@ -236,6 +238,8 @@ void Game::InitialiseRenderer()
 
 }
 
+
+//Starts the game loop
 void Game::Run()
 {
 	while (!m_bExitApp) // The legendary "Game Loop"
@@ -248,7 +252,8 @@ void Game::Run()
 	}
 }
 
-//CHAGES SOME VALUES AND STUFF 
+
+//CHANGES SOME VALUES AND STUFF 
 void Game::Update()
 {
 	m_pInputHandler->Update();
@@ -346,6 +351,7 @@ void Game::Update()
 				m_player.ResetHealth();
 			}
 		}
+
 
 
 		if (m_pInputHandler->GetKeyDown(VK_ESCAPE))
