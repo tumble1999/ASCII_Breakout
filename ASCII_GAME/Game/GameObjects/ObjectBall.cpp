@@ -162,6 +162,8 @@ bool ObjectBall::IsActive()
 	return m_active;
 }
 
+
+//sees if the ball is on the left or right wall
 E_SIDE ObjectBall::GetWallSideH()
 {
 	E_SIDE wallSide = E_SIDE_NULL;
@@ -177,6 +179,8 @@ E_SIDE ObjectBall::GetWallSideH()
 	}
 	return wallSide;
 }
+
+//sees if the ball is on the top or bottom wall
 E_SIDE ObjectBall::GetWallSideV()
 {
 	E_SIDE wallSide = E_SIDE_NULL;
@@ -198,6 +202,10 @@ bool ObjectBall::AtWallSide(E_SIDE wallSide)
 	
 	return (wallSide == GetWallSideH())|(wallSide == GetWallSideV());
 }
+
+
+
+
 
 void ObjectBall::BounceOff(E_SIDE bounceOffSide)
 {
