@@ -18,6 +18,9 @@ MenuItem::~MenuItem()
 {
 }
 
+
+
+//setts up the menu item
 void MenuItem::Initialize(char* text, Vector2 size)
 {
 	
@@ -55,6 +58,8 @@ void MenuItem::Update()
 {
 }
 
+
+//Dispays the menu item on the screen
 void MenuItem::Render(ASCIIRenderer * pRenderer)
 {
 	Sprite::Render(pRenderer);
@@ -65,13 +70,14 @@ void MenuItem::Render(ASCIIRenderer * pRenderer)
 	}
 }
 
+//returns the idetifing string that was soecialised when the item was created
 char* MenuItem::GetId() const
 {
 	return m_id;
 }
 
 
-
+//updates the position of the menu item woth the new pos and the position of the hilighter '[]'s
 void MenuItem::SetPos(Vector2 & position)
 {
 	m_SELECTOR_L.SetPosition(position);
@@ -79,11 +85,15 @@ void MenuItem::SetPos(Vector2 & position)
 	m_SELECTOR_R.SetPosition(Sprite::GetPosition() + Vector2(Sprite::GetSize().x + 1, 0));
 }
 
+
+//hilights the menu itsm (by)
+// adding [...] arount it
 void MenuItem::Select()
 {
 	m_highlighted = true;
 }
 
+//UnHighlights the item
 void MenuItem::Deselect()
 {
 	m_highlighted = false;

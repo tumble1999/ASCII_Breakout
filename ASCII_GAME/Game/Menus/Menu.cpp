@@ -18,6 +18,7 @@ Menu::~Menu()
 	}
 }
 
+//Sets up the menu with the MENU ITEMS
 void Menu::Initialize(Vector2& pos, std::vector<MenuItem*>& menuItems)
 {
 	for (int i = 0; i < menuItems.size(); i++)
@@ -35,6 +36,8 @@ void Menu::Initialize(Vector2& pos, std::vector<MenuItem*>& menuItems)
 
 }
 
+
+//sees if the menu items are in the right place
 void Menu::Update()
 {
 	for (int i = 0; i < m_menuItems.size(); i++)
@@ -53,6 +56,8 @@ void Menu::Update()
 	}
 }
 
+
+//puts the menu on the screen
 void Menu::Render(ASCIIRenderer * pRenderer)
 {
 	for each (MenuItem* menuItem in m_menuItems)
@@ -61,6 +66,8 @@ void Menu::Render(ASCIIRenderer * pRenderer)
 	}
 }
 
+
+//moves the selection up
 void Menu::GoUp()
 {
 	m_selectedItem += m_menuItems.size();
@@ -68,6 +75,7 @@ void Menu::GoUp()
 	m_selectedItem %= m_menuItems.size();
 }
 
+//moves the selection down
 void Menu::GoDown()
 {
 	m_selectedItem += m_menuItems.size();
@@ -75,11 +83,14 @@ void Menu::GoDown()
 	m_selectedItem %= m_menuItems.size();
 }
 
+//gets the id of the selected menu id
 char* Menu::GetSelectedMenuItemID() const
 {
 	return m_menuItems[m_selectedItem]->GetId();
 }
 
+
+//sets the specific item as active
 void Menu::SetActive(char* id)
 {
 	for (int i = 0; i < m_menuItems.size(); i++)
