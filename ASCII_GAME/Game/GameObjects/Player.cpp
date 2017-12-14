@@ -41,7 +41,7 @@ void Player::Initialize(E_GAME_STATE *gameState, bool *gamePaused)
 
 }
 
-//
+//keeps the player up to date with whats going  on 
 void Player::Update(Input* pInputHandler)
 {
 	//UpdateScoreDisplay();
@@ -159,6 +159,7 @@ void Player::UpdateScoreDisplays()
 			0));
 }
 
+//makes sure the score display is displaying the right values
 void Player::UpdateScoreDisplay(std::vector<ScoreDisplay>& scoreDisplay, int& value, Vector2 pos)
 {
 	

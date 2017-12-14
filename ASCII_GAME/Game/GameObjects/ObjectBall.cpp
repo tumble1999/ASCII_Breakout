@@ -199,7 +199,6 @@ E_SIDE ObjectBall::GetWallSideV()
 
 bool ObjectBall::AtWallSide(E_SIDE wallSide)
 {
-	
 	return (wallSide == GetWallSideH())|(wallSide == GetWallSideV());
 }
 
@@ -248,6 +247,8 @@ void ObjectBall::Reset()
 	m_active = false;
 }
 
+
+//works out where the sprite is in relation to the ball
 E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
@@ -268,6 +269,7 @@ E_SIDE ObjectBall::GetSpriteSideH(Sprite& sprite)
 
 	return spriteSide;
 }
+//works out where the sprite is in relation to the ball
 E_SIDE ObjectBall::GetSpriteSideV(Sprite& sprite)
 {
 	E_SIDE spriteSide = E_SIDE_NULL;
