@@ -49,6 +49,7 @@ private:
 	Sprite m_LOOSE;
 	Sprite m_PAUSED;
 	Sprite m_demoMode;
+	Sprite m_continueText;
 	Player m_player;
 
 	//PlayerPaddle m_playerPaddle;

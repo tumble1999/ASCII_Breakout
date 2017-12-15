@@ -166,6 +166,19 @@ void Game::Initialise()
 		(SCREEN_WIDTH - m_demoMode.GetSize().x) / 2
 		, 1));
 
+	m_continueText.Initialise(
+"                           _   _            _              _                         _ "
+" _ __  _ __ ___  ___ ___  | |_| |__   ___  | | _____ _   _| |__   ___   __ _ _ __ __| |"
+"| '_ \\| '__/ _ \\/ __/ __| | __| '_ \\ / _ \\ | |/ / _ \\ | | | '_ \\ / _ \\ / _` | '__/ _` |"
+"| |_) | | |  __/\\__ \\__ \\ | |_| | | |  __/ |   <  __/ |_| | |_) | (_) | (_| | | | (_| |"
+"| .__/|_|  \\___||___/___/  \\__|_| |_|\\___| |_|\\_\\___|\\__, |_.__/ \\___/ \\__,_|_|  \\__,_|"
+"|_|                                                  |___/                             "
+		, FOREGROUND_WHITE | BACKGROUND_BLACK | BOLD_FONTTYPE, Vector2(87, 6));
+
+	m_continueText.SetPosition(
+	(Vector2(SCREEN_WIDTH, SCREEN_HEIGHT) - m_continueText.GetSize()) / 2+Vector2(0,SCREEN_HEIGHT/4)
+	);
+
 
 	std::vector<MenuItem*> menuItems;
 	menuItems.push_back(new MenuItem(
@@ -413,7 +426,7 @@ void Game::Update()
 		break;
 	case E_GAME_STATE_LOSE_GAME:
 	{
-		if (GetKeyState(VK_SPACE) < 0)
+		if (m_pInputHandler->AnyKeyDown())
 		{
 			m_gameState = E_GAME_STATE_MAIN_MENU;
 		}
@@ -422,7 +435,7 @@ void Game::Update()
 	case E_GAME_STATE_WIN_GAME:
 	{
 		
-		if (m_pInputHandler->GetKeyDown(VK_SPACE))
+		if (m_pInputHandler->AnyKeyDown())
 		{
 			m_gameState = E_GAME_STATE_MAIN_MENU;
 			Reset();
@@ -480,11 +493,13 @@ void Game::Render()
 	{
 		m_player.Render(m_pRenderer);
 		m_LOOSE.Render(m_pRenderer);
+		m_continueText.Render(m_pRenderer);
 	}
 		break;
 	case E_GAME_STATE_WIN_GAME:
 		m_player.Render(m_pRenderer);
 		m_WIN.Render(m_pRenderer);
+		m_continueText.Render(m_pRenderer);
 		break;
 	default:
 		break;
