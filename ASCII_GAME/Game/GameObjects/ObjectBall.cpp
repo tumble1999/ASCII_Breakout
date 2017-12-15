@@ -20,10 +20,6 @@ CHAR_INFO BallBoundingSprite[] = {
 };
 
 
-
-//TODO: Add comments to this file
-
-
 ObjectBall::ObjectBall()
 {
 	m_initialised = false;
