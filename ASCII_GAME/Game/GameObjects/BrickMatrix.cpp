@@ -107,7 +107,7 @@ color id = brick pos y * (color count/matrix size)
 unsigned int BrickMatrix::GetColorFromY(int y)
 {
 	std::vector<unsigned int> colors = 
-	{BACKGROUND_BRIGHT_RED, BACKGROUND_YELLOW, BACKGROUND_SKYBLUE, BACKGROUND_BRIGHT_BLUE};
+	{BACKGROUND_BRIGHT_RED, BACKGROUND_YELLOW, BACKGROUND_BRIGHT_GREEN, BACKGROUND_BRIGHT_BLUE};
 
 	float multiplier = 0;
 	int id = 0;
